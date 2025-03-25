@@ -91,6 +91,8 @@ section {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--space-md);
+    position: relative;
+    z-index: 2;
 }
 
 .section-title {
@@ -99,6 +101,7 @@ section {
     text-align: center;
     margin-bottom: var(--space-xl);
     position: relative;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .section-title::after {
@@ -233,19 +236,139 @@ header {
 }
 
 .hero {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10rem 5% 5rem;
-    height: 100%;
+    height: 100vh; /* Make hero section full viewport height */
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Shooting stars animation background */
+.night-sky {
+    position: fixed; /* Change to fixed for full page effect */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    z-index: 0;
+    background: linear-gradient(135deg, var(--background) 0%, rgba(2, 9, 18, 0.95) 100%);
+    overflow: hidden;
+    pointer-events: none; /* Allow clicking through the animation */
+}
+
+.shooting-star {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(to right, rgba(35, 122, 58, 0), rgba(35, 122, 58, 1));
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(35, 122, 58, 0.1),
+                0 0 0 8px rgba(35, 122, 58, 0.1),
+                0 0 20px rgba(35, 122, 58, 1);
+    animation: shoot 3s linear infinite;
+    opacity: 0;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(to right, rgba(32, 178, 170, 1), rgba(32, 178, 170, 0));
+}
+
+.shooting-star:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 6s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 15%;
+    left: 40%;
+    animation-delay: 2s;
+    animation-duration: 5s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 60%;
+    left: 70%;
+    animation-delay: 4s;
+    animation-duration: 7s;
+}
+
+.shooting-star:nth-child(4) {
+    top: 35%;
+    left: 20%;
+    animation-delay: 3s;
+    animation-duration: 5.5s;
+}
+
+.shooting-star:nth-child(5) {
+    top: 75%;
+    left: 5%;
+    animation-delay: 1s;
+    animation-duration: 6.5s;
+}
+
+@keyframes shoot {
+    0% {
+        transform: rotate(-45deg) translateX(0) scale(0.5);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-45deg) translateX(1500px) scale(0.1); /* Increase distance */
+        opacity: 0;
+    }
+}
+
+/* Star field background */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(35, 122, 58, 0.8);
+    border-radius: 50%;
+    animation: twinkle 4s infinite;
+}
+
+.star:nth-child(6) { top: 15%; left: 15%; animation-delay: 0.5s; }
+.star:nth-child(7) { top: 25%; left: 35%; animation-delay: 1.5s; }
+.star:nth-child(8) { top: 45%; left: 85%; animation-delay: 2.5s; }
+.star:nth-child(9) { top: 65%; left: 65%; animation-delay: 0.7s; }
+.star:nth-child(10) { top: 75%; left: 25%; animation-delay: 1.2s; }
+.star:nth-child(11) { top: 35%; left: 45%; animation-delay: 3s; }
+.star:nth-child(12) { top: 55%; left: 55%; animation-delay: 2s; }
+.star:nth-child(13) { top: 85%; left: 75%; animation-delay: 0s; }
+.star:nth-child(14) { top: 5%; left: 95%; animation-delay: 1s; }
+.star:nth-child(15) { top: 95%; left: 5%; animation-delay: 1.5s; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
 
 .hero-content {
     flex: 1;
     padding-right: var(--space-xl);
+    position: relative;
+    z-index: 2; /* Keep above the night sky */
 }
 
 .hero-content h1 {
@@ -274,6 +397,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2; /* Keep above the night sky */
 }
 
 .hero-image img {
@@ -291,6 +416,18 @@ header {
 /* About section styles */
 .about {
     background-color: var(--background-alt);
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 9, 18, 0.85);
+    z-index: 1;
 }
 
 .about-content {
@@ -430,6 +567,18 @@ header {
 /* Projects section styles */
 .projects {
     background-color: var(--background);
+    position: relative;
+}
+
+.projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 9, 18, 0.85);
+    z-index: 1;
 }
 
 .projects-grid {
@@ -510,6 +659,18 @@ header {
 /* Translations section styles */
 .translations {
     background-color: var(--background-alt);
+    position: relative;
+}
+
+.translations::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 9, 18, 0.85);
+    z-index: 1;
 }
 
 .translations-grid {
@@ -570,7 +731,7 @@ header {
 
 .detail {
     display: flex;
-    margin-bottom: var(--space-xs);
+    margin-bottom: var (--space-xs);
 }
 
 .detail-label {
@@ -586,12 +747,27 @@ header {
 /* Methodology section styles */
 .methodology {
     background-color: var(--background);
+    position: relative;
+    z-index: 1;
+}
+
+.methodology::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 9, 18, 0.85);
+    z-index: 1;
 }
 
 .methodology-content {
     display: flex;
     align-items: center;
     gap: var(--space-xl);
+    position: relative;
+    z-index: 2;
 }
 
 .methodology-image {
@@ -600,9 +776,9 @@ header {
 }
 
 .methodology-image img {
-    border-radius: var(--radius-md);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border: 2px solid var(--primary-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(35, 122, 58, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--primary);
 }
 
 .methodology-text {
@@ -613,6 +789,7 @@ header {
     font-size: 2rem;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .methodology-text p {
@@ -643,11 +820,13 @@ header {
     border-radius: 50%;
     font-weight: 700;
     flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .step-content h4 {
     margin-bottom: var(--space-xs);
     color: var(--text-primary);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .step-content p {
@@ -658,6 +837,18 @@ header {
 /* Contact section styles */
 .contact {
     background-color: var(--background-alt);
+    position: relative;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 9, 18, 0.85);
+    z-index: 1;
 }
 
 .contact-content {
@@ -673,10 +864,11 @@ header {
     font-size: 2rem;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .contact-info p {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var (--space-lg);
     color: var(--text-secondary);
 }
 
@@ -721,6 +913,7 @@ header {
 
 .form-group {
     margin-bottom: var(--space-md);
+    position: relative;
 }
 
 .form-group label {
@@ -969,6 +1162,18 @@ footer {
 /* Experience section styles */
 .experience {
     background-color: var(--background);
+    position: relative;
+}
+
+.experience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 9, 18, 0.85);
+    z-index: 1;
 }
 
 .experience-list {
@@ -995,6 +1200,7 @@ footer {
     color: var(--text-primary);
     font-size: 1.3rem;
     margin-bottom: var(--space-xs);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .experience-item h4 {
@@ -1030,6 +1236,7 @@ footer {
     color: var(--text-primary);
     margin: 0;
     font-size: 1.2rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .collapsible-content {
