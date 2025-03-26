@@ -22,8 +22,8 @@
     --success: #28a745; /* green for success messages */
     --error: #dc3545; /* red for error messages */
     
-    /* Typography - Update with web fonts */
-    --font-heading: 'Montserrat', 'Segoe UI', sans-serif;
+    /* Typography - Updated with modern fonts */
+    --font-heading: 'Funnel Display', sans-serif;
     --font-main: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
     /* Spacing */
@@ -41,6 +41,7 @@
     /* Transitions */
     --transition-fast: 0.3s ease;
     --transition-medium: 0.5s ease;
+    --transition-slow: 0.8s ease; /* Added for smoother animations */
 }
 
 *, *::before, *::after {
@@ -78,6 +79,31 @@ a:hover {
     color: var (--accent);
 }
 
+/* Add focus styles for accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+.collapsible-header:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm); /* Optional: match border radius */
+}
+
+/* Specific focus for form elements if default outline is removed elsewhere */
+input:focus,
+textarea:focus {
+    border-color: var(--primary); /* Keep existing focus border */
+    box-shadow: 0 0 0 2px var(--accent); /* Add outer glow/shadow for focus */
+}
+
+/* Ensure hamburger focus is visible */
+.hamburger:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
 ul {
     list-style: none;
 }
@@ -96,12 +122,16 @@ section {
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: 3.25rem;
     color: var(--text-primary);
     text-align: center;
     margin-bottom: var(--space-xl);
     position: relative;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--transition-medium), transform var(--transition-medium);
 }
 
 .section-title::after {
@@ -114,6 +144,11 @@ section {
     height: 4px;
     background-color: var(--primary);
     border-radius: var (--radius-sm);
+}
+
+.section-title.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .btn {
@@ -190,14 +225,16 @@ header {
 }
 
 .logo span {
-    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .nav-links ul {
     display: flex;
-    gap: var(--space-lg);
+    gap: var (--space-lg);
 }
 
 .nav-links a {
@@ -225,6 +262,9 @@ header {
 .hamburger {
     display: none;
     cursor: pointer;
+    background: none; /* Ensure it's treated like a button */
+    border: none;
+    padding: 0; /* Reset padding */
 }
 
 .bar {
@@ -256,7 +296,7 @@ header {
     width: 100vw; /* Full viewport width */
     height: 100vh; /* Full viewport height */
     z-index: 0;
-    background: linear-gradient(135deg, var(--background) 0%, rgba(2, 9, 18, 0.95) 100%);
+    background: linear-gradient(135deg, var(--background) 0%, #06101c 100%); /* Slightly adjusted gradient */
     overflow: hidden;
     pointer-events: none; /* Allow clicking through the animation */
 }
@@ -265,13 +305,13 @@ header {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 4px;
-    height: 4px;
-    background: linear-gradient(to right, rgba(35, 122, 58, 0), rgba(35, 122, 58, 1));
+    width: 3px; /* Slightly smaller */
+    height: 3px;
+    background: linear-gradient(to right, rgba(35, 122, 58, 0), rgba(35, 122, 58, 0.8)); /* Softer gradient */
     border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(35, 122, 58, 0.1),
-                0 0 0 8px rgba(35, 122, 58, 0.1),
-                0 0 20px rgba(35, 122, 58, 1);
+    box-shadow: 0 0 0 3px rgba(35, 122, 58, 0.05),
+                0 0 0 6px rgba(35, 122, 58, 0.05),
+                0 0 15px rgba(35, 122, 58, 0.8); /* Adjusted shadow */
     animation: shoot 3s linear infinite;
     opacity: 0;
 }
@@ -283,7 +323,7 @@ header {
     transform: translateY(-50%);
     width: 300px;
     height: 1px;
-    background: linear-gradient(to right, rgba(32, 178, 170, 1), rgba(32, 178, 170, 0));
+    background: linear-gradient(to right, rgba(32, 178, 170, 0.8), rgba(32, 178, 170, 0)); /* Softer tail */
 }
 
 .shooting-star:nth-child(1) {
@@ -323,7 +363,7 @@ header {
 
 @keyframes shoot {
     0% {
-        transform: rotate(-45deg) translateX(0) scale(0.5);
+        transform: rotate(-45deg) translateX(-100px) scale(0.5);
         opacity: 0;
     }
     5% {
@@ -333,7 +373,7 @@ header {
         opacity: 1;
     }
     100% {
-        transform: rotate(-45deg) translateX(1500px) scale(0.1); /* Increase distance */
+        transform: rotate(-45deg) translateX(1800px) scale(0.1);
         opacity: 0;
     }
 }
@@ -341,11 +381,11 @@ header {
 /* Star field background */
 .star {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: rgba(35, 122, 58, 0.8);
+    width: 1.5px; /* Slightly smaller */
+    height: 1.5px;
+    background: rgba(35, 122, 58, 0.7);
     border-radius: 50%;
-    animation: twinkle 4s infinite;
+    animation: twinkle 5s infinite ease-in-out; /* Slower, smoother twinkle */
 }
 
 .star:nth-child(6) { top: 15%; left: 15%; animation-delay: 0.5s; }
@@ -360,8 +400,8 @@ header {
 .star:nth-child(15) { top: 95%; left: 5%; animation-delay: 1.5s; }
 
 @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 0.9; transform: scale(1.1); }
 }
 
 .hero-content {
@@ -372,16 +412,19 @@ header {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: var(--space-xs);
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--primary);
-    margin-bottom: var(--space-md);
+    margin-bottom: var (--space-md);
+    font-weight: 500;
 }
 
 .hero-content p {
@@ -452,9 +495,11 @@ header {
 }
 
 .about-text h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.015em;
 }
 
 .about-text p {
@@ -493,6 +538,7 @@ header {
     margin-bottom: var (--space-xs);
     position: relative;
     color: var(--text-secondary);
+    transition: transform var(--transition-fast), color var(--transition-fast);
 }
 
 .skill-category li::before {
@@ -502,6 +548,11 @@ header {
     display: inline-block;
     width: 1em;
     margin-left: -1em;
+}
+
+.skill-category li:hover {
+    transform: translateX(5px);
+    color: var(--primary);
 }
 
 /* Character-style infobox for About Me section */
@@ -592,14 +643,16 @@ header {
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: transform var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color var(--transition-fast);
     border: 1px solid var(--border-color);
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    border-color: var(--primary);
+    transform: translateY(-8px) scale(1.01); /* Slightly adjusted hover effect */
+    box-shadow: 0 12px 25px rgba(35, 122, 58, 0.25); /* Enhanced shadow */
+    border-color: var(--accent);
 }
 
 .project-image {
@@ -623,9 +676,10 @@ header {
 }
 
 .project-content h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .project-content p {
@@ -684,14 +738,16 @@ header {
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: transform var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color var(--transition-fast);
     border: 1px solid var(--border-color);
 }
 
 .translation-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    border-color: var(--primary);
+    transform: translateY(-8px) scale(1.01); /* Slightly adjusted hover effect */
+    box-shadow: 0 12px 25px rgba(35, 122, 58, 0.25); /* Enhanced shadow */
+    border-color: var(--accent);
 }
 
 .translation-image {
@@ -718,6 +774,7 @@ header {
     font-size: 1.5rem;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .translation-content p {
@@ -786,10 +843,11 @@ header {
 }
 
 .methodology-text h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.015em;
 }
 
 .methodology-text p {
@@ -807,6 +865,14 @@ header {
     display: flex;
     align-items: flex-start;
     gap: var(--space-md);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-medium) ease-out, transform var(--transition-medium) ease-out;
+}
+
+.step.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .step-number {
@@ -821,12 +887,20 @@ header {
     font-weight: 700;
     flex-shrink: 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.step:hover .step-number {
+    transform: scale(1.1);
+    background-color: var(--accent);
 }
 
 .step-content h4 {
     margin-bottom: var(--space-xs);
     color: var(--text-primary);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
 }
 
 .step-content p {
@@ -861,10 +935,11 @@ header {
 }
 
 .contact-info h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.015em;
 }
 
 .contact-info p {
@@ -971,9 +1046,12 @@ footer {
 }
 
 .footer-logo p {
-    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
     font-weight: 700;
     margin: 0;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .footer-links ul {
@@ -1004,12 +1082,13 @@ footer {
     height: 40px;
     background-color: var(--card-bg);
     border-radius: 50%;
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .footer-social a:hover {
     background-color: var(--primary);
-    transform: translateY(-3px);
+    transform: translateY(-4px) scale(1.05); /* Enhanced hover */
+    box-shadow: 0 4px 10px rgba(35, 122, 58, 0.3);
 }
 
 .footer-social i {
@@ -1039,7 +1118,7 @@ footer {
         flex-direction: column;
         text-align: center;
         padding: 10rem 5% 3rem;
-        gap: var(--space-xl);
+        gap: var (--space-xl);
     }
     
     .hero-content {
@@ -1061,6 +1140,20 @@ footer {
     .methodology-image {
         max-width: 100%;
         margin-bottom: var(--space-lg);
+    }
+
+    .hero-content h1 {
+        font-size: 3.8rem;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+    }
+    
+    .about-text h3, 
+    .methodology-text h3, 
+    .contact-info h3 {
+        font-size: 2.2rem;
     }
 }
 
@@ -1120,6 +1213,18 @@ footer {
     .experience-item {
         padding: var(--space-md);
     }
+
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 2.4rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1128,11 +1233,15 @@ footer {
     }
     
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
     
     .hero-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
     }
     
     .skill-categories {
@@ -1144,7 +1253,7 @@ footer {
 .fade-in-element {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity var(--transition-slow) ease-out, transform var(--transition-slow) ease-out;
 }
 
 .fade-in {
@@ -1198,9 +1307,10 @@ footer {
 
 .experience-item h3 {
     color: var(--text-primary);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: var(--space-xs);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.01em;
 }
 
 .experience-item h4 {
@@ -1230,23 +1340,34 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%; /* Ensure button takes full width */
+    border: none; /* Reset button border */
+    text-align: left; /* Align text left */
+    font: inherit; /* Inherit font styles */
+    color: inherit; /* Inherit color */
 }
 
 .collapsible-header h3 {
     color: var(--text-primary);
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.01em;
 }
 
 .collapsible-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height var(--transition-medium);
+    transition: max-height var(--transition-medium), visibility 0s var(--transition-medium);
+    padding: 0 var(--space-lg); /* Add padding for content */
+    visibility: hidden; /* Hide content when collapsed */
 }
 
 .collapsible.active .collapsible-content {
-    max-height: 1000px;
+    max-height: 1000px; /* Adjust as needed */
+    padding: var(--space-lg);
+    visibility: visible;
+    transition: max-height var(--transition-medium), visibility 0s;
 }
 
 .collapsible-icon {
@@ -1319,7 +1440,7 @@ footer {
 .card-animated {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+    transition: opacity var(--transition-slow) ease-out, transform var(--transition-slow) ease-out, box-shadow var(--transition-medium), border-color var(--transition-fast);
 }
 
 .card-visible {
@@ -1374,4 +1495,23 @@ footer {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+/* Apply Funnel Display to all headings */
+h1, h2, h3, h4, h5, h6, .section-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+/* Add staggered delay for methodology steps */
+.step:nth-child(1) { transition-delay: 0.1s; }
+.step:nth-child(2) { transition-delay: 0.2s; }
+.step:nth-child(3) { transition-delay: 0.3s; }
+
+/* Add staggered delay for project/translation cards */
+.projects-grid .project-card, 
+.translations-grid .translation-card {
+    transition-delay: calc(0.1s * var(--card-index, 0)); /* Requires JS to set --card-index */
 }

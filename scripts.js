@@ -15,9 +15,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile menu toggle
     hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
+        const isActive = hamburger.classList.toggle('active');
         navLinksContainer.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isActive); // Toggle ARIA attribute
     });
+
+    // Add aria-controls to hamburger if navLinksContainer has an ID
+    if (navLinksContainer.id) {
+        hamburger.setAttribute('aria-controls', navLinksContainer.id);
+    } else {
+        // Assign an ID if it doesn't have one
+        navLinksContainer.id = 'main-nav-links';
+        hamburger.setAttribute('aria-controls', 'main-nav-links');
+    }
+    // Initialize hamburger state
+    hamburger.setAttribute('aria-expanded', 'false');
     
     // Close mobile menu when a link is clicked
     navLinks.forEach(link => {
@@ -70,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle contact form submission
     const contactForm = document.getElementById('contactForm');
     const formInputs = contactForm.querySelectorAll('input, textarea');
+    const formResult = document.getElementById('form-result'); // Get form result div
     
     // Add required field indicators and validation feedback elements
     formInputs.forEach(input => {
@@ -135,26 +148,59 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            formResult.innerHTML = "Please wait...";
+            formResult.style.display = "block";
             
-            // Simulate form submission (replace with actual form submission)
-            setTimeout(() => {
-                // Show success message
-                const successMessage = document.createElement('div');
-                successMessage.className = 'form-success-message';
-                successMessage.innerHTML = `
-                    <i class="fas fa-check-circle"></i>
-                    <h4>Message Sent!</h4>
-                    <p>Thank you for reaching out. I'll get back to you soon.</p>
-                `;
-                
-                // Replace form with success message
-                contactForm.style.opacity = '0';
-                setTimeout(() => {
-                    contactForm.innerHTML = '';
-                    contactForm.appendChild(successMessage);
-                    contactForm.style.opacity = '1';
-                }, 300);
-            }, 1500);
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    // Show success message
+                    const successMessageContainer = document.createElement('div'); // Create a container
+                    successMessageContainer.className = 'form-success-message-container';
+                    successMessageContainer.setAttribute('aria-live', 'assertive'); // Announce success immediately
+
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'form-success-message';
+                    successMessage.innerHTML = `
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <h4>Message Sent!</h4>
+                        <p>Thank you for reaching out. I'll get back to you soon.</p>
+                    `;
+                    successMessageContainer.appendChild(successMessage); // Add message to container
+
+                    // Replace form with success message container
+                    contactForm.style.opacity = '0';
+                    setTimeout(() => {
+                        contactForm.innerHTML = ''; // Clear original form content
+                        contactForm.appendChild(successMessageContainer); // Append the container
+                        contactForm.style.opacity = '1';
+                        formResult.style.display = 'none'; // Hide the initial result div
+                    }, 300);
+                } else {
+                    console.log(response);
+                    formResult.innerHTML = json.message || "Something went wrong! Please try again."; // Use formResult for errors
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                formResult.innerHTML = "Something went wrong! Please try again."; // Use formResult for errors
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            });
         });
     }
     
@@ -192,93 +238,105 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle collapsible sections
     document.querySelectorAll('.collapsible-header').forEach(header => {
         header.addEventListener('click', () => {
-            const parent = header.parentElement;
-            parent.classList.toggle('active');
+            const parent = header.closest('.collapsible'); // Use closest to find parent
+            const content = parent.querySelector('.collapsible-content');
+            const isActive = parent.classList.toggle('active');
+
+            header.setAttribute('aria-expanded', isActive);
+            if (isActive) {
+                content.removeAttribute('hidden');
+            } else {
+                content.setAttribute('hidden', '');
+            }
         });
+        // Initialize state
+        const content = header.nextElementSibling;
+        if (content && content.classList.contains('collapsible-content')) {
+             header.setAttribute('aria-expanded', 'false');
+             content.setAttribute('hidden', ''); // Ensure content is hidden initially
+        }
     });
     
     // Add animation on scroll
-    const fadeInElements = document.querySelectorAll('.about-content, .project-card, .translation-card, .step');
+    const animatedElements = document.querySelectorAll('.about-content, .project-card, .translation-card, .step, .section-title');
     
     // Check if IntersectionObserver is supported
     if ('IntersectionObserver' in window) {
-        const fadeInObserver = new IntersectionObserver((entries) => {
+        const elementObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    fadeInObserver.unobserve(entry.target);
+                    // Use 'visible' class for elements that need it (like section titles, steps)
+                    if (entry.target.classList.contains('section-title') || entry.target.classList.contains('step')) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Use 'fade-in' or 'card-visible' for others
+                        entry.target.classList.add(entry.target.classList.contains('card-animated') ? 'card-visible' : 'fade-in');
+                    }
+                    elementObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
         
-        fadeInElements.forEach(element => {
-            element.classList.add('fade-in-element');
-            fadeInObserver.observe(element);
+        animatedElements.forEach(element => {
+            // Add base animation classes
+            if (element.classList.contains('project-card') || element.classList.contains('translation-card')) {
+                element.classList.add('card-animated');
+            } else if (!element.classList.contains('section-title') && !element.classList.contains('step')) {
+                element.classList.add('fade-in-element');
+            }
+            elementObserver.observe(element);
         });
     } else {
         // Fallback for browsers that don't support IntersectionObserver
-        fadeInElements.forEach(element => {
-            element.classList.add('fade-in');
+        animatedElements.forEach(element => {
+            if (element.classList.contains('section-title') || element.classList.contains('step')) {
+                element.classList.add('visible');
+            } else {
+                 element.classList.add(element.classList.contains('card-animated') ? 'card-visible' : 'fade-in');
+            }
         });
     }
     
-    // Add CSS for animations
-    const style = document.createElement('style');
-    style.textContent = `
-        .fade-in-element {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    `;
-    document.head.appendChild(style);
+    // Add CSS for animations (Consolidated - remove previous style injection if present)
+    // CSS is now primarily handled in styles.css
     
     // Fix methodology section image
     const methodologyImage = document.querySelector('.methodology-image img');
-    if (methodologyImage && methodologyImage.src.includes('example.com')) {
-        methodologyImage.src = 'Assets/alpface.png';
+    if (methodologyImage && methodologyImage.dataset.src && methodologyImage.src.includes('data:image')) { // Check if placeholder is set
+        // Lazy loading logic will handle replacing src, no need to fix here unless data-src is wrong
+        // If data-src was wrong: methodologyImage.dataset.src = 'Assets/alpface.png';
+    } else if (methodologyImage && methodologyImage.src.includes('example.com')) {
+         // Fallback if not using data-src properly
+         methodologyImage.src = 'Assets/alpface.png';
     }
     
-    // Add scroll-triggered animations for project and translation cards
-    const animatedCards = document.querySelectorAll('.project-card, .translation-card');
-    
-    if ('IntersectionObserver' in window) {
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('card-visible');
-                    cardObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.2,
-            rootMargin: '50px'
-        });
-        
-        animatedCards.forEach(card => {
-            card.classList.add('card-animated');
-            cardObserver.observe(card);
-        });
-    }
-    
-    // Add hover effect for cards
-    animatedCards.forEach(card => {
+    // Add staggered delay index to cards
+    const projectCards = document.querySelectorAll('.projects-grid .project-card');
+    const translationCards = document.querySelectorAll('.translations-grid .translation-card');
+
+    projectCards.forEach((card, index) => {
+        card.style.setProperty('--card-index', index);
+    });
+    translationCards.forEach((card, index) => {
+        card.style.setProperty('--card-index', index);
+    });
+
+    // Add hover effect for cards (Keep this, but ensure it doesn't conflict with CSS transitions)
+    const allCards = document.querySelectorAll('.project-card, .translation-card');
+    allCards.forEach(card => {
+        // The hover effect is now primarily handled by CSS :hover pseudo-class
+        // Remove JS-based style manipulation for hover to avoid conflicts
+        /*
         card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px) scale(1.02)';
-            card.style.boxShadow = '0 15px 30px rgba(35, 122, 58, 0.2)';
+            // CSS handles this now
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-            card.style.boxShadow = '';
+            // CSS handles this now
         });
+        */
     });
-    
+
     // Add smooth scroll effect with speed adjustment based on distance
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -330,10 +388,15 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', debouncedScroll);
     
     // Lazy load images
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    const lazyImages = document.querySelectorAll('img[loading="lazy"][data-src]'); // Select only images with data-src
     if ('loading' in HTMLImageElement.prototype) {
+        // Native lazy loading supported
         lazyImages.forEach(img => {
-            img.src = img.dataset.src;
+            if (img.dataset.src) { // Check if data-src exists
+                 img.src = img.dataset.src;
+                 // Optional: remove data-src after setting src
+                 // img.removeAttribute('data-src');
+            }
         });
     } else {
         // Fallback for browsers that don't support native lazy loading
@@ -341,8 +404,12 @@ document.addEventListener('DOMContentLoaded', function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.dataset.src;
-                    observer.unobserve(img);
+                    if (img.dataset.src) { // Check if data-src exists
+                        img.src = img.dataset.src;
+                        // Optional: remove data-src after setting src
+                        // img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
                 }
             });
         });
@@ -351,8 +418,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Handle contact form submission with Web3Forms
-    const formResult = document.getElementById('form-result');
-    
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -381,31 +446,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 let json = await response.json();
                 if (response.status == 200) {
                     // Show success message
+                    const successMessageContainer = document.createElement('div'); // Create a container
+                    successMessageContainer.className = 'form-success-message-container';
+                    successMessageContainer.setAttribute('aria-live', 'assertive'); // Announce success immediately
+
                     const successMessage = document.createElement('div');
                     successMessage.className = 'form-success-message';
                     successMessage.innerHTML = `
-                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
                         <h4>Message Sent!</h4>
                         <p>Thank you for reaching out. I'll get back to you soon.</p>
                     `;
-                    
-                    // Replace form with success message
+                    successMessageContainer.appendChild(successMessage); // Add message to container
+
+                    // Replace form with success message container
                     contactForm.style.opacity = '0';
                     setTimeout(() => {
-                        contactForm.innerHTML = '';
-                        contactForm.appendChild(successMessage);
+                        contactForm.innerHTML = ''; // Clear original form content
+                        contactForm.appendChild(successMessageContainer); // Append the container
                         contactForm.style.opacity = '1';
+                        formResult.style.display = 'none'; // Hide the initial result div
                     }, 300);
                 } else {
                     console.log(response);
-                    formResult.innerHTML = json.message || "Something went wrong! Please try again.";
+                    formResult.innerHTML = json.message || "Something went wrong! Please try again."; // Use formResult for errors
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalText;
                 }
             })
             .catch(error => {
                 console.log(error);
-                formResult.innerHTML = "Something went wrong! Please try again.";
+                formResult.innerHTML = "Something went wrong! Please try again."; // Use formResult for errors
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
             });
