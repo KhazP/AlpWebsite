@@ -1,7 +1,7 @@
 /* 
 * Main Stylesheet for Alp Yalay Portfolio Website - Dark Mode
 * Author: GitHub Copilot
-* Version: 1.0
+* Version: 1.1
 */
 
 /* Base styles and CSS reset */
@@ -634,7 +634,7 @@ header {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--space-lg);
 }
 
@@ -729,7 +729,7 @@ header {
 
 .translations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--space-lg);
 }
 
@@ -1225,6 +1225,16 @@ footer {
     .section-title {
         font-size: 2.4rem;
     }
+    
+    /* Fix for collapsible content on mobile */
+    .collapsible-content {
+        overflow-y: auto;
+    }
+    
+    .collapsible.active .collapsible-content {
+        height: auto;
+        max-height: none; /* Remove max-height restriction on mobile */
+    }
 }
 
 @media (max-width: 576px) {
@@ -1358,16 +1368,16 @@ footer {
 .collapsible-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height var(--transition-medium), visibility 0s var(--transition-medium);
+    transition: max-height var(--transition-medium), padding var(--transition-medium), visibility 0s var(--transition-medium);
     padding: 0 var(--space-lg); /* Add padding for content */
     visibility: hidden; /* Hide content when collapsed */
 }
 
 .collapsible.active .collapsible-content {
-    max-height: 1000px; /* Adjust as needed */
+    max-height: 3000px; /* Increased to accommodate more content */
     padding: var(--space-lg);
     visibility: visible;
-    transition: max-height var(--transition-medium), visibility 0s;
+    transition: max-height var(--transition-medium), padding var(--transition-medium), visibility 0s;
 }
 
 .collapsible-icon {
@@ -1379,139 +1389,25 @@ footer {
     transform: rotate(180deg);
 }
 
-/* Form validation and feedback styles */
-.form-group {
-    position: relative;
-    margin-bottom: var(--space-md);
-}
-
-.form-feedback {
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    font-size: 0.85rem;
-    color: var(--error);
-    opacity: 0;
-    transform: translateY(-5px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.required {
-    color: var(--error);
-    margin-left: 4px;
-}
-
-.form-group input.is-invalid,
-.form-group textarea.is-invalid {
-    border-color: var(--error);
-}
-
-.form-group input.is-valid,
-.form-group textarea.is-valid {
-    border-color: var(--success);
-}
-
-.form-group input.is-invalid + .form-feedback,
-.form-group textarea.is-invalid + .form-feedback {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.form-success-message {
-    text-align: center;
-    padding: var(--space-lg);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUpFade 0.5s ease forwards;
-}
-
-.form-success-message i {
-    font-size: 3rem;
-    color: var(--success);
-    margin-bottom: var(--space-md);
-}
-
-.form-success-message h4 {
-    color: var(--text-primary);
-    margin-bottom: var(--space-sm);
-}
-
-/* Card animations */
-.card-animated {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity var(--transition-slow) ease-out, transform var(--transition-slow) ease-out, box-shadow var(--transition-medium), border-color var(--transition-fast);
-}
-
-.card-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Enhanced hover effects */
-.project-card,
-.translation-card {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card:hover,
-.translation-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(35, 122, 58, 0.2);
-}
-
-/* Button loading state */
-.btn i.fa-spinner {
-    margin-right: 8px;
-}
-
-.btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-/* Animations */
-@keyframes slideUpFade {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* Show "More to come" card only on desktop */
+@media (min-width: 769px) {
+    .more-to-come-card {
+        display: flex; /* Or block, depending on desired layout */
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    /* Center grid items on desktop when there's space */
+    .projects-grid,
+    .translations-grid {
+        justify-content: center;
     }
 }
 
-/* Enhanced mobile menu animation */
-@media (max-width: 768px) {
-    .nav-links {
-        transform: translateX(-100%);
-        transition: transform var(--transition-medium), opacity var(--transition-medium);
-        opacity: 0;
-    }
-    
-    .nav-links.active {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Apply Funnel Display to all headings */
-h1, h2, h3, h4, h5, h6, .section-title {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-}
-
-/* Add staggered delay for methodology steps */
-.step:nth-child(1) { transition-delay: 0.1s; }
-.step:nth-child(2) { transition-delay: 0.2s; }
-.step:nth-child(3) { transition-delay: 0.3s; }
-
-/* Add staggered delay for project/translation cards */
-.projects-grid .project-card, 
-.translations-grid .translation-card {
-    transition-delay: calc(0.1s * var(--card-index, 0)); /* Requires JS to set --card-index */
+.collapsible-header h3 i,
+.work-entry h3 i,
+.education-entry h3 i,
+.award-entry h3 i,
+.certification-entry h4 i { /* Target icons within titles */
+    margin-right: var(--space-sm); /* Add space between icon and text */
+    width: 1.2em; /* Ensure consistent icon width */
+    text-align: center; /* Center icon if width is larger */
 }

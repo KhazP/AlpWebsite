@@ -1,7 +1,7 @@
 /**
  * Main JavaScript file for Alp Yalay Portfolio Website
  * Author: GitHub Copilot
- * Version: 1.0
+ * Version: 1.1
  */
 
 // Wait for DOM to be fully loaded
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle contact form submission
     const contactForm = document.getElementById('contactForm');
-    const formInputs = contactForm.querySelectorAll('input, textarea');
+    const formInputs = contactForm ? contactForm.querySelectorAll('input, textarea') : [];
     const formResult = document.getElementById('form-result'); // Get form result div
     
     // Add required field indicators and validation feedback elements
@@ -89,7 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add required field indicator
         if (input.hasAttribute('required')) {
             const label = input.previousElementSibling;
-            label.innerHTML += ' <span class="required">*</span>';
+            if (label) {
+                label.innerHTML += ' <span class="required">*</span>';
+            }
         }
         
         // Create validation feedback element
@@ -129,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
     
+    // Handle contact form submission with Web3Forms
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -297,9 +300,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Add CSS for animations (Consolidated - remove previous style injection if present)
-    // CSS is now primarily handled in styles.css
-    
     // Fix methodology section image
     const methodologyImage = document.querySelector('.methodology-image img');
     if (methodologyImage && methodologyImage.dataset.src && methodologyImage.src.includes('data:image')) { // Check if placeholder is set
@@ -321,52 +321,6 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.setProperty('--card-index', index);
     });
 
-    // Add hover effect for cards (Keep this, but ensure it doesn't conflict with CSS transitions)
-    const allCards = document.querySelectorAll('.project-card, .translation-card');
-    allCards.forEach(card => {
-        // The hover effect is now primarily handled by CSS :hover pseudo-class
-        // Remove JS-based style manipulation for hover to avoid conflicts
-        /*
-        card.addEventListener('mouseenter', () => {
-            // CSS handles this now
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            // CSS handles this now
-        });
-        */
-    });
-
-    // Add smooth scroll effect with speed adjustment based on distance
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                return;
-            }
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                const startPosition = window.scrollY;
-                const distance = targetPosition - startPosition;
-                
-                // Adjust duration based on distance
-                const duration = Math.min(Math.abs(distance), 1000);
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
     // Add debounced scroll handler for performance
     function debounce(func, wait) {
         let timeout;
@@ -377,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
-        };
+        }
     }
     
     const debouncedScroll = debounce(() => {
@@ -387,99 +341,68 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', debouncedScroll);
     
-    // Lazy load images
+    // Improved lazy load images function
     const lazyImages = document.querySelectorAll('img[loading="lazy"][data-src]'); // Select only images with data-src
+    
+    // Function to load images
+    function loadImage(img) {
+        if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.onload = function() {
+                img.removeAttribute('data-src');
+            };
+        }
+    }
+    
     if ('loading' in HTMLImageElement.prototype) {
         // Native lazy loading supported
         lazyImages.forEach(img => {
-            if (img.dataset.src) { // Check if data-src exists
-                 img.src = img.dataset.src;
-                 // Optional: remove data-src after setting src
-                 // img.removeAttribute('data-src');
-            }
+            loadImage(img);
         });
     } else {
         // Fallback for browsers that don't support native lazy loading
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) { // Check if data-src exists
-                        img.src = img.dataset.src;
-                        // Optional: remove data-src after setting src
-                        // img.removeAttribute('data-src');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        loadImage(img);
                         observer.unobserve(img);
                     }
-                }
+                });
             });
-        });
-        
-        lazyImages.forEach(img => imageObserver.observe(img));
+            
+            lazyImages.forEach(img => imageObserver.observe(img));
+        } else {
+            // Fallback for older browsers
+            lazyImages.forEach(img => {
+                loadImage(img);
+            });
+        }
     }
+
+    // Add "Back to Top" button functionality
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    backToTopBtn.className = 'back-to-top';
+    backToTopBtn.setAttribute('aria-label', 'Back to top');
+    backToTopBtn.setAttribute('title', 'Back to top');
+    document.body.appendChild(backToTopBtn);
     
-    // Handle contact form submission with Web3Forms
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            formResult.innerHTML = "Please wait...";
-            formResult.style.display = "block";
-            
-            const formData = new FormData(contactForm);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-            
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
-                    // Show success message
-                    const successMessageContainer = document.createElement('div'); // Create a container
-                    successMessageContainer.className = 'form-success-message-container';
-                    successMessageContainer.setAttribute('aria-live', 'assertive'); // Announce success immediately
-
-                    const successMessage = document.createElement('div');
-                    successMessage.className = 'form-success-message';
-                    successMessage.innerHTML = `
-                        <i class="fas fa-check-circle" aria-hidden="true"></i>
-                        <h4>Message Sent!</h4>
-                        <p>Thank you for reaching out. I'll get back to you soon.</p>
-                    `;
-                    successMessageContainer.appendChild(successMessage); // Add message to container
-
-                    // Replace form with success message container
-                    contactForm.style.opacity = '0';
-                    setTimeout(() => {
-                        contactForm.innerHTML = ''; // Clear original form content
-                        contactForm.appendChild(successMessageContainer); // Append the container
-                        contactForm.style.opacity = '1';
-                        formResult.style.display = 'none'; // Hide the initial result div
-                    }, 300);
-                } else {
-                    console.log(response);
-                    formResult.innerHTML = json.message || "Something went wrong! Please try again."; // Use formResult for errors
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                formResult.innerHTML = "Something went wrong! Please try again."; // Use formResult for errors
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-            });
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when clicked
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-    }
+    });
 });
