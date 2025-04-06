@@ -1,163 +1,376 @@
 /**
  * Main JavaScript file for Alp Yalay Portfolio Website
- * Author: GitHub Copilot
- * Version: 1.1
+ * Version: 2.1 (Standard CSS Compatibility, Language Switching)
+ * Author: Alp Yalay & AI Assistant
  */
 
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('section');
-    const hamburger = document.querySelector('.hamburger');
-    const navLinksContainer = document.querySelector('.nav-links');
-    
-    // Mobile menu toggle
-    hamburger.addEventListener('click', () => {
-        const isActive = hamburger.classList.toggle('active');
-        navLinksContainer.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', isActive); // Toggle ARIA attribute
-    });
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Add aria-controls to hamburger if navLinksContainer has an ID
-    if (navLinksContainer.id) {
-        hamburger.setAttribute('aria-controls', navLinksContainer.id);
-    } else {
-        // Assign an ID if it doesn't have one
-        navLinksContainer.id = 'main-nav-links';
-        hamburger.setAttribute('aria-controls', 'main-nav-links');
-    }
-    // Initialize hamburger state
-    hamburger.setAttribute('aria-expanded', 'false');
+    // --- Navbar Functionality ---
+    const navbar = document.querySelector('.navbar');
+    const hamburgerButton = document.querySelector('.hamburger');
+    // Correctly select the nav links container for mobile view
+    const mobileMenu = document.querySelector('.nav-links'); // The ul/div holding the links
+    const allNavLinks = document.querySelectorAll('.nav-link'); // All navigation links (desktop and mobile if separate)
     
-    // Close mobile menu when a link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinksContainer.classList.remove('active');
-        });
-    });
-    
-    // Add navbar scroll effect
-    window.addEventListener('scroll', () => {
-        updateNavbar();
-        highlightActiveSection();
-    });
-    
-    // Update navbar based on scroll position
-    function updateNavbar() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }
-    
-    // Highlight active section in navbar
+    // Important: Define sections early so it's available for all functions
+    const sections = document.querySelectorAll('main section[id]'); // Select sections with IDs in main
+
+    // --- Active Section Highlighting ---
     function highlightActiveSection() {
-        let currentSection = '';
-        
+        let currentSectionId = 'home'; // Default to home
+        const scrollPosition = window.pageYOffset;
+        const navbarHeight = navbar.offsetHeight;
+        // Add a threshold (e.g., half the viewport height) to activate earlier
+        const activationOffset = window.innerHeight * 0.4;
+
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.clientHeight;
-            
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
+            const sectionTop = section.offsetTop - navbarHeight - activationOffset; // Activate when section is closer to middle
+
+            if (scrollPosition >= sectionTop) {
+                currentSectionId = section.getAttribute('id');
             }
         });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
+
+         // Special case for reaching the bottom of the page - highlight last section
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 50) {
+             const lastSection = sections[sections.length - 1];
+             if (lastSection) {
+                 currentSectionId = lastSection.getAttribute('id');
+             }
+        }
+
+        allNavLinks.forEach(link => {
+            link.classList.remove('active'); // Use 'active' class defined in CSS
+            const linkHref = link.getAttribute('href');
+            if (linkHref === `#${currentSectionId}`) {
                 link.classList.add('active');
             }
         });
     }
-    
-    // Initialize the navbar state on page load
-    updateNavbar();
-    highlightActiveSection();
-    
-    // Handle contact form submission
-    const contactForm = document.getElementById('contactForm');
-    const formInputs = contactForm ? contactForm.querySelectorAll('input, textarea') : [];
-    const formResult = document.getElementById('form-result'); // Get form result div
-    
-    // Add required field indicators and validation feedback elements
-    formInputs.forEach(input => {
-        // Add required field indicator
-        if (input.hasAttribute('required')) {
-            const label = input.previousElementSibling;
-            if (label) {
-                label.innerHTML += ' <span class="required">*</span>';
-            }
-        }
-        
-        // Create validation feedback element
-        const feedback = document.createElement('div');
-        feedback.className = 'form-feedback';
-        input.parentNode.appendChild(feedback);
-        
-        // Add validation on input
-        input.addEventListener('input', () => validateInput(input));
-        input.addEventListener('blur', () => validateInput(input));
-    });
-    
-    function validateInput(input) {
-        const feedback = input.nextElementSibling;
-        const value = input.value.trim();
-        
-        // Reset validation state
-        input.classList.remove('is-valid', 'is-invalid');
-        feedback.textContent = '';
-        
-        if (!value && input.hasAttribute('required')) {
-            input.classList.add('is-invalid');
-            feedback.textContent = 'This field is required';
-            return false;
-        }
-        
-        if (input.type === 'email' && value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                input.classList.add('is-invalid');
-                feedback.textContent = 'Please enter a valid email address';
-                return false;
-            }
-        }
-        
-        input.classList.add('is-valid');
-        return true;
-    }
-    
-    // Handle contact form submission with Web3Forms
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate all inputs
-            let isValid = true;
-            formInputs.forEach(input => {
-                if (!validateInput(input)) {
-                    isValid = false;
+
+    // Toggle mobile menu
+    if (hamburgerButton && mobileMenu) {
+        hamburgerButton.addEventListener('click', () => {
+            const isExpanded = hamburgerButton.classList.toggle('active'); // Use class for styling 'X'
+            hamburgerButton.setAttribute('aria-expanded', isExpanded);
+            mobileMenu.classList.toggle('active'); // Use class to show/hide mobile menu
+        });
+
+        // Close mobile menu when a link inside it is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    hamburgerButton.classList.remove('active');
+                    hamburgerButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.classList.remove('active');
                 }
             });
+        });
+    }
+
+    // Navbar scroll effect (Add/remove 'scrolled' class)
+    const handleScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > 50) { // Adjust scroll threshold if needed
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        highlightActiveSection(); // Highlight nav link on scroll
+    };
+
+    // Debounce scroll handler for performance
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(handleScroll, 50);
+    }, { passive: true });
+
+    // Initial check in case page loads already scrolled
+    handleScroll();
+
+    // --- Smooth Scrolling ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = navbar.offsetHeight;
+                    
+                    // Improved position calculation with larger offset to ensure sections are visible
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open and active
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        hamburgerButton.classList.remove('active');
+                        hamburgerButton.setAttribute('aria-expanded', 'false');
+                        mobileMenu.classList.remove('active');
+                    }
+                }
+            } else if (targetId === '#') { // Handle clicking link like href="#"
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // --- Language Switching ---
+    const langSwitchContainers = document.querySelectorAll('.lang-switch'); // Select all containers
+    const translatableElements = document.querySelectorAll('[data-lang-en], [data-lang-tr]');
+    const htmlTag = document.documentElement;
+    const titleTag = document.querySelector('title');
+
+    const setLanguage = (lang) => {
+        if (lang !== 'en' && lang !== 'tr') lang = 'en'; // Default
+
+        // Update text content
+        translatableElements.forEach(el => {
+            const text = el.getAttribute(`data-lang-${lang}`);
+            // Check if the element contains HTML tags (like the <i> in headers)
+            const firstChild = el.firstElementChild;
+            if (firstChild && (firstChild.tagName === 'I' || firstChild.tagName === 'i')) {
+                 // If it starts with an icon, preserve it and update the text node after it
+                 const iconHTML = firstChild.outerHTML;
+                 // Find the text node (might be null if no text after icon)
+                 let textNode = firstChild.nextSibling;
+                 while(textNode && textNode.nodeType !== Node.TEXT_NODE) {
+                     textNode = textNode.nextSibling;
+                 }
+                 if (textNode && text) {
+                     textNode.textContent = ' ' + text.replace(/<i.*?><\/i>\s*/i, '').trim(); // Update text, remove potential icon tags from data attribute
+                 } else if (text) {
+                     // If no text node found, append the text after the icon
+                     el.innerHTML = iconHTML + ' ' + text.replace(/<i.*?><\/i>\s*/i, '').trim();
+                 }
+            } else if (text !== null) {
+                // Otherwise, just set the text content directly
+                el.textContent = text;
+            }
+        });
+
+        // Update HTML lang attribute
+        htmlTag.setAttribute('lang', lang);
+
+        // Update Title tag
+        if (titleTag) {
+             const titleText = titleTag.getAttribute(`data-lang-${lang}`);
+             if (titleText) {
+                titleTag.textContent = titleText;
+             }
+        }
+
+        // Update button active states in all switchers
+        langSwitchContainers.forEach(container => {
+            container.querySelectorAll('button[data-lang]').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        });
+
+        // Store preference
+        try {
+            localStorage.setItem('preferredLanguage', lang);
+        } catch (e) {
+            console.warn("Could not save language preference to localStorage:", e);
+        }
+    };
+
+    // Add event listeners to all language buttons
+    langSwitchContainers.forEach(container => {
+        container.querySelectorAll('button[data-lang]').forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedLang = button.getAttribute('data-lang');
+                setLanguage(selectedLang);
+            });
+        });
+    });
+
+
+    // Get preferred language on load
+    let preferredLang = 'en'; // Default
+     try {
+        preferredLang = localStorage.getItem('preferredLanguage') || 'en';
+     } catch (e) {
+         console.warn("Could not read language preference from localStorage:", e);
+     }
+    setLanguage(preferredLang); // Apply the language
+
+
+    // --- Collapsible Sections ---
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+        // Add click event listener to each collapsible header
+        header.addEventListener('click', function() {
+            // Toggle the aria-expanded state
+            const isCurrentlyExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isCurrentlyExpanded);
             
-            if (!isValid) return;
+            // Get the content element
+            const content = this.nextElementSibling;
             
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            formResult.innerHTML = "Please wait...";
-            formResult.style.display = "block";
+            // Toggle the hidden attribute for accessibility
+            if (isCurrentlyExpanded) {
+                // Add hidden attribute after animation completes
+                setTimeout(() => {
+                    content.setAttribute('hidden', '');
+                }, 500); // Match this with the animation duration
+            } else {
+                // Remove hidden attribute immediately to start animation
+                content.removeAttribute('hidden');
+            }
             
+            // Log to help with debugging
+            console.log('Collapsible clicked:', this.querySelector('h3').textContent);
+            console.log('New expanded state:', !isCurrentlyExpanded);
+        });
+    });
+
+    // Initialize collapsibles on page load
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+        const content = header.nextElementSibling;
+        
+        if (!isExpanded && content) {
+            content.setAttribute('hidden', '');
+        }
+    });
+
+
+    // --- Scroll Animations ---
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 }); // Adjust threshold (0.1 means 10% visible)
+        animatedElements.forEach(el => observer.observe(el));
+    } else {
+        // Fallback for older browsers
+        animatedElements.forEach(el => el.classList.add('is-visible'));
+    }
+
+
+    // --- Contact Form Handling (Web3Forms) ---
+    const contactForm = document.getElementById('contactForm');
+    const formResult = document.getElementById('form-result');
+    const formSuccessContainer = document.getElementById('form-success-message-container');
+    const formInputs = contactForm ? contactForm.querySelectorAll('input[required], textarea[required]') : [];
+
+    // Add required indicators dynamically if label exists
+    formInputs.forEach(input => {
+        const label = contactForm.querySelector(`label[for="${input.id}"]`);
+        if (label && !label.querySelector('.required-indicator')) { // Check if already added
+            const requiredSpan = document.createElement('span');
+            requiredSpan.className = 'required-indicator'; // Use class for styling
+            requiredSpan.textContent = '*';
+            requiredSpan.style.color = 'var(--error-color)'; // Style directly or via CSS
+            requiredSpan.style.marginLeft = '2px';
+            label.appendChild(requiredSpan);
+        }
+    });
+
+    // Basic real-time validation feedback
+    function validateInput(input) {
+        const feedbackEl = input.nextElementSibling; // Assuming .form-feedback div is next sibling
+        let isValid = true;
+        let message = '';
+
+        // Check required
+        if (input.hasAttribute('required') && input.value.trim() === '') {
+            isValid = false;
+            message = 'This field is required.'; // Simple required message
+        }
+        // Check email format
+        else if (input.type === 'email' && input.value.trim() !== '') { // Only validate format if not empty
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value.trim())) {
+                isValid = false;
+                message = 'Please enter a valid email address.';
+            }
+        }
+
+        // Update styles and feedback message
+        if (!isValid) {
+            input.classList.add('invalid');
+            input.classList.remove('valid');
+            if (feedbackEl && feedbackEl.classList.contains('form-feedback')) {
+                feedbackEl.textContent = message;
+                feedbackEl.style.color = 'var(--error-color)';
+            }
+        } else {
+            input.classList.remove('invalid');
+            // Optionally add valid class only if field is not empty or not required
+            if (input.value.trim() !== '' || !input.hasAttribute('required')) {
+                 input.classList.add('valid');
+            } else {
+                 input.classList.remove('valid'); // Remove valid if required and empty
+            }
+
+             if (feedbackEl && feedbackEl.classList.contains('form-feedback')) {
+                feedbackEl.textContent = ''; // Clear message on valid
+            }
+        }
+        return isValid;
+    }
+
+    // Add blur validation listeners
+    formInputs.forEach(input => {
+        input.addEventListener('blur', () => validateInput(input));
+    });
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Frontend Validation on Submit
+            let isFormValid = true;
+            formInputs.forEach(input => {
+                if (!validateInput(input)) {
+                    isFormValid = false;
+                }
+            });
+
+            if (!isFormValid) {
+                if (formResult) {
+                    formResult.textContent = 'Please correct the errors above.';
+                    formResult.className = 'form-feedback error'; // Use classes for styling
+                }
+                // Focus the first invalid input
+                contactForm.querySelector('.invalid')?.focus();
+                return; // Stop submission
+            }
+
+            // --- If valid, proceed with submission ---
             const formData = new FormData(contactForm);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
-            
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML; // Store original button content
+
+            if (formResult) {
+                formResult.textContent = 'Sending...';
+                formResult.className = 'form-feedback loading'; // Use classes
+            }
+            submitButton.disabled = true;
+            // Add a simple spinner icon using Font Awesome
+            submitButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
+
+
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
@@ -167,242 +380,71 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: json
             })
             .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
+                let jsonResponse = await response.json();
+                if (response.ok) {
+                    if (formResult) formResult.textContent = ''; // Clear message area
+                    
+                    // Reset form but keep it visible
+                    contactForm.reset();
+                    
+                    // Re-enable button
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                    
                     // Show success message
-                    const successMessageContainer = document.createElement('div'); // Create a container
-                    successMessageContainer.className = 'form-success-message-container';
-                    successMessageContainer.setAttribute('aria-live', 'assertive'); // Announce success immediately
-
-                    const successMessage = document.createElement('div');
-                    successMessage.className = 'form-success-message';
-                    successMessage.innerHTML = `
-                        <i class="fas fa-check-circle" aria-hidden="true"></i>
-                        <h4>Message Sent!</h4>
-                        <p>Thank you for reaching out. I'll get back to you soon.</p>
-                    `;
-                    successMessageContainer.appendChild(successMessage); // Add message to container
-
-                    // Replace form with success message container
-                    contactForm.style.opacity = '0';
-                    setTimeout(() => {
-                        contactForm.innerHTML = ''; // Clear original form content
-                        contactForm.appendChild(successMessageContainer); // Append the container
-                        contactForm.style.opacity = '1';
-                        formResult.style.display = 'none'; // Hide the initial result div
-                    }, 300);
+                    if(formSuccessContainer) {
+                        formSuccessContainer.style.display = 'block'; 
+                        formSuccessContainer.classList.add('visible');
+                    }
                 } else {
-                    console.log(response);
-                    formResult.innerHTML = json.message || "Something went wrong! Please try again."; // Use formResult for errors
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
+                    console.error('Form submission error:', jsonResponse);
+                    if (formResult) {
+                        formResult.textContent = jsonResponse.message || 'An error occurred. Please try again.';
+                        formResult.className = 'form-feedback error';
+                    }
+                     // Re-enable button on error
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
                 }
             })
-            .catch(error => {
-                console.log(error);
-                formResult.innerHTML = "Something went wrong! Please try again."; // Use formResult for errors
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
+            .catch((error) => {
+                console.error('Network error:', error);
+                 if (formResult) {
+                    formResult.textContent = 'Network error. Please check connection.';
+                    formResult.className = 'form-feedback error';
+                 }
+                  // Re-enable button on error
+                 submitButton.disabled = false;
+                 submitButton.innerHTML = originalButtonText;
             });
         });
-    }
-    
-    // Add smooth scrolling for all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            
-            // Handle special case for "#" links
-            if (targetId === '#') {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                return;
-            }
-            
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                // Calculate position accounting for fixed navbar
-                const navbarHeight = navbar.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
-    // Handle collapsible sections
-    document.querySelectorAll('.collapsible-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const parent = header.closest('.collapsible'); // Use closest to find parent
-            const content = parent.querySelector('.collapsible-content');
-            const isActive = parent.classList.toggle('active');
 
-            header.setAttribute('aria-expanded', isActive);
-            if (isActive) {
-                content.removeAttribute('hidden');
+        // Add event listener for the success message close button
+        const closeButton = document.querySelector('.form-success-message .close-btn');
+        if (closeButton && formSuccessContainer) {
+            closeButton.addEventListener('click', () => {
+                formSuccessContainer.style.display = 'none';
+                formSuccessContainer.classList.remove('visible');
+            });
+        }
+    }
+
+
+    // --- Back to Top Button ---
+    const backToTopButton = document.getElementById('back-to-top');
+
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
             } else {
-                content.setAttribute('hidden', '');
+                backToTopButton.classList.remove('visible');
             }
-        });
-        // Initialize state
-        const content = header.nextElementSibling;
-        if (content && content.classList.contains('collapsible-content')) {
-             header.setAttribute('aria-expanded', 'false');
-             content.setAttribute('hidden', ''); // Ensure content is hidden initially
-        }
-    });
-    
-    // Add animation on scroll
-    const animatedElements = document.querySelectorAll('.about-content, .project-card, .translation-card, .step, .section-title');
-    
-    // Check if IntersectionObserver is supported
-    if ('IntersectionObserver' in window) {
-        const elementObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Use 'visible' class for elements that need it (like section titles, steps)
-                    if (entry.target.classList.contains('section-title') || entry.target.classList.contains('step')) {
-                        entry.target.classList.add('visible');
-                    } else {
-                        // Use 'fade-in' or 'card-visible' for others
-                        entry.target.classList.add(entry.target.classList.contains('card-animated') ? 'card-visible' : 'fade-in');
-                    }
-                    elementObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        animatedElements.forEach(element => {
-            // Add base animation classes
-            if (element.classList.contains('project-card') || element.classList.contains('translation-card')) {
-                element.classList.add('card-animated');
-            } else if (!element.classList.contains('section-title') && !element.classList.contains('step')) {
-                element.classList.add('fade-in-element');
-            }
-            elementObserver.observe(element);
-        });
-    } else {
-        // Fallback for browsers that don't support IntersectionObserver
-        animatedElements.forEach(element => {
-            if (element.classList.contains('section-title') || element.classList.contains('step')) {
-                element.classList.add('visible');
-            } else {
-                 element.classList.add(element.classList.contains('card-animated') ? 'card-visible' : 'fade-in');
-            }
-        });
-    }
-    
-    // Fix methodology section image
-    const methodologyImage = document.querySelector('.methodology-image img');
-    if (methodologyImage && methodologyImage.dataset.src && methodologyImage.src.includes('data:image')) { // Check if placeholder is set
-        // Lazy loading logic will handle replacing src, no need to fix here unless data-src is wrong
-        // If data-src was wrong: methodologyImage.dataset.src = 'Assets/alpface.png';
-    } else if (methodologyImage && methodologyImage.src.includes('example.com')) {
-         // Fallback if not using data-src properly
-         methodologyImage.src = 'Assets/alpface.png';
-    }
-    
-    // Add staggered delay index to cards
-    const projectCards = document.querySelectorAll('.projects-grid .project-card');
-    const translationCards = document.querySelectorAll('.translations-grid .translation-card');
+        }, { passive: true });
 
-    projectCards.forEach((card, index) => {
-        card.style.setProperty('--card-index', index);
-    });
-    translationCards.forEach((card, index) => {
-        card.style.setProperty('--card-index', index);
-    });
-
-    // Add debounced scroll handler for performance
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        }
-    }
-    
-    const debouncedScroll = debounce(() => {
-        updateNavbar();
-        highlightActiveSection();
-    }, 50);
-    
-    window.addEventListener('scroll', debouncedScroll);
-    
-    // Improved lazy load images function
-    const lazyImages = document.querySelectorAll('img[loading="lazy"][data-src]'); // Select only images with data-src
-    
-    // Function to load images
-    function loadImage(img) {
-        if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.onload = function() {
-                img.removeAttribute('data-src');
-            };
-        }
-    }
-    
-    if ('loading' in HTMLImageElement.prototype) {
-        // Native lazy loading supported
-        lazyImages.forEach(img => {
-            loadImage(img);
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-    } else {
-        // Fallback for browsers that don't support native lazy loading
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        loadImage(img);
-                        observer.unobserve(img);
-                    }
-                });
-            });
-            
-            lazyImages.forEach(img => imageObserver.observe(img));
-        } else {
-            // Fallback for older browsers
-            lazyImages.forEach(img => {
-                loadImage(img);
-            });
-        }
     }
 
-    // Add "Back to Top" button functionality
-    const backToTopBtn = document.createElement('button');
-    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTopBtn.className = 'back-to-top';
-    backToTopBtn.setAttribute('aria-label', 'Back to top');
-    backToTopBtn.setAttribute('title', 'Back to top');
-    document.body.appendChild(backToTopBtn);
-    
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
-    });
-    
-    // Scroll to top when clicked
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-});
+}); // End DOMContentLoaded
