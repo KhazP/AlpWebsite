@@ -486,4 +486,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Fix missing image dimensions ---
+    function ensureImageDimensions() {
+        // Find all images that don't have both width and height attributes
+        const images = document.querySelectorAll('img:not([width][height])');
+        
+        images.forEach(img => {
+            // Get natural dimensions or set defaults based on image location/context
+            if (img.src.includes('heroesofhammerwatch2.webp') || img.src.includes('battletalent.webp') ||
+                img.src.includes('localizationappthumbnail.webp') || img.src.includes('f1regassistantthumbnail.webp') ||
+                img.src.includes('alp.webp') || img.src.includes('can.webp')) {
+                
+                // Project/translation card images
+                if (!img.hasAttribute('width')) img.setAttribute('width', '600');
+                if (!img.hasAttribute('height')) img.setAttribute('height', '400');
+            } 
+            else if (img.classList.contains('methodology-image') || 
+                    (img.parentElement && img.parentElement.classList.contains('methodology-image'))) {
+                
+                // Methodology image
+                if (!img.hasAttribute('width')) img.setAttribute('width', '400');
+                if (!img.hasAttribute('height')) img.setAttribute('height', '400');
+            }
+            
+            // Handle images that load later
+            img.addEventListener('load', () => {
+                if (img.naturalWidth && !img.hasAttribute('width')) {
+                    img.setAttribute('width', img.naturalWidth);
+                }
+                if (img.naturalHeight && !img.hasAttribute('height')) {
+                    img.setAttribute('height', img.naturalHeight);
+                }
+            });
+        });
+    }
+    
+    // Run the function on page load
+    ensureImageDimensions();
+
 }); // End DOMContentLoaded
