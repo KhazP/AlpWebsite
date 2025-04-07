@@ -16,9 +16,96 @@
     <meta name="keywords" content="Alp Yalay, translator, localizer, developer, game localization, technical translation, software localization, website localization, Turkish translation">
     <title data-lang-en="Alp Yalay | Translator & Localizer" data-lang-tr="Alp Yalay | Çevirmen & Yerelleştirme Uzmanı">Alp Yalay | Translator & Localizer</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <!-- Preload Main CSS -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Preload Font Awesome CSS -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Base critical styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+      }
+      
+      /* Accessibility color variables - improved contrast */
+      :root {
+        --primary-color: #156129;       /* Darker green with better contrast */
+        --primary-hover: #0c4e21;       /* Even darker for hover states */
+        --text-on-dark: #ffffff;        /* White text on dark backgrounds */
+        --text-secondary: #757575;      /* Darker gray for better contrast */
+        --accent-color: #1a7fbc;        /* Accessible blue accent */
+        --background-dark: #0a1929;     /* Dark background */
+        --background-light: #ffffff;    /* Light background */
+        --label-color: #0d5523;         /* Darker green for labels */
+      }
+      
+      /* Navbar styles */
+      .navbar {
+        background-color: var(--background-dark);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
+      
+      /* Hero container */
+      .hero {
+        padding-top: 70px;
+        min-height: 100vh;
+        background-color: var(--background-dark);
+        color: var(--text-on-dark);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      /* Accessible button styles */
+      .btn {
+        background-color: var(--primary-color);
+        color: var(--text-on-dark) !important;
+        font-weight: 600;
+      }
+      
+      .btn:hover {
+        background-color: var(--primary-hover);
+      }
+      
+      /* Language switcher */
+      .lang-switch button {
+        color: var(--text-on-dark);
+        background-color: transparent;
+        border: 1px solid var(--text-on-dark);
+      }
+      
+      .lang-switch button.active {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+      
+      /* Hamburger menu optimization */
+      .hamburger {
+        will-change: transform;
+      }
+      
+      .hamburger .bar {
+        will-change: transform, opacity;
+        background-color: var(--text-on-dark);
+      }
+      
+      /* Labels with improved contrast */
+      .stat-label, .detail-label {
+        color: var(--label-color);
+        font-weight: 700;
+      }
+    </style>
 
     <meta property="og:title" content="Alp Yalay | Translator & Localizer">
     <meta property="og:description" content="Alp Yalay: Translator & Localizer specializing in game localization, technical translation, and Python development. Bridging language and technology.">
@@ -26,7 +113,36 @@
     <meta property="og:url" content="https://alpyalay.org">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Modified Google Fonts link to explicitly include display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&display=swap" rel="stylesheet">
+
+    <!-- Font loading optimization -->
+    <style>
+      /* Define font-face for Funnel Display with proper fallback and swap behavior */
+      @font-face {
+        font-family: 'Funnel Display';
+        font-style: normal;
+        font-weight: 400 700;
+        font-display: swap;
+        src: local('Funnel Display');
+        font-synthesis: none;
+      }
+      
+      /* Define font-face for Open Sans with proper fallback and swap behavior */
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400 600;
+        font-display: swap;
+        src: local('Open Sans');
+        font-synthesis: none;
+      }
+      
+      /* Define fallback sizes to minimize CLS */
+      h1, h2, h3, h4, h5, h6 {
+        font-size-adjust: 0.5;
+      }
+    </style>
 
     <link rel="icon" type="image/png" href="Assets/alplogo.webp">
     <script type="application/ld+json">
@@ -101,7 +217,7 @@
         <nav class="navbar">
             <div class="container">
                 <div class="logo">
-                    <img src="Assets/alplogo.webp" alt="Alp Yalay Logo">
+                    <img src="Assets/alplogo.webp" alt="Alp Yalay Logo" width="40" height="40">
                     <span>Alp Yalay</span>
                 </div>
                 <!-- Desktop Language Switcher -->
@@ -160,7 +276,7 @@
                     <a href="#contact" class="btn" data-lang-en="Get In Touch" data-lang-tr="İletişime Geçin">Get In Touch</a>
                 </div>
                 <div class="hero-image">
-                    <img src="Assets/alpface.webp" alt="Alp Yalay" loading="eager">
+                    <img src="Assets/alpface.webp" alt="Alp Yalay" loading="eager" width="300" height="300">
                 </div>
             </div>
         </div>
@@ -374,7 +490,7 @@
                 <div class="translations-grid">
                     <div class="translation-card">
                         <div class="translation-image">
-                            <img alt="Heroes of Hammerwatch II" loading="lazy" src="Assets/heroesofhammerwatch2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=HoH+II';">
+                            <img alt="Heroes of Hammerwatch II" loading="lazy" src="Assets/heroesofhammerwatch2.webp" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=HoH+II';" width="600" height="400">
                         </div>
                         <div class="translation-content">
                             <h3 data-lang-en="Heroes of Hammerwatch II (Fan Translation)" data-lang-tr="Heroes of Hammerwatch II (Fan Çevirisi)">Heroes of Hammerwatch II (Fan Translation)</h3>
@@ -396,7 +512,7 @@
                     </div>
                     <div class="translation-card">
                         <div class="translation-image">
-                            <img alt="Battle Talent" loading="lazy" src="Assets/battletalent.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Battle+Talent';">
+                            <img alt="Battle Talent" loading="lazy" src="Assets/battletalent.webp" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Battle+Talent';">
                         </div>
                         <div class="translation-content">
                             <h3 data-lang-en="Battle Talent (Official Translation)" data-lang-tr="Battle Talent (Resmi Çeviri)">Battle Talent (Official Translation)</h3>
@@ -424,7 +540,7 @@
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <img alt="Localization Comparison Tool" loading="lazy" src="Assets/localizationappthumbnail.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Loc+Tool';">
+                            <img alt="Localization Comparison Tool" loading="lazy" src="Assets/localizationappthumbnail.webp" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Loc+Tool';">
                         </div>
                         <div class="project-content">
                             <h3 data-lang-en="Localization Comparison Tool" data-lang-tr="Yerelleştirme Karşılaştırma Aracı">Localization Comparison Tool</h3>
@@ -441,7 +557,7 @@
                     </div>
                     <div class="project-card">
                         <div class="project-image">
-                            <img alt="F1 Regulations Assistant" loading="lazy" src="Assets/f1regassistantthumbnail.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=F1+GPT';">
+                            <img alt="F1 Regulations Assistant" loading="lazy" src="Assets/f1regassistantthumbnail.webp" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=F1+GPT';">
                         </div>
                         <div class="project-content">
                             <h3 data-lang-en="F1 Regulations Assistant GPTs" data-lang-tr="F1 FIA Asistanı GPT'si">F1 Regulations Assistant GPTs</h3>
@@ -469,7 +585,7 @@
                     </div>
                     <div class="project-card">
                         <div class="project-image">
-                            <img alt="Alp Yalay Portfolio Website" loading="lazy" src="Assets/alp.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Portfolio+Website';">
+                            <img alt="Alp Yalay Portfolio Website" loading="lazy" src="Assets/alp.webp" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Portfolio+Website';">
                         </div>
                         <div class="project-content">
                             <h3 data-lang-en="Portfolio Website" data-lang-tr="Portfolyo Web Sitesi">Portfolio Website</h3>
@@ -487,7 +603,7 @@
                     </div>
                     <div class="project-card">
                         <div class="project-image">
-                            <img alt="Can Maden Website" loading="lazy" src="Assets/can.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Can+Maden';">
+                            <img alt="Can Maden Website" loading="lazy" src="Assets/can.webp" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Can+Maden';">
                         </div>
                         <div class="project-content">
                             <h3 data-lang-en="Can Maden Website" data-lang-tr="Can Maden Web Sitesi">Can Maden Website</h3>
@@ -512,7 +628,7 @@
                  <h2 class="section-title" data-lang-en="My Approach" data-lang-tr="Yaklaşımım">My Approach</h2>
                  <div class="methodology-content">
                      <div class="methodology-image">
-                         <img alt="Translation Process" loading="lazy" src="Assets/alpface.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/ffffff?text=Method';">
+                         <img alt="Translation Process" loading="lazy" src="Assets/alpface.webp" onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/ffffff?text=Method';" width="400" height="400">
                      </div>
                      <div class="methodology-text">
                          <h3 data-lang-en="Hybrid Translation Methodology" data-lang-tr="Hibrit Çeviri Metodolojisi">Hybrid Translation Methodology</h3>
@@ -621,7 +737,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="Assets/alplogo.webp" alt="Alp Yalay Logo">
+                    <img src="Assets/alplogo.webp" alt="Alp Yalay Logo" width="40" height="40">
                     <p>Alp Yalay</p>
                 </div>
                 <div class="footer-links">
