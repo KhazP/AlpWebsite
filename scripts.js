@@ -9,19 +9,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Navbar Functionality ---
     const navbar = document.querySelector('.navbar');
     const hamburgerButton = document.querySelector('.hamburger');
-    // Correctly select the nav links container for mobile view
     const mobileMenu = document.querySelector('.nav-links'); // The ul/div holding the links
     const allNavLinks = document.querySelectorAll('.nav-link'); // All navigation links (desktop and mobile if separate)
     
     // Important: Define sections early so it's available for all functions
-    const sections = document.querySelectorAll('main section[id]'); // Select sections with IDs in main
+    const sections = document.querySelectorAll('main section[id], header[id]'); // Include header for home section
+
+    // Track if a link was manually clicked
+    let userClickedLink = false;
+    let currentActiveSection = '';
+    let clickedSectionTimer;
 
     // --- Active Section Highlighting ---
     function highlightActiveSection() {
+        // Skip auto-highlight if user just clicked a link (for 1 second)
+        if (userClickedLink) return;
+
         let currentSectionId = 'home'; // Default to home
         const scrollPosition = window.pageYOffset;
         const navbarHeight = navbar.offsetHeight;
-        // Add a threshold (e.g., half the viewport height) to activate earlier
         const activationOffset = window.innerHeight * 0.4;
 
         sections.forEach(section => {
@@ -40,14 +46,47 @@ document.addEventListener('DOMContentLoaded', () => {
              }
         }
 
+        // Only update if section changed to avoid unnecessary DOM operations
+        if (currentSectionId !== currentActiveSection) {
+            currentActiveSection = currentSectionId;
+            updateActiveLink(currentSectionId);
+        }
+    }
+
+    // Separate function to update active link class
+    function updateActiveLink(sectionId) {
         allNavLinks.forEach(link => {
             link.classList.remove('active'); // Use 'active' class defined in CSS
             const linkHref = link.getAttribute('href');
-            if (linkHref === `#${currentSectionId}`) {
+            if (linkHref === `#${sectionId}`) {
                 link.classList.add('active');
             }
         });
     }
+
+    // Enhance nav link click behavior
+    allNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Clear any existing timers
+            clearTimeout(clickedSectionTimer);
+            
+            // Get target section from href
+            const targetId = this.getAttribute('href').replace('#', '');
+            
+            // Update active state immediately
+            userClickedLink = true;
+            currentActiveSection = targetId;
+            
+            // Remove active class from all links and add to clicked one
+            allNavLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Allow scroll highlighting to take over after some time
+            clickedSectionTimer = setTimeout(() => {
+                userClickedLink = false;
+            }, 1000); // 1 second delay
+        });
+    });
 
     // Toggle mobile menu
     if (hamburgerButton && mobileMenu) {
