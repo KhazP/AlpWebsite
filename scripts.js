@@ -20,6 +20,43 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentActiveSection = '';
     let clickedSectionTimer;
 
+    // --- Skills List Animation with anime.js ---
+    const skillsLists = document.querySelectorAll('#about .skills ul');
+    
+    if (skillsLists.length > 0 && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const listItems = entry.target.querySelectorAll('li');
+                    
+                    anime({
+                        targets: listItems,
+                        opacity: [0, 1],
+                        translateX: (el, i) => i % 2 === 0 ? ['-100%', 0] : ['100%', 0], // Fly from alternating sides
+                        rotate: (el, i) => [i % 2 === 0 ? 15 : -15, 0], // Rotate slightly based on side
+                        scale: [0.8, 1],
+                        duration: 800,
+                        delay: anime.stagger(100, {easing: 'easeOutQuad'}), // Staggered delay between items
+                        easing: 'easeOutElastic(1, .6)', // Elastic overshoot effect
+                    });
+                    
+                    // Unobserve after animation to ensure it plays only once
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 }); // 20% visibility before triggering
+        
+        // Start observing all skill lists
+        skillsLists.forEach(list => observer.observe(list));
+    } else if (skillsLists.length > 0) {
+        // Fallback for browsers without IntersectionObserver
+        skillsLists.forEach(list => {
+            list.querySelectorAll('li').forEach(item => {
+                item.style.opacity = '1';
+            });
+        });
+    }
+
     // --- Active Section Highlighting ---
     function highlightActiveSection() {
         // Skip auto-highlight if user just clicked a link (for 1 second)
