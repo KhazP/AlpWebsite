@@ -512,6 +512,18 @@ footer { background-color: var(--background-alt-color); color: var(--text-second
 .back-to-top:hover { background-color: var(--accent-color); }
 
 /* --- Animations --- */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(26, 127, 188, 0.5); /* Use accent color */
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(26, 127, 188, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(26, 127, 188, 0);
+  }
+}
+
 .animate-on-scroll { opacity: 0; transition: opacity var(--transition-slow), transform var(--transition-slow); transform: translateY(20px); }
 .is-visible { opacity: 1; transform: translateY(0); }
 @keyframes fadeInUp { 
@@ -523,6 +535,19 @@ footer { background-color: var(--background-alt-color); color: var(--text-second
     opacity: 1; 
     transform: translateY(0); 
   } 
+}
+
+/* --- Specific Button Animations --- */
+.btn-case-study {
+    background-color: var(--accent-dark-color); /* Slightly different base color */
+    border: 1px solid var(--accent-color);
+}
+
+.btn-case-study:hover,
+.btn-case-study:focus-visible {
+    background-color: var(--accent-color);
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 0 0 rgba(26, 127, 188, 0.5); /* Initial state for focus */
 }
 
 /* --- Responsive Design --- */
