@@ -44,6 +44,22 @@ body {
     margin-bottom: var(--space-xl);
 }
 
+/* Added container for flex layout */
+.case-study-header .container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+/* New style for top row (back link + lang switch) */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--space-md); /* Space between top row and title */
+}
+
+
 .case-study-header h1 {
     color: var(--text-primary-color);
     font-family: 'Funnel Display', sans-serif;
@@ -59,6 +75,7 @@ body {
     margin-bottom: var(--space-md);
     font-size: 0.9rem;
     transition: color 0.2s ease;
+    margin-right: auto; /* Push lang switch to the right */
 }
 
 .back-link:hover {
@@ -67,6 +84,35 @@ body {
 
 .back-link i {
     margin-right: 0.5em;
+}
+
+/* --- Language Switcher Styles (Copied & Adapted from main styles.css) --- */
+.lang-switch {
+    display: flex;
+    gap: 0.5rem; /* Space between buttons */
+}
+
+.lang-switch button {
+    background-color: transparent;
+    color: var(--text-primary-color); /* Use text primary for better visibility */
+    border: 1px solid var(--text-secondary-color); /* Use secondary text color for border */
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.lang-switch button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover */
+    border-color: var(--text-primary-color);
+}
+
+.lang-switch button.active {
+    background-color: var(--primary-color); /* Use primary color for active */
+    border-color: var(--primary-color);
+    color: var(--text-primary-color); /* Ensure text is readable */
 }
 
 /* Main Content */
@@ -139,6 +185,18 @@ body {
     }
     body {
         font-size: 15px;
+    }
+    /* Adjust header layout for mobile */
+    .header-top {
+        flex-direction: column; /* Stack back link and lang switch */
+        align-items: flex-start; /* Align items to the start */
+        gap: 0.5rem; /* Add gap between stacked items */
+    }
+    .back-link {
+        margin-bottom: 0; /* Remove bottom margin when stacked */
+    }
+    .lang-switch {
+        margin-top: 0.5rem; /* Add some space above lang switch */
     }
 }
 
