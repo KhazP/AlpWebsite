@@ -487,8 +487,8 @@
         <section id="translations" class="translations">
             <div class="container">
                 <h2 class="section-title" data-lang-en="Translation Work" data-lang-tr="Çeviri Çalışmaları">Translation Work</h2>
-                <!-- Consider expanding descriptions to include challenges/results (mini case study) -->
-                <div class="translations-grid">
+                <!-- Removed ID from grid as it's no longer needed for toggling -->
+                <div class="translations-grid projects-grid">
                     <div class="translation-card">
                         <div class="translation-image">
                             <img alt="Heroes of Hammerwatch II" loading="lazy" src="Assets/heroesofhammerwatch2.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=HoH+II';">
@@ -533,16 +533,19 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Add hidden-project class to subsequent cards if they exist -->
+                    <!-- Example: <div class="translation-card hidden-project"> ... </div> -->
                 </div>
             </div>
         </section>
 
-        <!-- Renamed section ID and title -->
+        <!-- Web Dev Projects Section -->
         <section id="web-dev-projects" class="websites">
             <div class="container">
                 <h2 class="section-title" data-lang-en="Web Development Projects" data-lang-tr="Web Geliştirme Projeleri">Web Development Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
+                <!-- Kept ID for toggling -->
+                <div class="projects-grid" id="web-dev-grid">
+                    <div class="project-card"> <!-- Card 1 -->
                         <div class="project-image">
                             <img alt="Alp Yalay Portfolio Website" loading="lazy" src="Assets/alp.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Portfolio+Website';">
                         </div>
@@ -560,7 +563,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card"> <!-- Card 2 -->
                         <div class="project-image">
                             <img alt="Can Maden Website" loading="lazy" src="Assets/can.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Can+Maden';">
                         </div>
@@ -579,7 +582,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card hidden-project"> <!-- Card 3 - Hidden -->
                         <div class="project-image">
                             <img alt="Sait Maden Archival Website" loading="lazy" src="Assets/sait.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Sait+Maden';">
                         </div>
@@ -599,14 +602,24 @@
                         </div>
                     </div>
                 </div>
+                <!-- Kept Show More Button Container -->
+                <div class="show-more-container">
+                    <button class="btn show-more-btn toggle-projects-btn" data-target-grid="web-dev-grid" aria-expanded="false"
+                            data-lang-en="Show More..." data-lang-tr="Daha Fazla Göster..."
+                            data-lang-en-less="Show Less..." data-lang-tr-less="Daha Az Göster...">
+                        Show More...
+                    </button>
+                </div>
             </div>
         </section>
-        <!-- Renamed section ID and title -->
+
+        <!-- Software & AI Projects Section -->
         <section id="software-ai-projects" class="projects">
             <div class="container">
                 <h2 class="section-title" data-lang-en="Software & AI Projects" data-lang-tr="Yazılım & YZ Projeleri">Software & AI Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
+                 <!-- Kept ID for toggling -->
+                <div class="projects-grid" id="software-ai-grid">
+                    <div class="project-card"> <!-- Card 1 -->
                         <div class="project-image">
                             <img alt="Localization Comparison Tool" loading="lazy" src="Assets/localizationappthumbnail.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Loc+Tool';">
                         </div>
@@ -623,7 +636,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card"> <!-- Card 2 -->
                         <div class="project-image">
                             <img alt="F1 Regulations Assistant" loading="lazy" src="Assets/f1regassistantthumbnail.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=F1+GPT';">
                         </div>
@@ -652,7 +665,7 @@
                         </div>
                     </div>
                     <!-- New Project Card for AutoTidy -->
-                    <div class="project-card">
+                    <div class="project-card hidden-project"> <!-- Card 3 - Hidden -->
                         <div class="project-image">
                             <img alt="AutoTidy Application" loading="lazy" src="Assets/autotidy.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=AutoTidy';">
                         </div>
@@ -673,6 +686,14 @@
                         </div>
                     </div>
                     <!-- End New Project Card -->
+                </div>
+                 <!-- Kept Show More Button Container -->
+                 <div class="show-more-container">
+                    <button class="btn show-more-btn toggle-projects-btn" data-target-grid="software-ai-grid" aria-expanded="false"
+                            data-lang-en="Show More..." data-lang-tr="Daha Fazla Göster..."
+                            data-lang-en-less="Show Less..." data-lang-tr-less="Daha Az Göster...">
+                        Show More...
+                    </button>
                 </div>
             </div>
         </section>
@@ -806,7 +827,7 @@
                          <li><a href="#contact" data-lang-en="Contact" data-lang-tr="İletişim">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-social">
+                <div class="footer-social"></div>
                     <a href="https://github.com/KhazP" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a href="https://linkedin.com/in/alpyalay" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>

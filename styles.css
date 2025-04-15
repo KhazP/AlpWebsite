@@ -703,3 +703,22 @@ footer { background-color: var(--background-alt-color); color: var(--text-second
         width: 50%; /* Shorter underline for active on mobile */
     }
 }
+
+/* Hide project cards beyond the first two */
+.hidden-project {
+    display: none;
+}
+
+/* Style the container for the "Show More" button */
+.show-more-container {
+    text-align: center; /* Center the button */
+    margin-top: 30px; /* Add space above the button */
+    margin-bottom: 20px; /* Add space below the button */
+}
+
+/* Style the "Show More" button itself */
+.show-more-btn {
+    padding: 12px 25px; /* Adjust padding for a larger button */
+    font-size: 1rem; /* Adjust font size if needed */
+    /* Inherits .btn styles, add specific overrides if necessary */
+}

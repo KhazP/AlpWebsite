@@ -244,7 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
      } catch (e) {
          console.warn("Could not read language preference from localStorage:", e);
      }
-    setLanguage(preferredLang); // Apply the language
+    // Apply the language initially - Moved this call lower to ensure button text is set correctly after DOM manipulation
+    // setLanguage(preferredLang);
 
 
     // --- Collapsible Sections ---
@@ -523,5 +524,89 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Run the function on page load
     ensureImageDimensions();
+
+
+    // --- Show More/Less Projects ---
+    const toggleProjectButtons = document.querySelectorAll('.toggle-projects-btn');
+
+    toggleProjectButtons.forEach(button => {
+        const gridId = button.getAttribute('data-target-grid');
+        const grid = document.getElementById(gridId);
+        if (!grid) return;
+
+        const hiddenProjects = grid.querySelectorAll('.project-card.hidden-project');
+        const showMoreContainer = button.closest('.show-more-container');
+
+        // Hide button container if there are no hidden projects (or <= 2 total)
+        const totalProjects = grid.querySelectorAll('.project-card').length;
+        if (hiddenProjects.length === 0 || totalProjects <= 2) {
+            if (showMoreContainer) {
+                showMoreContainer.style.display = 'none';
+            }
+            return; // Don't add listener if button isn't needed
+        }
+
+        // Function to update button text based on state and language
+        const updateButtonText = (btn, isExpanded, currentLang) => {
+            const showMoreText = btn.getAttribute(`data-lang-${currentLang}`) || btn.getAttribute('data-lang-en');
+            const showLessText = btn.getAttribute(`data-lang-${currentLang}-less`) || btn.getAttribute('data-lang-en-less');
+            btn.textContent = isExpanded ? showLessText : showMoreText;
+        };
+
+        // Add click listener
+        button.addEventListener('click', () => {
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            hiddenProjects.forEach(project => {
+                // Toggle the hidden class directly
+                project.classList.toggle('hidden-project');
+            });
+            button.setAttribute('aria-expanded', !isExpanded);
+
+            // Update button text based on the new state and current language
+            const currentLang = document.documentElement.lang || 'en';
+            updateButtonText(button, !isExpanded, currentLang);
+        });
+
+        // Initial button text update based on current language
+        const currentLang = document.documentElement.lang || 'en';
+        updateButtonText(button, false, currentLang); // Initially not expanded
+    });
+
+    // Apply the language initially (moved here to ensure button text is set correctly)
+    setLanguage(preferredLang);
+
+    // Re-run button text update on language change
+    langSwitchContainers.forEach(container => {
+        container.querySelectorAll('button[data-lang]').forEach(langButton => {
+            langButton.addEventListener('click', () => {
+                const selectedLang = langButton.getAttribute('data-lang');
+                toggleProjectButtons.forEach(projButton => {
+                    // Check if the button is actually visible before updating
+                    const container = projButton.closest('.show-more-container');
+                    if (container && container.style.display !== 'none') {
+                        const isExpanded = projButton.getAttribute('aria-expanded') === 'true';
+                        const updateFunc = projButton.updateTextCallback; // Retrieve the update function
+                         if (typeof updateFunc === 'function') {
+                            updateFunc(projButton, isExpanded, selectedLang);
+                         } else { // Fallback if callback wasn't stored correctly
+                             const showMoreText = projButton.getAttribute(`data-lang-${selectedLang}`) || projButton.getAttribute('data-lang-en');
+                             const showLessText = projButton.getAttribute(`data-lang-${selectedLang}-less`) || projButton.getAttribute('data-lang-en-less');
+                             projButton.textContent = isExpanded ? showLessText : showMoreText;
+                         }
+                    }
+                });
+            });
+        });
+    });
+
+    // Store the update function on the button itself for easy access during language change
+    toggleProjectButtons.forEach(button => {
+        button.updateTextCallback = (btn, isExpanded, currentLang) => {
+            const showMoreText = btn.getAttribute(`data-lang-${currentLang}`) || btn.getAttribute('data-lang-en');
+            const showLessText = btn.getAttribute(`data-lang-${currentLang}-less`) || btn.getAttribute('data-lang-en-less');
+            btn.textContent = isExpanded ? showLessText : showMoreText;
+        };
+    });
+
 
 }); // End DOMContentLoaded
