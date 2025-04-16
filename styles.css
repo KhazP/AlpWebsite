@@ -550,6 +550,37 @@ footer { background-color: var(--background-alt-color); color: var(--text-second
     box-shadow: 0 0 0 0 rgba(26, 127, 188, 0.5); /* Initial state for focus */
 }
 
+/* --- Project Grid & Cards --- */
+.hidden-project {
+    display: none; /* Initially hide projects marked as hidden */
+}
+
+.show-more-container {
+    text-align: center;
+    margin-top: 20px;
+    /* Initially visible on mobile */
+    display: block;
+}
+
+.show-more-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    /* Add other button styles as needed */
+}
+
+/* Hide the show more button container on larger screens */
+@media (min-width: 769px) { /* Adjust breakpoint as needed */
+    .show-more-container {
+        display: none;
+    }
+
+    /* Ensure all projects are visible on larger screens */
+    .project-card.hidden-project {
+        display: flex; /* Or block, depending on your card layout */
+    }
+}
+
 /* --- Responsive Design --- */
 
 /* Medium screens (Tablets, smaller laptops) */
@@ -635,90 +666,4 @@ footer { background-color: var(--background-alt-color); color: var(--text-second
     .hero-image { max-width: 400px; }
     .character-infobox { flex-basis: 350px; }
     .methodology-image { flex-basis: 400px; }
-}
-
-/* Mobile Navigation Menu Styles (Only affects screens < 768px) */
-@media (max-width: 767px) {
-    /* Hide Desktop Lang Switch */
-    #desktop-lang-switch { display: none; }
-    /* Show Mobile Nav Container */
-    .mobile-nav-container { display: flex; }
-    /* Show Mobile Lang Switch */
-    #mobile-lang-switch { display: flex; }
-    /* Ensure hamburger is shown */
-    .hamburger { display: block; }
-
-    /* Style nav-links as the slide-out menu */
-    .nav-links {
-        display: block; /* Override flex */
-        position: fixed;
-        top: 0;
-        left: -100%; /* Off-screen */
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: var(--card-bg-color);
-        transition: left var(--transition-medium);
-        z-index: 999; /* Below navbar overlay potentially */
-        padding-top: calc(var(--navbar-height) + var(--space-lg));
-        box-shadow: 4px 0px 15px rgba(0,0,0,0.2);
-        border-right: 1px solid var(--border-color);
-        overflow-y: auto;
-    }
-
-    .nav-links.active { /* Class added by JS */
-        left: 0; /* Slide in */
-    }
-
-    .nav-links ul {
-        flex-direction: column; /* Stack links vertically */
-        align-items: flex-start;
-        padding: var(--space-lg);
-        gap: var(--space-md);
-    }
-
-    .nav-links a {
-        font-size: 1.2rem;
-        display: block; /* Take full width */
-        padding: var(--space-sm) 0;
-        width: 100%;
-        color: var(--text-primary-color); /* Ensure visible */
-    }
-     .nav-links a:hover {
-        color: var(--primary-color); /* Hover effect */
-    }
-    .nav-links a::after { /* Mobile underline */
-        bottom: -2px; /* Adjust position */
-        height: 1px;
-        background-color: var(--primary-color);
-        left: 0; /* Align left */
-        transform: none; /* Reset transform */
-        width: 0; /* Keep hidden by default */
-    }
-     .nav-links a.active {
-        color: var(--primary-color) !important; /* More visible highlight on mobile */
-        font-weight: 600;
-    }
-     .nav-links a.active::after {
-        width: 50%; /* Shorter underline for active on mobile */
-    }
-}
-
-/* Hide project cards beyond the first two */
-.hidden-project {
-    display: none;
-}
-
-/* Style the container for the "Show More" button */
-.show-more-container {
-    text-align: center; /* Center the button */
-    margin-top: 30px; /* Add space above the button */
-    margin-bottom: 20px; /* Add space below the button */
-}
-
-/* Style the "Show More" button itself */
-.show-more-btn {
-    padding: 12px 25px; /* Adjust padding for a larger button */
-    font-size: 1rem; /* Adjust font size if needed */
-    /* Inherits .btn styles, add specific overrides if necessary */
 }
