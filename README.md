@@ -100,3 +100,158 @@ The website is a single-page application (`index.html`) with distinct sections. 
 
 <details>
 <summary>Click to expand project file structure</summary>
+
+```text
+AlpWebsite/
+├── Assets/
+│   ├── Docs/
+│   │   ├── AlpYalayAISummary.txt
+│   │   ├── gsap-3-cheat-sheet.txt
+│   │   └── LinkedInDataExport/
+│   │       ├── Ad_Targeting.csv
+│   │       ├── Calendar.csv
+│   │       ├── coach_messages.csv
+│   │       ├── Company Follows.csv
+│   │       ├── Connections.csv
+│   │       ├── Contacts.csv
+│   │       ├── Education.csv
+│   │       ├── Email Addresses.csv
+│   │       ├── Endorsement_Given_Info.csv
+│   │       ├── Endorsement_Received_Info.csv
+│   │       ├── Honors.csv
+│   │       ├── Invitations.csv
+│   │       ├── Job Applicant Saved Answers.csv
+│   │       ├── Job Applicant Saved Screening Question Responses.csv
+│   │       ├── Jobs/
+│   │       │   ├── Job Applications.csv
+│   │       │   ├── Job Seeker Preferences.csv
+│   │       │   └── Saved Jobs.csv
+│   │       ├── Learning.csv
+│   │       ├── learning_coach_messages.csv
+│   │       ├── learning_role_play_messages.csv
+│   │       ├── messages.csv
+│   │       ├── PhoneNumbers.csv
+│   │       ├── Positions.csv
+│   │       ├── Profile.csv
+│   │       ├── Profile Summary.csv
+│   │       ├── Projects.csv
+│   │       ├── Receipts.csv
+│   │       ├── Registration.csv
+│   │       ├── Rich_Media.csv
+│   │       ├── SavedJobAlerts.csv
+│   │       ├── Skills.csv
+│   │       ├── TestScores.csv
+│   │       ├── Verifications/
+│   │       │   └── Verifications.csv
+│   │       └── Whatsapp Phone Numbers.csv
+│   ├── alp.webp
+│   ├── alpface.webp
+│   ├── alplogo.webp
+│   ├── autotidy.webp
+│   ├── battletalent.webp
+│   ├── can.webp
+│   ├── f1regassistantthumbnail.webp
+│   ├── heroesofhammerwatch2.webp
+│   ├── localizationappthumbnail.webp
+│   └── sait.webp
+├── CaseStudyPage/
+│   ├── battle-talent-case-study.html
+│   ├── battletalentcasestudy.txt
+│   ├── case-study.css
+│   └── case-study.js
+├── index.html
+├── LICENSE.md
+├── README.md
+├── robots.txt
+├── scripts.js
+├── sitemap.xml
+└── styles.css
+```
+
+---
+
+## 📱 Responsive Design Details
+
+The website employs CSS media queries to adapt the layout and styling for various screen sizes:
+* **Mobile-First Approach**: Base styles are designed for smaller screens.
+* **Tablet Enhancements (@media (min-width: 768px))**:
+    * Desktop language switcher becomes visible.
+    * Mobile navigation and hamburger menu are hidden.
+    * Hero section content and image rearrange to a row layout.
+    * About section content arranges into a row with the infobox alongside the text.
+    * Skill categories display in three columns.
+    * Translation and project grids switch to a two-column layout.
+    * Methodology section arranges image and text in a row.
+    * Contact section info and form arrange in a row.
+* **Large Screens (@media (min-width: 1024px))**:
+    * Container width increases.
+    * Font sizes for titles and hero content are further enlarged.
+
+---
+
+## 🔒 Privacy & Compliance
+
+* **Contact Form**: Uses Web3Forms for submission, which has its own privacy policy. A `botcheck` hidden field is included as a simple spam prevention measure.
+* **hCaptcha**: Integrated into the contact form to prevent spam.
+* **Analytics**: Google Analytics is used; users should be informed via a privacy policy (not currently in the repo but recommended).
+* **No Cookies (Directly by Site)**: The website itself does not set cookies directly, but embedded services like Google Analytics or hCaptcha might. A cookie consent banner would be a good addition for GDPR compliance if targeting EU users.
+
+---
+
+## 🌐 Viewing the Website
+
+The live website can be viewed at: **https://alpyalay.org**
+
+---
+
+## 🛠️ Development Setup (Simple)
+
+1.  Clone the repository:
+    ```bash
+    git clone [https://github.com/KhazP/AlpWebsite.git](https://github.com/KhazP/AlpWebsite.git)
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd AlpWebsite
+    ```
+3.  Open `index.html` in your web browser.
+
+No complex build steps are required as it's a static site built with HTML, CSS, and vanilla JavaScript.
+
+---
+
+## 🔮 Future Enhancements (Potential)
+
+* **Blog/Articles Section**: To share insights on localization, translation, or development.
+* **Enhanced Animations/Transitions**: Using a library like GSAP (a cheat sheet is in `Assets/Docs/`) for more dynamic visual effects.
+* **PWA Conversion**: For offline access and app-like experience.
+* **CMS Integration**: For easier content management if the site grows significantly.
+* **Automated End-to-End Testing**.
+* **Privacy Policy Page & Cookie Consent Banner**.
+
+---
+
+## 🤝 Reporting Issues
+
+If you find any bugs, typos, or areas for improvement, please open an issue on the [GitHub repository](https://github.com/KhazP/AlpWebsite/issues).
+
+---
+
+## 📜 Disclaimer
+
+The information and projects showcased on this website are for portfolio purposes. Some game translation projects are fan translations or official contributions as detailed in their respective descriptions.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+---
+
+## 📞 Contact & Credits
+
+* **Maintained by**: Alp Yalay (KhazP)
+* **Contact**: contact@alpyalay.org
+* **GitHub**: [KhazP](https://github.com/KhazP)
+* **LinkedIn**: [Alp Yalay](https://linkedin.com/in/alpyalay)
