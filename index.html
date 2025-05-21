@@ -1,341 +1,849 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4J01ZWL5BJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4J01ZWL5BJ');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alp Yalay - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Alp Yalay: Translator & Localizer specializing in game localization, and technical translation. Bridging language and technology.">
+    <meta name="keywords" content="Alp Yalay, translator, localizer, developer, game localization, technical translation, software localization, website localization, Turkish translation">
+    <title data-lang-en="Alp Yalay | Translator & Localizer" data-lang-tr="Alp Yalay | Çevirmen & Yerelleştirme Uzmanı">Alp Yalay | Translator & Localizer</title>
+
+    <!-- Preload Main CSS -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+    <!-- Preload Font Awesome CSS -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
+
+    <link rel="me" href="https://mastodon.social/@alpyalay">
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Base critical styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+      }
+      
+      /* Accessibility color variables - improved contrast */
+      :root {
+        --primary-color: #156129;       /* Darker green with better contrast */
+        --primary-hover: #0c4e21;       /* Even darker for hover states */
+        --text-on-dark: #ffffff;        /* White text on dark backgrounds */
+        --text-secondary: #757575;      /* Darker gray for better contrast */
+        --accent-color: #1a7fbc;        /* Accessible blue accent */
+        --background-dark: #0a1929;     /* Dark background */
+        --background-light: #ffffff;    /* Light background */
+        --label-color: #0d5523;         /* Darker green for labels */
+      }
+      
+      /* Navbar styles */
+      .navbar {
+        background-color: var(--background-dark);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
+      
+      /* Hero container */
+      .hero {
+        padding-top: 70px;
+        min-height: 100vh;
+        background-color: var(--background-dark);
+        color: var(--text-on-dark);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      /* Accessible button styles */
+      .btn {
+        background-color: var(--primary-color);
+        color: var(--text-on-dark) !important;
+        font-weight: 600;
+      }
+      
+      .btn:hover {
+        background-color: var(--primary-hover);
+      }
+      
+      /* Language switcher */
+      .lang-switch button {
+        color: var(--text-on-dark);
+        background-color: transparent;
+        border: 1px solid var(--text-on-dark);
+      }
+      
+      .lang-switch button.active {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+      
+      /* Hamburger menu optimization */
+      .hamburger {
+        will-change: transform;
+      }
+      
+      .hamburger .bar {
+        will-change: transform, opacity;
+        background-color: var(--text-on-dark);
+      }
+      
+      /* Labels with improved contrast */
+      .stat-label, .detail-label {
+        color: var(--label-color);
+        font-weight: 700;
+      }
+    </style>
+
+    <meta property="og:title" content="Alp Yalay | Translator & Localizer">
+    <meta property="og:description" content="Alp Yalay: Translator & Localizer specializing in game localization, technical translation, and Python development. Bridging language and technology.">
+    <meta property="og:image" content="Assets/alpface.webp">
+    <meta property="og:url" content="https://alpyalay.org">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Modified Google Fonts link to explicitly include display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&display=swap" rel="stylesheet">
+
+    <!-- Font loading optimization -->
+    <style>
+      /* Define font-face for Funnel Display with proper fallback and swap behavior */
+      @font-face {
+        font-family: 'Funnel Display';
+        font-style: normal;
+        font-weight: 400 700;
+        font-display: swap;
+        src: local('Funnel Display');
+        font-synthesis: none;
+      }
+      
+      /* Define font-face for Open Sans with proper fallback and swap behavior */
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400 600;
+        font-display: swap;
+        src: local('Open Sans');
+        font-synthesis: none;
+      }
+      
+      /* Define fallback sizes to minimize CLS */
+      h1, h2, h3, h4, h5, h6 {
+        font-size-adjust: 0.5;
+      }
+    </style>
+
+    <link rel="icon" type="image/png" href="Assets/alplogo.webp">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Alp Yalay",
+        "url": "https://alpyalay.org",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://alpyalay.org"
+        },
+        "jobTitle": "Translator & Localizer",
+        "description": "Passionate translator and localizer from Turkey specializing in game localization and technical translation, bridging linguistic expertise with technical knowledge.",
+        "image": "https://alpyalay.com/Assets/alpface.webp",
+        "email": "contact@alpyalay.org",
+        "knowsLanguage": ["en-US", "tr-TR"],
+        "workLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Istanbul",
+            "addressRegion": "Istanbul",
+            "addressCountry": "TR"
+          }
+        },
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Self-Employed/Freelance"
+        },
+        "sameAs": [
+          "https://github.com/KhazP",
+          "https://www.linkedin.com/in/alp-yalay/"
+        ],
+        "knowsAbout": ["Translation", "Localization", "Game Localization", "Technical Translation", "Python"],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Izmir University of Economics" /* Schema.org doesn't support multi-language here easily, keep English */
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Istanbul",
+          "addressRegion": "Istanbul",
+          "addressCountry": "TR"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Translation Services",
+              "description": "Professional translation between Turkish and English, specializing in technical and legal content."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Game Localization",
+              "description": "Comprehensive localization services for video games, ensuring cultural relevance and linguistic accuracy for Turkish audiences."
+            }
+          }
+        ]
+      }
+    }
+    </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-
-    <!-- Header Section -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo/Name -->
-            <a href="#home" class="text-2xl font-bold text-blue-600">Alp Yalay</a>
-
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-4">
-                <a href="#home" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
-                <a href="#about" class="text-gray-600 hover:text-blue-600 font-medium">About</a>
-                <a href="#projects" class="text-gray-600 hover:text-blue-600 font-medium">Projects</a>
-                <a href="#experience" class="text-gray-600 hover:text-blue-600 font-medium">Experience</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium">Contact</a>
-            </nav>
-
-            <!-- Language Switcher (Desktop) -->
-            <div class="hidden md:flex items-center space-x-2">
-                <button class="text-sm text-gray-700 hover:text-black font-semibold">EN</button>
-                <button class="text-sm text-gray-500 hover:text-black">TR</button>
+<body>
+    <header id="home">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="Assets/alplogo.webp" alt="Alp Yalay Logo" width="40" height="40">
+                    <span>Alp Yalay</span>
+                </div>
+                <!-- Desktop Language Switcher -->
+                <div class="lang-switch" id="desktop-lang-switch">
+                    <button data-lang="en" class="active">EN</button>
+                    <button data-lang="tr">TR</button>
+                </div>
+                <!-- Mobile Nav Elements -->
+                <div class="mobile-nav-container">
+                    <div class="lang-switch" id="mobile-lang-switch">
+                        <button data-lang="en" class="active">EN</button>
+                        <button data-lang="tr">TR</button>
+                    </div>
+                    <button class="hamburger" aria-label="Toggle menu" aria-controls="main-nav-links" aria-expanded="false">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </button>
+                </div>
             </div>
+            <div class="nav-links" id="main-nav-links">
+                <ul>
+                    <li><a href="#home" class="nav-link" data-lang-en="Home" data-lang-tr="Ana Sayfa">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-lang-en="About" data-lang-tr="Hakkımda">About</a></li>
+                    <li><a href="#experience" class="nav-link" data-lang-en="Experience" data-lang-tr="Deneyim">Experience</a></li>
+                    <li><a href="#translations" class="nav-link" data-lang-en="Translations" data-lang-tr="Çeviriler">Translations</a></li>
+                    <!-- Combined Web Development and Software & AI into Projects -->
+                    <li><a href="#web-dev-projects" class="nav-link" data-lang-en="Projects" data-lang-tr="Projelerim">Projects</a></li>
+                    <li><a href="#contact" class="nav-link" data-lang-en="Contact" data-lang-tr="İletişim">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
+        <div class="hero">
+            <div class="night-sky">
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div .class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 data-lang-en="Alp Yalay" data-lang-tr="Alp Yalay">Alp Yalay</h1>
+                    <h2 data-lang-en="Translator &amp; Localizer" data-lang-tr="Çevirmen &amp; Yerelleştirici">Translator &amp; Localizer</h2>
+                    <a href="#contact" class="btn" data-lang-en="Get In Touch" data-lang-tr="İletişime Geçin">Get In Touch</a>
+                </div>
+                <div class="hero-image">
+                    <img src="Assets/alpface.webp" alt="Alp Yalay" loading="eager" width="300" height="300">
+                </div>
+            </div>
         </div>
+
     </header>
 
-    <!-- Mobile Navigation Menu (Initially Hidden) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-2">
-        <a href="#home" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Home</a>
-        <a href="#about" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">About</a>
-        <a href="#projects" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Projects</a>
-        <a href="#experience" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Experience</a>
-        <a href="#contact" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Contact</a>
-        <!-- Language Switcher (Mobile) -->
-        <div class="px-4 py-2 border-t border-gray-200">
-            <button class="text-sm text-gray-700 hover:text-black font-semibold w-full text-left mb-1">EN</button>
-            <button class="text-sm text-gray-500 hover:text-black w-full text-left">TR</button>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        <div class="text-center px-6 py-12">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-800 mb-4">Alp Yalay</h1>
-            <p class="text-xl md:text-2xl text-gray-600 mb-8">Translator, Localizer & Developer</p>
-            <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 inline-block">View My Work</a>
-            <br>
-            <a href="#contact" class="mt-4 text-blue-600 hover:underline inline-block">Get In Touch</a>
-        </div>
-    </section>
-
-    <!-- Placeholder for About, Projects, Experience, Contact sections -->
-    <section id="about" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">About Me</h2>
-            <div class="md:flex md:space-x-10 items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0">
-                    <img src="https://placehold.co/400x400?text=Alp+Yalay" alt="Alp Yalay" class="rounded-lg shadow-xl mx-auto">
-                </div>
-                <div class="md:w-2/3">
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                        Hello! I'm Alp Yalay, a passionate Translator, Localizer, and Developer based in Istanbul. I specialize in bringing digital content to new audiences and crafting intuitive web experiences. With a background in both linguistics and technology, I bridge communication gaps and build useful tools.
-                    </p>
-                    
-                    <h4 class="text-2xl font-semibold text-gray-800 mb-4 mt-6">My Skills</h4>
-                    <div class="mb-4">
-                        <h5 class="text-md font-semibold text-gray-700 mb-2">Translation & Localization</h5>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Game Localization</span>
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Technical Translation</span>
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Software Localization</span>
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">CAT Tools (Trados, MemoQ)</span>
+    <main>
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title" data-lang-en="About Me" data-lang-tr="Hakkımda">About Me</h2>
+                <div class="about-content">
+                    <div class="character-infobox">
+                        <div class="infobox-header">
+                            <h3 data-lang-en="Alp Yalay" data-lang-tr="Alp Yalay">Alp Yalay</h3>
+                            <span class="infobox-title" data-lang-en="Translator &amp; Localizer" data-lang-tr="Çevirmen &amp; Yerelleştirici">Translator &amp; Localizer</span>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="text-md font-semibold text-gray-700 mb-2">Technical Skills</h5>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Python</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">JavaScript</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">HTML & CSS</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Tailwind CSS</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">SQL</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Git & GitHub</span>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="text-md font-semibold text-gray-700 mb-2">Soft Skills</h5>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Project Management</span>
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Communication</span>
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Problem Solving</span>
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Attention to Detail</span>
-                        </div>
-                    </div>
-
-                    <h4 class="text-2xl font-semibold text-gray-800 mb-4 mt-6">My Approach</h4>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
-                        I believe in a hybrid approach, combining meticulous manual work with AI-assisted tools to ensure accuracy, speed, and cultural relevance in all my projects. Quality and client satisfaction are my top priorities.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End About Me Section -->
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Featured Projects</h2>
-
-            <!-- Category: Web Development -->
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Web Development</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1: Portfolio Website -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=Portfolio+Website" alt="Portfolio Website" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Portfolio Website</h4>
-                        <p class="text-gray-600 text-sm mb-3">This very portfolio, designed to showcase my skills and projects. Built with HTML, Tailwind CSS, and JavaScript.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">HTML</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Tailwind CSS</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">JavaScript</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                            <a href="#home" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 2: Can Maden Website -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=Can+Maden+Website" alt="Can Maden Website" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Can Maden Website</h4>
-                        <p class="text-gray-600 text-sm mb-3">A professional website for a mining consultancy business, featuring services, projects, and contact information. Built using WordPress and custom CSS.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">WordPress</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">CSS</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">PHP</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                            <a href="#" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category: Software & AI Tools -->
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Software & AI Tools</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 3: Localization Comparison Tool -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=L10N+Compare+Tool" alt="Localization Comparison Tool" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Localization Comparison Tool</h4>
-                        <p class="text-gray-600 text-sm mb-3">A desktop application to compare multiple translated files (e.g., JSON, XML) side-by-side, highlighting differences and aiding in quality assurance.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Python</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Flet</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">XML</span>
-                             <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">JSON</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 4: F1 Regulations Assistant -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=F1+AI+Assistant" alt="F1 Regulations Assistant" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">F1 Regulations Assistant</h4>
-                        <p class="text-gray-600 text-sm mb-3">An AI-powered chatbot trained on FIA F1 regulations, allowing users to ask questions and get answers about complex sporting and technical rules.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Python</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Langchain</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">LLM</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Streamlit</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                            <a href="#" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Projects Section -->
-
-    <section id="experience" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">My Experience</h2>
-
-            <!-- Work History -->
-            <h3 class="text-3xl font-semibold text-gray-700 mb-8 text-center md:text-left">Work History</h3>
-            
-            <div class="space-y-8">
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">Localization Specialist (Freelance)</h4>
-                    <p class="text-sm text-gray-500">Various Clients | Jan 2023 - Present</p>
-                    <ul class="list-disc list-inside text-gray-600 text-sm mt-3 space-y-1 leading-relaxed">
-                        <li>Translated and localized video games, software applications, and technical documentation from English to Turkish.</li>
-                        <li>Managed terminology databases and style guides to ensure consistency across multiple projects.</li>
-                        <li>Collaborated with development teams to address localization issues and improve user experience.</li>
-                        <li>Utilized CAT tools and AI-assisted translation technologies to enhance productivity and quality.</li>
-                    </ul>
-                </div>
-
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">Junior Web Developer (Intern)</h4>
-                    <p class="text-sm text-gray-500">Tech Solutions Ltd. | Jun 2022 - Dec 2022</p>
-                    <ul class="list-disc list-inside text-gray-600 text-sm mt-3 space-y-1 leading-relaxed">
-                        <li>Assisted in the development and maintenance of client websites using HTML, CSS, and JavaScript.</li>
-                        <li>Contributed to front-end development tasks, focusing on responsive design and user interface improvements.</li>
-                        <li>Participated in code reviews and learned agile development methodologies.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Education -->
-            <h3 class="text-3xl font-semibold text-gray-700 mb-8 mt-16 text-center md:text-left">Education</h3>
-            <div class="space-y-8">
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">B.A. in Translation and Interpreting</h4>
-                    <p class="text-sm text-gray-500">Bogazici University | Sep 2018 - Jun 2022</p>
-                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                        Focused on written translation, localization, and terminology management. Completed a thesis on the challenges of game localization.
-                    </p>
-                </div>
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">Full-Stack Web Development Bootcamp</h4>
-                    <p class="text-sm text-gray-500">Tech Academy Online | Mar 2023 - Aug 2023</p>
-                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                        Intensive training in modern web development technologies including React, Node.js, Express, and MongoDB. Developed several full-stack projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Experience Section -->
-
-    <section id="contact" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Get In Touch</h2>
-            <div class="md:flex md:space-x-10">
-                <!-- Contact Form -->
-                <div class="md:w-2/3 mb-10 md:mb-0 bg-white p-8 rounded-lg shadow-lg">
-                    <form action="#" method="POST">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-medium mb-1">Your Name</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="John Doe">
+                        <div class="infobox-stats">
+                            <div class="stat-item">
+                                <span class="stat-label" data-lang-en="Languages" data-lang-tr="Diller">Languages</span>
+                                <span class="stat-value" data-lang-en="Turkish ↔ English" data-lang-tr="Türkçe ↔ İngilizce">Turkish ↔ English</span>
                             </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-1">Your Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="john.doe@example.com">
+                            <div class="stat-item">
+                                <span class="stat-label" data-lang-en="Location" data-lang-tr="Konum">Location</span>
+                                <span class="stat-value">Kadıköy, Istanbul, Türkiye</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label" data-lang-en="Tests" data-lang-tr="Sınavlar">Tests</span>
+                                <span class="stat-value">TOEFL iBT®: 92</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label" data-lang-en="Specialization" data-lang-tr="Uzmanlık">Specialization</span>
+                                <span class="stat-value" data-lang-en="Game Localization" data-lang-tr="Oyun Yerelleştirme">Game Localization</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label" data-lang-en="Education" data-lang-tr="Eğitim">Education</span>
+                                <span class="stat-value" data-lang-en="Izmir University of Economics" data-lang-tr="İzmir Ekonomi Üniversitesi">Izmir University of Economics</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label" data-lang-en="Degree" data-lang-tr="Derece">Degree</span>
+                                <span class="stat-value" data-lang-en="Translation &amp; Interpretation" data-lang-tr="Mütercim-Tercümanlık">Translation &amp; Interpretation</span>
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <label for="subject" class="block text-gray-700 font-medium mb-1">Subject</label>
-                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Regarding your portfolio">
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 font-medium mb-1">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Your message here..."></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Contact Details -->
-                <div class="md:w-1/3">
-                    <div class="bg-white p-8 rounded-lg shadow-lg h-full">
-                        <p class="text-lg text-gray-700 mb-6">
-                            Feel free to reach out for collaborations, project inquiries, or just to say hello! I'm always open to discussing new opportunities.
-                        </p>
-                        <div class="space-y-3">
-                            <p class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                                <strong class="mr-2">Email:</strong> <a href="mailto:alp.yalay.dev@example.com" class="text-blue-600 hover:underline">alp.yalay.dev@example.com</a>
+                    </div>
+                    <div class="about-text">
+                        <div class="about-bio">
+                            <p data-lang-en="I am a translator and localizer based in Istanbul, Turkey, with a degree in Translation and Interpretation from Izmir University of Economics. My main area of expertise is video game localization. Working in this field, I use my language and technology knowledge together." data-lang-tr="İstanbul, Türkiye'de yaşayan bir çevirmen ve yerelleştiriciyim. İzmir Ekonomi Üniversitesi Mütercim-Tercümanlık bölümü mezunuyum. Ana uzmanlık alanım video oyunu yerelleştirmesidir. Bu alanda dil ve teknoloji bilgilerimi birleştirerek çalışıyorum.">
                             </p>
-                            <p class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.5 0h-15A4.5 4.5 0 000 4.5v15A4.5 4.5 0 004.5 24h15a4.5 4.5 0 004.5-4.5v-15A4.5 4.5 0 0019.5 0zm-6.75 20.25h-3.75V9H4.5V5.625h4.5v-2.43C9 1.28 10.72.006 13.275.006c1.215 0 2.295.09 2.606.132v3.034h-1.79c-1.485 0-1.77.702-1.77 1.728v2.11h3.36l-.435 3.375h-2.925V20.25z" clip-rule="evenodd"/></svg> <!-- Placeholder for LinkedIn Icon -->
-                                <strong class="mr-2">LinkedIn:</strong> <a href="https://linkedin.com/in/alpyalay-placeholder" target="_blank" class="text-blue-600 hover:underline">linkedin.com/in/alpyalay</a>
+                            <p data-lang-en="My professional experience includes an internship at Şafak Tercüme, providing exposure to translation agency workflows, and a role as Junior Social Media Manager at Muse İstanbul, where responsibilities included content translation and creative writing. These experiences have provided practical familiarity with localization processes for technical and marketing content." data-lang-tr="Mesleki deneyimim arasında, çeviri ajansı iş akışlarına aşinalık kazandığım Şafak Tercüme stajı ve içerik çevirisi ile yaratıcı yazarlık sorumluluklarını üstlendiğim Muse İstanbul'daki Junior Sosyal Medya Yöneticiliği bulunmaktadır. Bu deneyimler, teknik ve pazarlama içerikleri için yerelleştirme süreçlerinde pratik bilgi edinmemi sağladı.">
                             </p>
-                            <p class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.386.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.34.725-4.04-1.61-4.04-1.61-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.082-.73.082-.73 1.205.085 1.84 1.235 1.84 1.235 1.07 1.83 2.807 1.305 3.492.997.11-.775.418-1.305.76-1.605-2.665-.3-5.466-1.33-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.12-.3-.535-1.525.115-3.175 0 0 1.005-.32 3.3 1.23.96-.265 1.98-.398 3-.402 1.02.004 2.04.137 3 .402 2.28-1.55 3.285-1.23 3.285-1.23.655 1.65.24 2.875.12 3.175.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.37.815 1.1.815 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.22.685.825.57C20.565 21.795 24 17.3 24 12 24 5.373 18.627 0 12 0z" clip-rule="evenodd"/></svg> <!-- Placeholder for GitHub Icon -->
-                                <strong class="mr-2">GitHub:</strong> <a href="https://github.com/alpyalay-placeholder" target="_blank" class="text-blue-600 hover:underline">github.com/alpyalay</a>
+                            <p data-lang-en="Beyond translation, I apply technical skills to localization challenges. I developed the Localization Comparison Tool using Python and the Flet framework on VS Code (utilizing Github Copilot) to assist in comparing file versions and identifying string changes. I utilize SubtitleEdit to take on professional contracts from various agencies to translate/subtitle social media content." data-lang-tr="Çevirinin ötesinde, yerelleştirme zorluklarına teknik becerilerimi uyguluyorum. Dosya sürümlerini karşılaştırmaya ve dize değişikliklerini belirlemeye yardımcı olmak için Python ve Flet framework'ü ile Yerelleştirme Karşılaştırma Aracı'nı geliştirdim. Çeşitli ajanslardan profesyonel sözleşmelerle sosyal medya içeriklerini çevirmek/altyazılamak için SubtitleEdit kullanıyorum.">
                             </p>
-                        </div>
-                        <div class="mt-8 text-center">
-                            <p class="text-gray-600 text-sm">Alternatively, connect with me on social media!</p>
-                            <!-- More social icons could go here -->
+                            <p data-lang-en="In translation projects, such as the Turkish localization for 'Heroes of Hammerwatch II', I often use a hybrid methodology. This typically involves manual translation followed by AI-assisted editing, utilizing models like Gemini 2.5 Pro for tasks like consistency checking and post-editing. I continue to research the application of AI/ML and LLMs in translation to enhance workflow efficiency while maintaining quality standards." data-lang-tr="'Heroes of Hammerwatch II' Türkçe yerelleştirmesi gibi çeviri projelerinde genellikle hibrit bir metodoloji kullanıyorum. Bu genellikle manuel çeviriyi ve ardından tutarlılık kontrolü ve son düzenleme gibi görevler için Gemini 2.5 Pro gibi modelleri kullanarak yapay zeka destekli düzenlemeyi içerir. Kalite standartlarını korurken iş akışı verimliliğini artırmak için çeviride YZ/MÖ ve LLM'lerin uygulanmasını araştırmaya devam ediyorum.">
+                             </p>
+                             </div>
+                        <div class="skills">
+                            <h3 data-lang-en="My Skills" data-lang-tr="Yeteneklerim">My Skills</h3>
+                            <div class="skill-categories">
+                                <div class="skill-category">
+                                    <h4 data-lang-en="Translation &amp; Localization" data-lang-tr="Çeviri &amp; Yerelleştirme">Translation &amp; Localization</h4>
+                                    <ul>
+                                        <li data-lang-en="Video Game Localization" data-lang-tr="Video Oyunu Yerelleştirme">Video Game Localization</li>
+                                        <li data-lang-en="Technical Translation" data-lang-tr="Teknik Çeviri">Technical Translation</li>
+                                        <li data-lang-en="Legal Translation" data-lang-tr="Hukuki Çeviri">Legal Translation</li>
+                                        <li data-lang-en="Website Localization" data-lang-tr="Web Sitesi Yerelleştirme">Website Localization</li>
+                                        <li data-lang-en="Subtitling" data-lang-tr="Altyazı Çevirisi">Subtitling</li>
+                                        <li data-lang-en="Post-editing" data-lang-tr="Son Düzenleme (Post-editing)">Post-editing</li>
+                                        <li data-lang-en="Transcreation" data-lang-tr="Yaratıcı Uyarlama (Transcreation)">Transcreation</li>
+                                        <li data-lang-en="Proofreading" data-lang-tr="Düzeltme (Proofreading)">Proofreading</li>
+                                        <li data-lang-en="Quality Assurance" data-lang-tr="Kalite Kontrolü (QA)">Quality Assurance</li>
+                                        <li data-lang-en="Terminology Management" data-lang-tr="Terim Yönetimi">Terminology Management</li>
+                                        <li data-lang-en="Machine Translation" data-lang-tr="Makine Çevirisi">Machine Translation</li>
+                                    </ul>
+                                </div>
+                                <div class="skill-category">
+                                    <h4 data-lang-en="Technical Skills" data-lang-tr="Teknik Yetenekler">Technical Skills</h4>
+                                    <ul>
+                                        <li>SDL Trados</li>
+                                        <li>CAT Tools</li>
+                                        <li>Microsoft Office Suite</li>
+                                        <li>Adobe Photoshop</li>
+                                        <li>Davinci Resolve</li>
+                                        <li data-lang-en="AI-Assisted Translation" data-lang-tr="Yapay Zeka Destekli Çeviri">AI-Assisted Translation</li>
+                                        <li data-lang-en="AI Aided Programming (Vibe Coding)" data-lang-tr="YZ Destekli Programlama">AI Aided Programming (Vibe Coding)</li>
+                                        <li data-lang-en="Localization Engineering" data-lang-tr="Yerelleştirme Mühendisliği">Localization Engineering</li>
+                                        <li data-lang-en="Video Editing" data-lang-tr="Video Düzenleme">Video Editing</li>
+                                    </ul>
+                                </div>
+                                <div class="skill-category">
+                                    <h4 data-lang-en="Management &amp; Soft Skills" data-lang-tr="Yönetim &amp; İletişim Becerileri">Management &amp; Soft Skills</h4>
+                                    <ul>
+                                        <li data-lang-en="Project Management" data-lang-tr="Proje Yönetimi">Project Management</li>
+                                        <li data-lang-en="Project Planning" data-lang-tr="Proje Planlama">Project Planning</li>
+                                        <li data-lang-en="Team Leadership" data-lang-tr="Takım Liderliği">Team Leadership</li>
+                                        <li data-lang-en="Cross-Cultural Communication" data-lang-tr="Kültürlerarası İletişim">Cross-Cultural Communication</li>
+                                        <li data-lang-en="Customer Service" data-lang-tr="Müşteri Hizmetleri">Customer Service</li>
+                                        <li data-lang-en="Research Skills" data-lang-tr="Araştırma Yeteneği">Research Skills</li>
+                                        <li data-lang-en="Teamwork" data-lang-tr="Takım Çalışması">Teamwork</li>
+                                        <li data-lang-en="Social Media Management" data-lang-tr="Sosyal Medya Yönetimi">Social Media Management</li>
+                                        <li data-lang-en="Web Content Writing" data-lang-tr="Web İçeriği Yazma">Web Content Writing</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- End Contact Section -->
+        </section>
 
-    <!-- Footer Section -->
-    <footer class="py-8 bg-gray-800 text-gray-400 text-center text-sm">
-        <div class="container mx-auto px-4">
-            <p>&copy; 2024 Alp Yalay. All Rights Reserved.</p>
-            <div class="mt-2">
-                <a href="#home" class="hover:text-gray-200">Home</a>
-                <span class="mx-2">|</span>
-                <a href="#contact" class="hover:text-gray-200">Contact</a>
-                <span class="mx-2">|</span>
-                <a href="#projects" class="hover:text-gray-200">Projects</a>
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title" data-lang-en="Experience" data-lang-tr="Deneyim">Experience</h2>
+                <div class="collapsible">
+                    <button class="collapsible-header" aria-expanded="false" aria-controls="work-history-content">
+                        <h3 data-lang-en="<i class='fas fa-briefcase'></i> Work History" data-lang-tr="<i class='fas fa-briefcase'></i> İş Geçmişi"><i class="fas fa-briefcase"></i> Work History</h3>
+                        <i class="fas fa-chevron-down collapsible-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="collapsible-content" id="work-history-content" hidden>
+                        <div class="experience-list">
+                            <div class="experience-item work-entry">
+                                <h3 data-lang-en="<i class='fas fa-building'></i> Junior Social Media Manager" data-lang-tr="<i class='fas fa-building'></i> Jr. Sosyal Medya Yöneticisi"><i class="fas fa-building"></i> Junior Social Media Manager</h3>
+                                <h4>Muse İstanbul</h4>
+                                <p class="experience-date" data-lang-en="Apr 2024 - Aug 2024" data-lang-tr="Nis 2024 - Ağu 2024">Apr 2024 - Aug 2024</p>
+                                <p data-lang-en="Managed social media accounts for iGA Istanbul Airport and its CEO. Creative writing and translation of social media content." data-lang-tr="iGA İstanbul Havalimanı ve CEO'su için sosyal medya hesaplarını yönettim. Sosyal medya içeriklerinin yaratıcı yazımı ve çevirisini yaptım.">Managed social media accounts for iGA Istanbul Airport and its CEO. Creative writing and translation of social media content.</p>
+                            </div>
+                            <div class="experience-item work-entry">
+                                <h3 data-lang-en="<i class='fas fa-concierge-bell'></i> Barista, Waiter, Cashier" data-lang-tr="<i class='fas fa-concierge-bell'></i> Barista, Garson, Kasiyer"><i class="fas fa-concierge-bell"></i> Barista, Waiter, Cashier</h3>
+                                <h4>Asma Yaprağı</h4>
+                                <p class="experience-date" data-lang-en="Jul 2015 - Sep 2021 | Alaçatı, Turkey" data-lang-tr="Tem 2015 - Eyl 2021 | Alaçatı, Türkiye">Jul 2015 - Sep 2021 | Alaçatı, Turkey</p>
+                                <p data-lang-en="Maintained responsibility for daily operations and electronic banking payments using various methods. Supervised customer service quality and financial management. Greeted customers, took orders, and delivered food and drinks while focusing on restaurant management." data-lang-tr="Çeşitli yöntemler kullanarak günlük operasyonlardan ve elektronik bankacılık ödemelerinden sorumluydum. Müşteri hizmetleri kalitesini ve finansal yönetimi denetledim. Müşterileri karşıladım, sipariş aldım, yiyecek/içecek servisi yaptım ve restoran yönetimine odaklandım.">Maintained responsibility for daily operations and electronic banking payments using various methods. Supervised customer service quality and financial management. Greeted customers, took orders, and delivered food and drinks while focusing on restaurant management.</p>
+                            </div>
+                            <div class="experience-item work-entry">
+                                <h3 data-lang-en="<i class='fas fa-user-graduate'></i> Intern" data-lang-tr="<i class='fas fa-user-graduate'></i> Stajyer"><i class="fas fa-user-graduate"></i> Intern</h3>
+                                <h4>Şafak Tercüme</h4>
+                                <p class="experience-date" data-lang-en="Feb 2021 - Mar 2021" data-lang-tr="Şub 2021 - Mar 2021">Feb 2021 - Mar 2021</p>
+                                <p data-lang-en="Internship at a translation agency, gaining experience in translation workflows." data-lang-tr="Çeviri iş akışları konusunda deneyim kazanmak için bir çeviri bürosunda staj yaptım.">Internship at a translation agency, gaining experience in translation workflows.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible">
+                    <button class="collapsible-header" aria-expanded="false" aria-controls="education-content">
+                        <h3 data-lang-en="<i class='fas fa-graduation-cap'></i> Education" data-lang-tr="<i class='fas fa-graduation-cap'></i> Eğitim"><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <i class="fas fa-chevron-down collapsible-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="collapsible-content" id="education-content" hidden>
+                        <div class="experience-list">
+                            <div class="experience-item education-entry">
+                                <h3 data-lang-en="<i class='fas fa-university'></i> Bachelor's Degree in Translation and Interpreting" data-lang-tr="<i class='fas fa-university'></i> Mütercim-Tercümanlık Lisans Derecesi"><i class="fas fa-university"></i> Bachelor's Degree in Translation and Interpreting</h3>
+                                <h4 data-lang-en="Izmir University of Economics" data-lang-tr="İzmir Ekonomi Üniversitesi">Izmir University of Economics</h4>
+                                <p class="experience-date" data-lang-en="Sep 2018 - Jun 2022 | Izmir, Turkey" data-lang-tr="Eyl 2018 - Haz 2022 | İzmir, Türkiye">Sep 2018 - Jun 2022 | Izmir, Turkey</p>
+                                <p data-lang-en="Specialized in Economic Translation, Legal Translation & Transcreation. Learned SDL Trados & SmartCat, participated in Photographic Activities. GPA: 2.86, Last Semester: 3.45" data-lang-tr="Ekonomi Çevirisi, Hukuk Çevirisi ve Yaratıcı Uyarlama (Transcreation) alanlarında uzmanlaştım. SDL Trados ve SmartCat kullanmayı öğrendim, Fotoğrafçılık Aktivitelerine katıldım. Ortalama: 2.86, Son Dönem: 3.45">Specialized in Economic Translation, Legal Translation & Transcreation. Learned SDL Trados & SmartCat, participated in Photographic Activities. GPA: 2.86, Last Semester: 3.45</p>
+                            </div>
+                            <div class="experience-item education-entry">
+                                <h3 data-lang-en="<i class='fas fa-school'></i> High School Diploma" data-lang-tr="<i class='fas fa-school'></i> Lise Diploması"><i class="fas fa-school"></i> High School Diploma</h3>
+                                <h4>Pera Fine Arts High School</h4>
+                                <p class="experience-date" data-lang-en="Sep 2014 - Jun 2018 | Istanbul, Turkey" data-lang-tr="Eyl 2014 - Haz 2018 | İstanbul, Türkiye">Sep 2014 - Jun 2018 | Istanbul, Turkey</p>
+                                <p data-lang-en="Art Studies, Photography, English" data-lang-tr="Sanat Çalışmaları, Fotoğrafçılık, İngilizce">Art Studies, Photography, English</p>
+                            </div>
+                            <div class="experience-item education-entry">
+                                <h3 data-lang-en="<i class='fas fa-child'></i> Primary and Middle School" data-lang-tr="<i class='fas fa-child'></i> İlk ve Orta Okul"><i class="fas fa-child"></i> Primary and Middle School</h3>
+                                <h4>Sisli Terakki Lisesi</h4>
+                                <p class="experience-date" data-lang-en="Sep 2005 - Jun 2014 | Istanbul, Turkey" data-lang-tr="Eyl 2005 - Haz 2014 | İstanbul, Türkiye">Sep 2005 - Jun 2014 | Istanbul, Turkey</p>
+                                <p data-lang-en="Primary School Diploma, Middle School Diploma, and 9th Grade. Studied in the International Baccalaureate (IB) Class." data-lang-tr="İlkokul Diploması, Ortaokul Diploması ve 9. Sınıf. Uluslararası Bakalorya (IB) Sınıfında okudum.">Primary School Diploma, Middle School Diploma, and 9th Grade. Studied in the International Baccalaureate (IB) Class.</p>
+                            </div>
+                             <div class="experience-item education-entry">
+                                <h3 data-lang-en="<i class='fas fa-baby'></i> Kindergarten" data-lang-tr="<i class='fas fa-baby'></i> Anaokulu"><i class="fas fa-baby"></i> Kindergarten</h3>
+                                <h4>Robert College</h4>
+                                <p class="experience-date" data-lang-en="Sep 2001 - Jun 2005 | Istanbul, Turkey" data-lang-tr="Eyl 2001 - Haz 2005 | İstanbul, Türkiye">Sep 2001 - Jun 2005 | Istanbul, Turkey</p>
+                                <p data-lang-en="Extensive English Education from Childhood" data-lang-tr="Çocukluktan İtibaren Kapsamlı İngilizce Eğitimi">Extensive English Education from Childhood</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible">
+                    <button class="collapsible-header" aria-expanded="false" aria-controls="honors-content">
+                        <h3 data-lang-en="<i class='fas fa-award'></i> Honors &amp; Awards" data-lang-tr="<i class='fas fa-award'></i> Başarılar &amp; Ödüller"><i class="fas fa-award"></i> Honors &amp; Awards</h3>
+                        <i class="fas fa-chevron-down collapsible-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="collapsible-content" id="honors-content" hidden>
+                        <div class="experience-list">
+                            <div class="experience-item award-entry">
+                                <h3 data-lang-en="<i class='fas fa-certificate'></i> Certificate of Achievement" data-lang-tr="<i class='fas fa-certificate'></i> Başarı Belgesi"><i class="fas fa-certificate"></i> Certificate of Achievement</h3>
+                                <h4 data-lang-en="Polymaths in the Republican Era Poster Exhibition" data-lang-tr="Cumhuriyet Dönemi Polimatları Poster Sergisi">Polymaths in the Republican Era Poster Exhibition</h4>
+                                <p class="experience-date" data-lang-en="May 2022" data-lang-tr="Mayıs 2022">May 2022</p>
+                                <p data-lang-en="Received Honourable Mention Award for outstanding contribution to the exhibition." data-lang-tr="Sergiye katkılarımdan dolayı Mansiyon Ödülü aldım.">Received Honourable Mention Award for outstanding contribution to the exhibition.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible">
+                    <button class="collapsible-header" aria-expanded="false" aria-controls="certifications-content">
+                        <h3 data-lang-en="<i class='fas fa-certificate'></i> Certifications" data-lang-tr="<i class='fas fa-certificate'></i> Sertifikalar"><i class="fas fa-certificate"></i> Certifications</h3>
+                        <i class="fas fa-chevron-down collapsible-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="collapsible-content" id="certifications-content" hidden>
+                        <ul class="experience-list">
+                            <li class="certification-entry experience-item">
+                                <h4 data-lang-en="<i class='fab fa-microsoft'></i> Microsoft Office Specialist: Microsoft Office 2010 (MOS)" data-lang-tr="<i class='fab fa-microsoft'></i> Microsoft Office Uzmanı: Microsoft Office 2010 (MOS)"><i class="fab fa-microsoft"></i> Microsoft Office Specialist: Microsoft Office 2010 (MOS)</h4>
+                                <h5>Microsoft</h5>
+                                <p class="experience-date" data-lang-en="Date Issued: 2010" data-lang-tr="Veriliş Tarihi: 2010">Date Issued: 2010</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="translations" class="translations">
+            <div class="container">
+                <h2 class="section-title" data-lang-en="Translation Work" data-lang-tr="Çeviri Çalışmaları">Translation Work</h2>
+                <!-- Removed ID from grid as it's no longer needed for toggling -->
+                <div class="translations-grid projects-grid">
+                    <div class="translation-card">
+                        <div class="translation-image">
+                            <img alt="Heroes of Hammerwatch II" loading="lazy" src="Assets/heroesofhammerwatch2.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=HoH+II';">
+                        </div>
+                        <div class="translation-content">
+                            <h3 data-lang-en="Heroes of Hammerwatch II (Fan Translation)" data-lang-tr="Heroes of Hammerwatch II (Fan Çevirisi)">Heroes of Hammerwatch II (Fan Translation)</h3>
+                            <p data-lang-en="Complete Turkish localization for this action roguelite, employing a hybrid approach that combines traditional translation with AI-Assisted post-editing for terminology management, and continuity. Currently in post-translation polish phase with regular updates." data-lang-tr="Bu aksiyon roguelite oyunu için tam Türkçe yerelleştirme. Terim yönetimi ve süreklilik için geleneksel çeviriyi YZ destekli son düzenleme ile birleştiren hibrit bir yaklaşım kullanıldı. Şu anda düzenli güncellemelerle çeviri sonrası düzeltme aşamasında.">
+                                <div class="translation-details">
+                                <div class="detail">
+                                    <span class="detail-label" data-lang-en="Status:" data-lang-tr="Durum:">Status:</span>
+                                    <span class="detail-value" data-lang-en="Post-translation polish" data-lang-tr="Çeviri sonrası düzeltme">Post-translation polish</span>
+                                </div>
+                                <div class="detail">
+                                    <span class="detail-label" data-lang-en="Process:" data-lang-tr="Süreç:">Process:</span>
+                                    <span class="detail-value" data-lang-en="Manual translation with post-editing" data-lang-tr="Son düzenleme ile manuel çeviri">Manual translation with post-editing</span>
+                                </div>
+                            </div>
+                            <div class="translation-links">
+                                <a href="https://steamcommunity.com/app/1781750/workshop/" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="View on Steam Workshop" data-lang-tr="Steam Atölyesi'nde Görüntüle">View on Steam Workshop</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="translation-card">
+                        <div class="translation-image">
+                            <img alt="Battle Talent" loading="lazy" src="Assets/battletalent.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Battle+Talent';">
+                        </div>
+                        <div class="translation-content">
+                            <h3 data-lang-en="Battle Talent (Official Translation)" data-lang-tr="Battle Talent (Resmi Çeviri)">Battle Talent (Official Translation)</h3>
+                            <p data-lang-en="Official Turkish translation for this physics-based VR sword-fighting game. Provided professional localization services to ensure the game is accessible to Turkish-speaking players." data-lang-tr="Bu fizik tabanlı VR kılıç dövüşü oyununun resmi Türkçe çevirisi. Oyunun Türkçe konuşan oyuncular için erişilebilir olmasını sağlamak amacıyla profesyonel yerelleştirme hizmetleri sağlandı.">Official Turkish translation for this physics-based VR sword-fighting game. Provided professional localization services to ensure the game is accessible to Turkish-speaking players.</p>
+                            <div class="detail">
+                                <span class="detail-label" data-lang-en="Type:" data-lang-tr="Tür:">Type:</span>
+                                <span class="detail-value" data-lang-en="Official localization" data-lang-tr="Resmi yerelleştirme">Official localization</span>
+                            </div>
+                            <div class="detail">
+                                <span class="detail-label" data-lang-en="Platform:" data-lang-tr="Platform:">Platform:</span>
+                                <span class="detail-value">Steam VR</span>
+                            </div>
+                            <div class="translation-links">
+                                <a href="https://store.steampowered.com/app/1325900/Battle_Talent/" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="View Game on Steam" data-lang-tr="Oyunu Steam'de Görüntüle">View Game on Steam</a>
+                                <!-- Added Case Study button with specific class -->
+                                <a href="CaseStudyPage/battle-talent-case-study.html" target="_blank" class="btn btn-sm btn-case-study" data-lang-en="Case Study" data-lang-tr="Vaka İncelemesi">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add hidden-project class to subsequent cards if they exist -->
+                    <!-- Example: <div class="translation-card hidden-project"> ... </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Dev Projects Section -->
+        <section id="web-dev-projects" class="websites">
+            <div class="container">
+                <h2 class="section-title" data-lang-en="Web Development Projects" data-lang-tr="Web Geliştirme Projeleri">Web Development Projects</h2>
+                <!-- Kept ID for toggling -->
+                <div class="projects-grid" id="web-dev-grid">
+                    <div class="project-card"> <!-- Card 1 -->
+                        <div class="project-image">
+                            <img alt="Alp Yalay Portfolio Website" loading="lazy" src="Assets/alp.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Portfolio+Website';">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-lang-en="Portfolio Website" data-lang-tr="Portfolyo Web Sitesi">Portfolio Website</h3>
+                            <p data-lang-en="My personal portfolio website showcasing translation work, projects, and professional experience. Built with HTML, CSS, and JavaScript for a responsive, multilingual experience." data-lang-tr="Çeviri çalışmalarımı, projelerimi ve profesyonel deneyimimi sergileyen kişisel portfolyo web sitem. Duyarlı, çok dilli bir deneyim için HTML, CSS ve JavaScript ile oluşturuldu.">My personal portfolio website showcasing translation work, projects, and professional experience. Built with HTML, CSS, and JavaScript for a responsive, multilingual experience.</p>
+                            <div class="project-features">
+                                <span class="feature">HTML</span>
+                                <span class="feature">CSS</span>
+                                <span class="feature">JavaScript</span>
+                                <span class="feature" data-lang-en="Responsive Design" data-lang-tr="Duyarlı Tasarım">Responsive Design</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/KhazP/AlpWebsite" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="View on GitHub" data-lang-tr="GitHub'da Görüntüle">View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card"> <!-- Card 2 -->
+                        <div class="project-image">
+                            <img alt="Can Maden Website" loading="lazy" src="Assets/can.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Can+Maden';">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-lang-en="Can Maden Website" data-lang-tr="Can Maden Web Sitesi">Can Maden Website</h3>
+                            <p data-lang-en="A custom-designed website developed for Can Maden, featuring a modern, responsive design with clean aesthetics and optimized performance." data-lang-tr="Can Maden için geliştirilmiş özel tasarımlı web sitesi; modern, duyarlı tasarım, sade estetik ve optimize edilmiş performans içerir.">A custom-designed website developed for Can Maden, featuring a modern, responsive design with clean aesthetics and optimized performance.</p>
+                            <div class="project-features">
+                                <span class="feature">HTML</span>
+                                <span class="feature">CSS</span>
+                                <span class="feature">JavaScript</span>
+                                <span class="feature" data-lang-en="Web Design" data-lang-tr="Web Tasarım">Web Design</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/KhazP/CanMadenWebsite" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="View on GitHub" data-lang-tr="GitHub'da Görüntüle">View on GitHub</a>
+                                <a href="https://canmadenart.tr/" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="Visit Website" data-lang-tr="Web Sitesini Ziyaret Et">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card hidden-project"> <!-- Card 3 - Hidden -->
+                        <div class="project-image">
+                            <img alt="Sait Maden Archival Website" loading="lazy" src="Assets/sait.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Sait+Maden';">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-lang-en="Sait Maden Archival Website" data-lang-tr="Sait Maden Arşiv Web Sitesi">Sait Maden Archival Website</h3>
+                            <p data-lang-en="This project is a static website created to document and preserve the artistic legacy and contributions of Sait Maden (1931-2013), an artist known for his groundbreaking work in Turkish graphic design, typography, poetry, and translation." data-lang-tr="Türk grafik tasarımı, tipografi, şiir ve çeviri alanlarındaki çalışmalarıyla tanınan sanatçı Sait Maden'in (1931-2013) sanatsal mirasını ve katkılarını belgelemek ve korumak amacıyla oluşturulan statik bir web sitesi projesi.">This project is a static website created to document and preserve the artistic legacy and contributions of Sait Maden (1931-2013), an artist known for his groundbreaking work in Turkish graphic design, typography, poetry, and translation.</p>
+                            <div class="project-features">
+                                <span class="feature">HTML</span>
+                                <span class="feature">CSS</span>
+                                <span class="feature">JavaScript</span>
+                                <span class="feature" data-lang-en="Digital Archive" data-lang-tr="Dijital Arşiv">Digital Archive</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/KhazP/SaitMadenWebsite" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="View on GitHub" data-lang-tr="GitHub'da Görüntüle">View on GitHub</a>
+                                <a href="https://saitmadenwebsite.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="Visit Website" data-lang-tr="Web Sitesini Ziyaret Et">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Kept Show More Button Container -->
+                <div class="show-more-container">
+                    <button class="btn show-more-btn toggle-projects-btn" data-target-grid="web-dev-grid" aria-expanded="false"
+                            data-lang-en="Show More..." data-lang-tr="Daha Fazla Göster..."
+                            data-lang-en-less="Show Less..." data-lang-tr-less="Daha Az Göster...">
+                        Show More...
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software & AI Projects Section -->
+        <section id="software-ai-projects" class="projects">
+            <div class="container">
+                <h2 class="section-title" data-lang-en="Software & AI Projects" data-lang-tr="Yazılım & YZ Projeleri">Software & AI Projects</h2>
+                 <!-- Kept ID for toggling -->
+                <div class="projects-grid" id="software-ai-grid">
+                    <div class="project-card"> <!-- Card 1 -->
+                        <div class="project-image">
+                            <img alt="Localization Comparison Tool" loading="lazy" src="Assets/localizationappthumbnail.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Loc+Tool';">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-lang-en="Localization Comparison Tool" data-lang-tr="Yerelleştirme Karşılaştırma Aracı">Localization Comparison Tool</h3>
+                            <p data-lang-en="A Python-based application built with the Flet framework that streamlines the comparison of localization files. This tool helps translators and developers quickly identify added and removed strings in different file formats (CSV, XML, LANG, JSON). Example Use Case: Locating untranslated strings after application/game translations and/or updates." data-lang-tr="Yerelleştirme dosyalarının karşılaştırılmasını kolaylaştıran, Flet framework ile oluşturulmuş Python tabanlı bir uygulama. Bu araç, çevirmenlerin ve geliştiricilerin farklı dosya formatlarındaki (CSV, XML, LANG, JSON) eklenen/kaldırılan dizeleri hızla belirlemesine yardımcı olur. Örnek Kullanım: Uygulama/oyun çevirileri veya güncellemelerinden sonra çevrilmemiş dizeleri bulma.">A Python-based application built with the Flet framework that streamlines the comparison of localization files. This tool helps translators and developers quickly identify added and removed strings in different file formats (CSV, XML, LANG, JSON). Example Use Case: Locating untranslated strings after application/game translations and/or updates.</p>
+                            <div class="project-features">
+                                <span class="feature">Python</span>
+                                <span class="feature">Flet</span>
+                                <span class="feature" data-lang-en="Open Source" data-lang-tr="Açık Kaynak">Open Source</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/KhazP/Localization-Comparison-Tool" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="View on GitHub" data-lang-tr="GitHub'da Görüntüle">View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card"> <!-- Card 2 -->
+                        <div class="project-image">
+                            <img alt="F1 Regulations Assistant" loading="lazy" src="Assets/f1regassistantthumbnail.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=F1+GPT';">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-lang-en="F1 Regulations Assistant GPTs" data-lang-tr="F1 FIA Asistanı GPT'si">F1 Regulations Assistant GPTs</h3>
+                            <p data-lang-en="A specialized AI assistant that helps users understand F1 regulations, covering the 2024, 2025, and 2026 rulesets. Leveraging official FIA documentation, it provides clear, concise explanations and can analyze images to verify regulation compliance. PS. ChatGPT version is no longer updated." data-lang-tr="Kullanıcıların 2024, 2025 ve 2026 F1 kurallarını anlamalarına yardımcı olan özel bir YZ asistanı. Resmi FIA belgelerini kullanarak net, öz açıklamalar sağlar ve kural uyumluluğunu doğrulamak için görüntüleri analiz edebilir. Not: ChatGPT sürümü artık güncellenmemektedir.">A specialized AI assistant that helps users understand F1 regulations, covering the 2024, 2025, and 2026 F1 regulations. Leveraging official FIA documentation, it provides clear, concise explanations and can analyze images to verify regulation compliance. PS. ChatGPT version is no longer updated.</p>
+                            <div class="project-details">
+                                <div class="detail">
+                                    <span class="detail-label" data-lang-en="ChatGPT Version:" data-lang-tr="ChatGPT Sürümü:">ChatGPT Version:</span>
+                                    <span class="detail-value" data-lang-en="Full functionality with live openf1.org API integration, but with inferior AI Model" data-lang-tr="Canlı openf1.org API entegrasyonu ile tam işlevsellik, ancak daha düşük yetenekli YZ Modeli ile">Full functionality with live openf1.org API integration, but with inferior AI Model</span>
+                                </div>
+                                <div class="detail">
+                                    <span class="detail-label" data-lang-en="Gemini Version:" data-lang-tr="Gemini Sürümü:">Gemini Version:</span>
+                                    <span class="detail-value" data-lang-en="Core regulation knowledge without API integration, but has Gemini 2.5 Pro" data-lang-tr="API entegrasyonu olmadan temel kural bilgisi, ancak Gemini 2.5 Pro ile">Core regulation knowledge without API integration, but has Gemini 2.5 Pro</span>
+                                </div>
+                            </div>
+                            <div class="project-features">
+                                <span class="feature" data-lang-en="AI Development" data-lang-tr="YZ Geliştirme">AI Development</span>
+                                <span class="feature" data-lang-en="Technical Documentation" data-lang-tr="Teknik Dokümantasyon">Technical Documentation</span>
+                                <span class="feature" data-lang-en="Formula 1" data-lang-tr="Formula 1">Formula 1</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://chatgpt.com/g/g-eaNLvlHI7-f1-regulations-assistant" class="btn btn-sm" target="_blank" rel="noopener noreferrer" data-lang-en="Try on ChatGPT" data-lang-tr="ChatGPT'de Dene">Try on ChatGPT</a>
+                                <a href="https://gemini.google.com/gem/7016463ffba5" class="btn btn-sm" target="_blank" rel="noopener noreferrer" data-lang-en="Try on Gemini" data-lang-tr="Gemini'de Dene">Try on Gemini</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Project Card for AutoTidy -->
+                    <div class="project-card hidden-project"> <!-- Card 3 - Hidden -->
+                        <div class="project-image">
+                            <img alt="AutoTidy Application" loading="lazy" src="Assets/autotidy.webp" width="600" height="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=AutoTidy';">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-lang-en="AutoTidy" data-lang-tr="AutoTidy">AutoTidy</h3>
+                            <p data-lang-en="Keeps your computer folders (like Downloads, Screenshots or Desktop) tidy automatically! This app for Windows and Linux cleans up by moving old files, or files with specific names (like screenshots), into organized 'Cleanup' folders sorted by date. It works in the background." data-lang-tr="Bilgisayar klasörlerinizi (İndirilenler, Ekran Görüntüleri veya Masaüstü gibi) otomatik olarak düzenli tutar! Windows ve Linux için bu uygulama, eski dosyaları veya belirli adlara sahip dosyaları (ekran görüntüleri gibi) tarihe göre sıralanmış düzenli 'Temizlik' klasörlerine taşıyarak temizler. Arka planda çalışır.">Keeps your computer folders (like Downloads, Screenshots or Desktop) tidy automatically! This app for Windows and Linux cleans up by moving old files, or files with specific names (like screenshots), into organized 'Cleanup' folders sorted by date. It works in the background.</p>
+                            <div class="project-features">
+                                <span class="feature">Python</span>
+                                <span class="feature">PyQt6</span>
+                                <span class="feature" data-lang-en="Automation" data-lang-tr="Otomasyon">Automation</span>
+                                <span class="feature" data-lang-en="Utility" data-lang-tr="Yardımcı Program">Utility</span>
+                                <span class="feature">Windows</span>
+                                <span class="feature">Linux</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/KhazP/AutoTidy" target="_blank" rel="noopener noreferrer" class="btn btn-sm" data-lang-en="View on GitHub" data-lang-tr="GitHub'da Görüntüle">View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End New Project Card -->
+                </div>
+                 <!-- Kept Show More Button Container -->
+                 <div class="show-more-container">
+                    <button class="btn show-more-btn toggle-projects-btn" data-target-grid="software-ai-grid" aria-expanded="false"
+                            data-lang-en="Show More..." data-lang-tr="Daha Fazla Göster..."
+                            data-lang-en-less="Show Less..." data-lang-tr-less="Daha Az Göster...">
+                        Show More...
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="methodology" class="methodology">
+             <div class="container">
+                 <h2 class="section-title" data-lang-en="My Approach" data-lang-tr="Yaklaşımım">My Approach</h2>
+                 <div class="methodology-content">
+                     <div class="methodology-image">
+                         <!-- Added width and height attributes -->
+                         <img alt="Translation Process" loading="lazy" src="Assets/alpface.webp" width="400" height="400" onerror="this.onerror=null; this.src='https://placehold.co/400x400/cccccc/ffffff?text=Method';">
+                     </div>
+                     <div class="methodology-text">
+                         <h3 data-lang-en="Hybrid Translation Methodology" data-lang-tr="Hibrit Çeviri Metodolojisi">Hybrid Translation Methodology</h3>
+                         <p data-lang-en="I believe in combining the best of human linguistic expertise with cutting-edge technology. My translation process represents an up-to-date approach that leverages both traditional skills and advanced AI tools:" data-lang-tr="İnsan dil uzmanlığını en son teknolojiyle birleştirmeye inanıyorum. Çeviri sürecim, hem geleneksel becerilerden hem de gelişmiş YZ araçlarından yararlanan güncel bir yaklaşımı temsil eder:">I believe in combining the best of human linguistic expertise with cutting-edge technology. My translation process represents an innovative approach that leverages both traditional skills and advanced AI tools:</p>
+                         <div class="methodology-steps">
+                             <div class="step">
+                                 <div class="step-number">1</div>
+                                 <div class="step-content">
+                                     <h4 data-lang-en="Manual Translation" data-lang-tr="Manuel Çeviri">Manual Translation</h4>
+                                     <p data-lang-en="I start with traditional translation, applying my linguistic knowledge, cultural understanding, and specialized domain expertise." data-lang-tr="Dilbilimsel bilgimi, kültürel anlayışımı ve özel alan uzmanlığımı uygulayarak geleneksel çeviri ile başlarım.">I start with traditional translation, applying my linguistic knowledge, cultural understanding, and specialized domain expertise.</p>
+                                 </div>
+                             </div>
+                             <div class="step">
+                                 <div class="step-number">2</div>
+                                 <div class="step-content">
+                                     <h4 data-lang-en="AI-Assisted Editing" data-lang-tr="Yapay Zeka Destekli Düzenleme">AI-Assisted Editing</h4>
+                                     <p data-lang-en="I employ advanced AI models like Claude 3.7 Sonnet & Gemini 2.5 Pro to enhance consistency, and increase workflow speed in the editing phase." data-lang-tr="Düzenleme aşamasında tutarlılığı artırmak ve iş akışı hızını yükseltmek için Claude 3.7 Sonnet ve Gemini 2.5 Pro gibi gelişmiş YZ modellerini kullanıyorum.">I employ advanced AI models like Claude 3.7 Sonnet to enhance consistency, and increase workflow speed in the editing phase.</p>
+                                 </div>
+                             </div>
+                             <div class="step">
+                                 <div class="step-number">3</div>
+                                 <div class="step-content">
+                                     <h4 data-lang-en="Technical Verification" data-lang-tr="Manuel Doğrulama">Manual Verification</h4>
+                                     <p data-lang-en="My technical background allows me to verify technical accuracy and ensure proper implementation in software contexts." data-lang-tr="Teknik geçmişim, teknik doğruluğu doğrulamama ve yazılım bağlamlarında doğru uygulamayı sağlamama olanak tanır.">My technical background allows me to verify technical accuracy and ensure proper implementation in software contexts.</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title" data-lang-en="Contact Me" data-lang-tr="Bana Ulaşın">Contact Me</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3 data-lang-en="Let's Connect" data-lang-tr="Bağlantı Kuralım">Let's Connect</h3>
+                        <p data-lang-en="Interested in working together or have questions about my services? You can get in touch to discuss localization, technical translation, or potential collaborations." data-lang-tr="Birlikte çalışmakla mı ilgileniyorsunuz veya hizmetlerim hakkında sorularınız mı var? Yerelleştirme, teknik çeviri veya potansiyel işbirliklerini görüşmek için iletişime geçebilirsiniz.">Interested in working together or have questions about my services? You can get in touch to discuss localization, technical translation, or potential collaborations.</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <p><a href="mailto:contact@alpyalay.org">contact@alpyalay.org</a></p>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-github"></i>
+                                <p><a href="https://github.com/KhazP" target="_blank" rel="noopener noreferrer">github.com/KhazP</a></p>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-linkedin"></i>
+                                <p><a href="https://linkedin.com/in/alpyalay" target="_blank" rel="noopener noreferrer">linkedin.com/in/alpyalay</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm" method="POST">
+                            <input type="hidden" name="access_key" value="f592ab44-0b05-47b0-919b-4b2b62efe706">
+                            <input type="hidden" name="subject" value="New Contact from Portfolio Website">
+                            <input type="hidden" name="from_name" value="Alp Yalay Portfolio">
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                            <div class="form-group">
+                                <label for="name" data-lang-en="Name" data-lang-tr="Ad">Name</label>
+                                <input type="text" id="name" name="name" required>
+                                <div class="form-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-lang-en="Email" data-lang-tr="E-posta">Email</label>
+                                <input type="email" id="email" name="email" required>
+                                <div class="form-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject-input" data-lang-en="Subject" data-lang-tr="Konu">Subject</label>
+                                <input type="text" id="subject-input" name="subject" required>
+                                <div class="form-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" data-lang-en="Message" data-lang-tr="Mesaj">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                                <div class="form-feedback"></div>
+                            </div>
+                            <!-- Add hCaptcha here -->
+                            <div class="h-captcha" data-captcha="true" data-sitekey="8a56cbe6-4354-4354-859a-be7663ac498e"></div>
+                            <button type="submit" class="btn btn-full" data-lang-en="Send Message" data-lang-tr="Mesaj Gönder">Send Message</button>
+
+                            <div id="form-result" class="form-feedback" style="margin-top: 15px;" aria-live="polite"></div>
+                            <div id="form-success-message-container" class="form-success-message-container" style="display: none;" aria-live="assertive">
+                                <div class="form-success-message">
+                                    <button type="button" class="close-btn" aria-label="Close message">
+                                        <i class="fas fa-times" aria-hidden="true"></i>
+                                    </button>
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    <h4 data-lang-en="Message Sent!" data-lang-tr="Mesaj Gönderildi!">Message Sent!</h4>
+                                    <p data-lang-en="Thank you for reaching out. I'll get back to you soon." data-lang-tr="Ulaştığınız için teşekkür ederim. Yakında size geri döneceğim.">Thank you for reaching out. I'll get back to you soon.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="Assets/alplogo.webp" alt="Alp Yalay Logo" width="40" height="40">
+                    <p>Alp Yalay</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                         <li><a href="#home" data-lang-en="Home" data-lang-tr="Ana Sayfa">Home</a></li>
+                         <li><a href="#about" data-lang-en="About" data-lang-tr="Hakkımda">About</a></li>
+                         <li><a href="#experience" data-lang-en="Experience" data-lang-tr="Deneyim">Experience</a></li>
+                         <li><a href="#translations" data-lang-en="Translations" data-lang-tr="Çeviriler">Translations</a></li>
+                         <!-- Combined Web Development and Software & AI into Projects -->
+                         <li><a href="#web-dev-projects" data-lang-en="Projects" data-lang-tr="Projelerim">Projects</a></li>
+                         <li><a href="#contact" data-lang-en="Contact" data-lang-tr="İletişim">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social"></div>
+                    <a href="https://github.com/KhazP" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/alpyalay" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-lang-en="&copy; 2025 Alp Yalay. All Rights Reserved." data-lang-tr="&copy; 2025 Alp Yalay. Tüm Hakları Saklıdır.">&copy; 2025 Alp Yalay. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
-    <!-- End Footer Section -->
 
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
