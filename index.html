@@ -1,36 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- JavaScript will add/remove 'dark' class here -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alp Yalay - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font - assuming it's loaded via Tailwind's default or a future step if self-hosted -->
+    <style>
+        /* For smoother transitions on theme toggle - not strictly necessary but nice to have */
+        html, body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-[#020912] text-[#f8f9fa] font-['Inter',_sans-serif] dark:bg-slate-50 dark:text-slate-800 transition-colors duration-300 ease-in-out">
 
     <!-- Header Section -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo/Name -->
-            <a href="#home" class="text-2xl font-bold text-blue-600">Alp Yalay</a>
+    <header class="sticky top-0 z-50 bg-[#0c1726] shadow-lg dark:bg-white dark:shadow-md transition-all duration-300 ease-in-out">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center">
+                <img src="Assets/alplogo.webp" alt="Alp Yalay Logo" class="h-10 transform hover:scale-110 transition-transform duration-300">
+            </a>
 
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-4">
-                <a href="#home" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
-                <a href="#about" class="text-gray-600 hover:text-blue-600 font-medium">About</a>
-                <a href="#projects" class="text-gray-600 hover:text-blue-600 font-medium">Projects</a>
-                <a href="#experience" class="text-gray-600 hover:text-blue-600 font-medium">Experience</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium">Contact</a>
+            <nav class="hidden md:flex space-x-2 lg:space-x-4">
+                <a href="#home" class="text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] font-medium px-3 py-2 rounded-md transition-colors duration-300 ease-in-out">Home</a>
+                <a href="#about" class="text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] font-medium px-3 py-2 rounded-md transition-colors duration-300 ease-in-out">About</a>
+                <a href="#experience" class="text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] font-medium px-3 py-2 rounded-md transition-colors duration-300 ease-in-out">Experience</a>
+                <a href="#projects" class="text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] font-medium px-3 py-2 rounded-md transition-colors duration-300 ease-in-out">Projects</a>
+                <a href="#contact" class="text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] font-medium px-3 py-2 rounded-md transition-colors duration-300 ease-in-out">Contact</a>
             </nav>
 
-            <!-- Language Switcher (Desktop) -->
-            <div class="hidden md:flex items-center space-x-2">
-                <button class="text-sm text-gray-700 hover:text-black font-semibold">EN</button>
-                <button class="text-sm text-gray-500 hover:text-black">TR</button>
+            <div class="flex items-center space-x-3">
+                <button id="theme-toggle-button" type="button" class="p-2 rounded-full text-[#ced4da] hover:text-[#156129] dark:text-slate-500 dark:hover:text-[#156129] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#156129] dark:focus:ring-offset-white focus:ring-offset-[#0c1726] transition-all duration-300 ease-in-out">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 transform transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 transform transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div class="hidden md:flex items-center space-x-1">
+                    <button class="text-sm text-[#f8f9fa] hover:bg-[#112233] dark:text-slate-700 dark:hover:bg-slate-200 px-3 py-1.5 rounded-md font-semibold transition-colors duration-300 ease-in-out">EN</button>
+                    <button class="text-sm text-[#ced4da] hover:text-[#f8f9fa] hover:bg-[#112233] dark:text-slate-500 dark:hover:text-slate-700 dark:hover:bg-slate-200 px-3 py-1.5 rounded-md transition-colors duration-300 ease-in-out">TR</button>
+                </div>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600">
+            <button id="mobile-menu-button" class="md:hidden text-[#ced4da] hover:text-[#156129] dark:text-slate-500 dark:hover:text-[#156129] p-2 rounded-md focus:outline-none transition-colors duration-300 ease-in-out">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -38,304 +51,416 @@
         </div>
     </header>
 
-    <!-- Mobile Navigation Menu (Initially Hidden) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-2">
-        <a href="#home" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Home</a>
-        <a href="#about" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">About</a>
-        <a href="#projects" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Projects</a>
-        <a href="#experience" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Experience</a>
-        <a href="#contact" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Contact</a>
-        <!-- Language Switcher (Mobile) -->
-        <div class="px-4 py-2 border-t border-gray-200">
-            <button class="text-sm text-gray-700 hover:text-black font-semibold w-full text-left mb-1">EN</button>
-            <button class="text-sm text-gray-500 hover:text-black w-full text-left">TR</button>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#112233] shadow-xl py-2 dark:bg-slate-50 dark:shadow-lg transition-all duration-300 ease-in-out">
+        <a href="#home" class="block px-4 py-3 text-[#ced4da] hover:bg-[#0c1726] hover:text-[#156129] dark:text-slate-600 dark:hover:bg-slate-100 dark:hover:text-[#156129] transition-colors duration-300 ease-in-out">Home</a>
+        <a href="#about" class="block px-4 py-3 text-[#ced4da] hover:bg-[#0c1726] hover:text-[#156129] dark:text-slate-600 dark:hover:bg-slate-100 dark:hover:text-[#156129] transition-colors duration-300 ease-in-out">About</a>
+        <a href="#experience" class="block px-4 py-3 text-[#ced4da] hover:bg-[#0c1726] hover:text-[#156129] dark:text-slate-600 dark:hover:bg-slate-100 dark:hover:text-[#156129] transition-colors duration-300 ease-in-out">Experience</a>
+        <a href="#projects" class="block px-4 py-3 text-[#ced4da] hover:bg-[#0c1726] hover:text-[#156129] dark:text-slate-600 dark:hover:bg-slate-100 dark:hover:text-[#156129] transition-colors duration-300 ease-in-out">Projects</a>
+        <a href="#contact" class="block px-4 py-3 text-[#ced4da] hover:bg-[#0c1726] hover:text-[#156129] dark:text-slate-600 dark:hover:bg-slate-100 dark:hover:text-[#156129] transition-colors duration-300 ease-in-out">Contact</a>
+        <div class="px-4 py-3 border-t border-slate-700 dark:border-slate-200">
+            <button class="text-sm text-[#f8f9fa] hover:bg-[#0c1726] dark:text-slate-700 dark:hover:bg-slate-100 w-full text-left mb-1 px-2 py-1.5 rounded-md font-semibold transition-colors duration-300 ease-in-out">EN</button>
+            <button class="text-sm text-[#ced4da] hover:text-[#f8f9fa] hover:bg-[#0c1726] dark:text-slate-500 dark:hover:text-slate-700 dark:hover:bg-slate-100 w-full text-left px-2 py-1.5 rounded-md transition-colors duration-300 ease-in-out">TR</button>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        <div class="text-center px-6 py-12">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-800 mb-4">Alp Yalay</h1>
-            <p class="text-xl md:text-2xl text-gray-600 mb-8">Translator, Localizer & Developer</p>
-            <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 inline-block">View My Work</a>
-            <br>
-            <a href="#contact" class="mt-4 text-blue-600 hover:underline inline-block">Get In Touch</a>
-        </div>
-    </section>
-
-    <!-- Placeholder for About, Projects, Experience, Contact sections -->
-    <section id="about" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">About Me</h2>
-            <div class="md:flex md:space-x-10 items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0">
-                    <img src="https://placehold.co/400x400?text=Alp+Yalay" alt="Alp Yalay" class="rounded-lg shadow-xl mx-auto">
-                </div>
-                <div class="md:w-2/3">
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                        Hello! I'm Alp Yalay, a passionate Translator, Localizer, and Developer based in Istanbul. I specialize in bringing digital content to new audiences and crafting intuitive web experiences. With a background in both linguistics and technology, I bridge communication gaps and build useful tools.
-                    </p>
-                    
-                    <h4 class="text-2xl font-semibold text-gray-800 mb-4 mt-6">My Skills</h4>
-                    <div class="mb-4">
-                        <h5 class="text-md font-semibold text-gray-700 mb-2">Translation & Localization</h5>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Game Localization</span>
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Technical Translation</span>
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Software Localization</span>
-                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">CAT Tools (Trados, MemoQ)</span>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="text-md font-semibold text-gray-700 mb-2">Technical Skills</h5>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Python</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">JavaScript</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">HTML & CSS</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Tailwind CSS</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">SQL</span>
-                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Git & GitHub</span>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="text-md font-semibold text-gray-700 mb-2">Soft Skills</h5>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Project Management</span>
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Communication</span>
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Problem Solving</span>
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Attention to Detail</span>
-                        </div>
-                    </div>
-
-                    <h4 class="text-2xl font-semibold text-gray-800 mb-4 mt-6">My Approach</h4>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
-                        I believe in a hybrid approach, combining meticulous manual work with AI-assisted tools to ensure accuracy, speed, and cultural relevance in all my projects. Quality and client satisfaction are my top priorities.
-                    </p>
-                </div>
+    <main>
+        <section id="home" class="min-h-screen flex items-center justify-center bg-[#0c1726] py-20 dark:bg-gradient-to-br dark:from-slate-50 dark:via-gray-50 dark:to-slate-100 transition-colors duration-300 ease-in-out">
+            <div class="text-center px-6">
+                <img src="Assets/alpface.webp" alt="Alp Yalay" class="w-48 h-48 mx-auto mb-8 rounded-full shadow-2xl border-4 border-[#112233] dark:border-white dark:shadow-lg transition-all duration-300 ease-in-out">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-[#f8f9fa] dark:text-slate-800 mb-4">Alp Yalay</h1>
+                <p class="text-xl md:text-2xl text-[#ced4da] dark:text-slate-600 mb-8">Translator & Localizer</p>
+                <a href="#contact" class="bg-[#156129] hover:bg-opacity-80 text-white dark:bg-[#156129] dark:hover:bg-opacity-90 dark:text-white font-bold py-3 px-10 md:py-4 md:px-12 text-lg rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-[#156129]/50">Get In Touch</a>
             </div>
-        </div>
-    </section>
-    <!-- End About Me Section -->
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Featured Projects</h2>
-
-            <!-- Category: Web Development -->
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Web Development</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1: Portfolio Website -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=Portfolio+Website" alt="Portfolio Website" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Portfolio Website</h4>
-                        <p class="text-gray-600 text-sm mb-3">This very portfolio, designed to showcase my skills and projects. Built with HTML, Tailwind CSS, and JavaScript.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">HTML</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Tailwind CSS</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">JavaScript</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                            <a href="#home" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 2: Can Maden Website -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=Can+Maden+Website" alt="Can Maden Website" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Can Maden Website</h4>
-                        <p class="text-gray-600 text-sm mb-3">A professional website for a mining consultancy business, featuring services, projects, and contact information. Built using WordPress and custom CSS.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">WordPress</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">CSS</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">PHP</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                            <a href="#" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category: Software & AI Tools -->
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Software & AI Tools</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 3: Localization Comparison Tool -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=L10N+Compare+Tool" alt="Localization Comparison Tool" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Localization Comparison Tool</h4>
-                        <p class="text-gray-600 text-sm mb-3">A desktop application to compare multiple translated files (e.g., JSON, XML) side-by-side, highlighting differences and aiding in quality assurance.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Python</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Flet</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">XML</span>
-                             <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">JSON</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 4: F1 Regulations Assistant -->
-                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                    <img src="https://placehold.co/600x400?text=F1+AI+Assistant" alt="F1 Regulations Assistant" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">F1 Regulations Assistant</h4>
-                        <p class="text-gray-600 text-sm mb-3">An AI-powered chatbot trained on FIA F1 regulations, allowing users to ask questions and get answers about complex sporting and technical rules.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Python</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Langchain</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">LLM</span>
-                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Streamlit</span>
-                        </div>
-                        <div class="mt-4 flex justify-start space-x-3">
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
-                            <a href="#" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Projects Section -->
-
-    <section id="experience" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">My Experience</h2>
-
-            <!-- Work History -->
-            <h3 class="text-3xl font-semibold text-gray-700 mb-8 text-center md:text-left">Work History</h3>
-            
-            <div class="space-y-8">
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">Localization Specialist (Freelance)</h4>
-                    <p class="text-sm text-gray-500">Various Clients | Jan 2023 - Present</p>
-                    <ul class="list-disc list-inside text-gray-600 text-sm mt-3 space-y-1 leading-relaxed">
-                        <li>Translated and localized video games, software applications, and technical documentation from English to Turkish.</li>
-                        <li>Managed terminology databases and style guides to ensure consistency across multiple projects.</li>
-                        <li>Collaborated with development teams to address localization issues and improve user experience.</li>
-                        <li>Utilized CAT tools and AI-assisted translation technologies to enhance productivity and quality.</li>
-                    </ul>
-                </div>
-
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">Junior Web Developer (Intern)</h4>
-                    <p class="text-sm text-gray-500">Tech Solutions Ltd. | Jun 2022 - Dec 2022</p>
-                    <ul class="list-disc list-inside text-gray-600 text-sm mt-3 space-y-1 leading-relaxed">
-                        <li>Assisted in the development and maintenance of client websites using HTML, CSS, and JavaScript.</li>
-                        <li>Contributed to front-end development tasks, focusing on responsive design and user interface improvements.</li>
-                        <li>Participated in code reviews and learned agile development methodologies.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Education -->
-            <h3 class="text-3xl font-semibold text-gray-700 mb-8 mt-16 text-center md:text-left">Education</h3>
-            <div class="space-y-8">
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">B.A. in Translation and Interpreting</h4>
-                    <p class="text-sm text-gray-500">Bogazici University | Sep 2018 - Jun 2022</p>
-                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                        Focused on written translation, localization, and terminology management. Completed a thesis on the challenges of game localization.
-                    </p>
-                </div>
-                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
-                    <h4 class="text-xl font-semibold text-blue-700">Full-Stack Web Development Bootcamp</h4>
-                    <p class="text-sm text-gray-500">Tech Academy Online | Mar 2023 - Aug 2023</p>
-                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                        Intensive training in modern web development technologies including React, Node.js, Express, and MongoDB. Developed several full-stack projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Experience Section -->
-
-    <section id="contact" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Get In Touch</h2>
-            <div class="md:flex md:space-x-10">
-                <!-- Contact Form -->
-                <div class="md:w-2/3 mb-10 md:mb-0 bg-white p-8 rounded-lg shadow-lg">
-                    <form action="#" method="POST">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-medium mb-1">Your Name</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="John Doe">
+        <section id="about" class="py-20 bg-[#020912] dark:bg-slate-50 transition-colors duration-300 ease-in-out">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-[#f8f9fa] dark:text-slate-800 mb-16">About Me</h2>
+                <div class="md:flex md:space-x-12 items-start">
+                    <div class="md:w-1/3 mb-10 md:mb-0 text-center">
+                        <img src="Assets/alpface.webp" alt="Alp Yalay" class="rounded-lg shadow-xl mx-auto border-2 border-slate-700 dark:border-gray-200 dark:shadow-lg transition-all duration-300 ease-in-out">
+                        <dl class="mt-8 space-y-3 text-left">
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out">
+                              <dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Name:</dt>
+                              <dd class="text-[#ced4da] dark:text-slate-600 w-3/5">Alp Yalay</dd>
                             </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-1">Your Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="john.doe@example.com">
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="subject" class="block text-gray-700 font-medium mb-1">Subject</label>
-                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Regarding your portfolio">
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 font-medium mb-1">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Your message here..."></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Contact Details -->
-                <div class="md:w-1/3">
-                    <div class="bg-white p-8 rounded-lg shadow-lg h-full">
-                        <p class="text-lg text-gray-700 mb-6">
-                            Feel free to reach out for collaborations, project inquiries, or just to say hello! I'm always open to discussing new opportunities.
+                            <!-- ... other dl items similarly styled ... -->
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out"><dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Title:</dt><dd class="text-[#ced4da] dark:text-slate-600 w-3/5">Translator & Localizer</dd></div>
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out"><dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Languages:</dt><dd class="text-[#ced4da] dark:text-slate-600 w-3/5">Turkish &harr; English</dd></div>
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out"><dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Location:</dt><dd class="text-[#ced4da] dark:text-slate-600 w-3/5">Kadıköy, Istanbul, Türkiye</dd></div>
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out"><dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Tests:</dt><dd class="text-[#ced4da] dark:text-slate-600 w-3/5">TOEFL iBT®: 92</dd></div>
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out"><dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Specialization:</dt><dd class="text-[#ced4da] dark:text-slate-600 w-3/5">Game Localization</dd></div>
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out"><dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Education:</dt><dd class="text-[#ced4da] dark:text-slate-600 w-3/5">Izmir University of Economics</dd></div>
+                            <div class="flex items-center p-3 bg-[#112233] rounded-lg border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out"><dt class="font-semibold text-[#f8f9fa] dark:text-slate-700 w-2/5">Degree:</dt><dd class="text-[#ced4da] dark:text-slate-600 w-3/5">Translation & Interpretation</dd></div>
+                        </dl>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-lg text-[#ced4da] dark:text-slate-600 mb-5 leading-relaxed">
+                            I am a translator and localizer based in Istanbul, Turkey, with a degree in Translation and Interpretation from Izmir University of Economics. My main area of expertise is video game localization. Working in this field, I use my language and technology knowledge together.
                         </p>
-                        <div class="space-y-3">
-                            <p class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                                <strong class="mr-2">Email:</strong> <a href="mailto:alp.yalay.dev@example.com" class="text-blue-600 hover:underline">alp.yalay.dev@example.com</a>
-                            </p>
-                            <p class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.5 0h-15A4.5 4.5 0 000 4.5v15A4.5 4.5 0 004.5 24h15a4.5 4.5 0 004.5-4.5v-15A4.5 4.5 0 0019.5 0zm-6.75 20.25h-3.75V9H4.5V5.625h4.5v-2.43C9 1.28 10.72.006 13.275.006c1.215 0 2.295.09 2.606.132v3.034h-1.79c-1.485 0-1.77.702-1.77 1.728v2.11h3.36l-.435 3.375h-2.925V20.25z" clip-rule="evenodd"/></svg> <!-- Placeholder for LinkedIn Icon -->
-                                <strong class="mr-2">LinkedIn:</strong> <a href="https://linkedin.com/in/alpyalay-placeholder" target="_blank" class="text-blue-600 hover:underline">linkedin.com/in/alpyalay</a>
-                            </p>
-                            <p class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.386.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.34.725-4.04-1.61-4.04-1.61-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.082-.73.082-.73 1.205.085 1.84 1.235 1.84 1.235 1.07 1.83 2.807 1.305 3.492.997.11-.775.418-1.305.76-1.605-2.665-.3-5.466-1.33-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.12-.3-.535-1.525.115-3.175 0 0 1.005-.32 3.3 1.23.96-.265 1.98-.398 3-.402 1.02.004 2.04.137 3 .402 2.28-1.55 3.285-1.23 3.285-1.23.655 1.65.24 2.875.12 3.175.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.37.815 1.1.815 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.22.685.825.57C20.565 21.795 24 17.3 24 12 24 5.373 18.627 0 12 0z" clip-rule="evenodd"/></svg> <!-- Placeholder for GitHub Icon -->
-                                <strong class="mr-2">GitHub:</strong> <a href="https://github.com/alpyalay-placeholder" target="_blank" class="text-blue-600 hover:underline">github.com/alpyalay</a>
-                            </p>
+                        <p class="text-lg text-[#ced4da] dark:text-slate-600 mb-5 leading-relaxed">
+                            My professional experience includes an internship at Şafak Tercüme, providing exposure to translation agency workflows, and a role as Junior Social Media Manager at Muse İstanbul, where responsibilities included content translation and creative writing. These experiences have provided practical familiarity with localization processes for technical and marketing content.
+                        </p>
+                        <p class="text-lg text-[#ced4da] dark:text-slate-600 mb-5 leading-relaxed">
+                            Beyond translation, I apply technical skills to localization challenges. I developed the Localization Comparison Tool using Python and the Flet framework on VS Code (utilizing Github Copilot) to assist in comparing file versions and identifying string changes. I utilize SubtitleEdit to take on professional contracts from various agencies to translate/subtitle social media content.
+                        </p>
+                         <p class="text-lg text-[#ced4da] dark:text-slate-600 mb-8 leading-relaxed">
+                            In translation projects, such as the Turkish localization for 'Heroes of Hammerwatch II', I often use a hybrid methodology. This typically involves manual translation followed by AI-assisted editing, utilizing models like Gemini 2.5 Pro for tasks like consistency checking and post-editing. I continue to research the application of AI/ML and LLMs in translation to enhance workflow efficiency while maintaining quality standards.
+                        </p>
+                        
+                        <h4 class="text-3xl font-semibold text-[#f8f9fa] dark:text-slate-800 mb-6 mt-10">My Skills</h4>
+                        <div class="mb-8">
+                            <h5 class="text-2xl font-semibold text-[#156129] dark:text-[#156129] mb-4">Translation & Localization Skills</h5>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Video Game Localization</span>
+                                <!-- ... other skill spans similarly styled ... -->
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Technical Translation</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Legal Translation</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Website Localization</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Subtitling</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Post-editing</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Transcreation</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Proofreading</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Quality Assurance</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Terminology Management</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Machine Translation</span>
+                            </div>
                         </div>
-                        <div class="mt-8 text-center">
-                            <p class="text-gray-600 text-sm">Alternatively, connect with me on social media!</p>
-                            <!-- More social icons could go here -->
+                        <div class="mb-8">
+                            <h5 class="text-2xl font-semibold text-[#156129] dark:text-[#156129] mb-4">Technical Skills</h5>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">SDL Trados</span>
+                                <!-- ... other skill spans similarly styled ... -->
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">CAT Tools</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Microsoft Office Suite</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Adobe Photoshop</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Davinci Resolve</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">AI-Assisted Translation</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">AI Aided Programming (Vibe Coding)</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Localization Engineering</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Video Editing</span>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h5 class="text-2xl font-semibold text-[#156129] dark:text-[#156129] mb-4">Management & Soft Skills</h5>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Project Management</span>
+                                <!-- ... other skill spans similarly styled ... -->
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Project Planning</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Team Leadership</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Cross-Cultural Communication</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Customer Service</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Research Skills</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Teamwork</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Social Media Management</span>
+                                <span class="bg-[#112233] text-[#1a7fbc] px-4 py-2 rounded-lg text-sm font-medium border border-[#1a7fbc]/50 dark:bg-slate-100 dark:text-[#1a7fbc] dark:border-[#1a7fbc]/30 transition-all duration-300 ease-in-out hover:bg-[#1a7fbc]/10 dark:hover:bg-[#1a7fbc]/10">Web Content Writing</span>
+                            </div>
+                        </div>
+
+                        <h4 class="text-3xl font-semibold text-[#f8f9fa] dark:text-slate-800 mb-6 mt-10">Hybrid Translation Methodology</h4>
+                        <p class="text-lg text-[#ced4da] dark:text-slate-600 mb-6 leading-relaxed">
+                            I believe in combining the best of human linguistic expertise with cutting-edge technology. My translation process represents an up-to-date approach that leverages both traditional skills and advanced AI tools: <br>1. Manual Translation: I start with traditional translation, applying my linguistic knowledge, cultural understanding, and specialized domain expertise. <br>2. AI-Assisted Editing: I employ advanced AI models like Claude 3.7 Sonnet & Gemini 2.5 Pro to enhance consistency, and increase workflow speed in the editing phase. <br>3. Manual Verification: My technical background allows me to verify technical accuracy and ensure proper implementation in software contexts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 bg-[#0c1726] dark:bg-white transition-colors duration-300 ease-in-out">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-[#f8f9fa] dark:text-slate-800 mb-16">Featured Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12">
+                    <!-- Project Card 1 -->
+                    <div class="bg-[#112233] rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-[#156129]/40 border border-slate-700 hover:border-[#156129]/70 dark:bg-white dark:shadow-lg dark:border-gray-200 dark:hover:border-gray-300 dark:hover:shadow-xl transform hover:-translate-y-1">
+                        <img src="Assets/heroesofhammerwatch2.webp" alt="Heroes of Hammerwatch II" class="w-full h-60 object-cover">
+                        <div class="p-6 md:p-8">
+                            <h4 class="text-2xl lg:text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-4">Heroes of Hammerwatch II (Fan Translation)</h4>
+                            <p class="text-[#ced4da] dark:text-slate-600 text-base mb-5 leading-relaxed">Complete Turkish localization for this action roguelite, employing a hybrid approach that combines traditional translation with AI-Assisted post-editing for terminology management, and continuity. Currently in post-translation polish phase with regular updates.</p>
+                            <div class="mb-5">
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mb-1"><strong class="text-slate-300 dark:text-slate-600">Status:</strong> Post-translation polish.</p>
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mb-1"><strong class="text-slate-300 dark:text-slate-600">Process:</strong> Manual translation with post-editing.</p>
+                            </div>
+                            <div class="mt-6 flex justify-end">
+                                <a href="https://steamcommunity.com/app/1781750/workshop/" target="_blank" class="text-base text-[#1a7fbc] hover:text-[#156129] dark:text-[#1a7fbc] dark:hover:text-[#156129] font-medium py-2.5 px-5 rounded-lg bg-slate-700 hover:bg-slate-600 dark:bg-slate-100 dark:hover:bg-slate-200 transition-all duration-300 ease-in-out transform hover:scale-105">View on Steam Workshop</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="bg-[#112233] rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-[#156129]/40 border border-slate-700 hover:border-[#156129]/70 dark:bg-white dark:shadow-lg dark:border-gray-200 dark:hover:border-gray-300 dark:hover:shadow-xl transform hover:-translate-y-1">
+                        <img src="Assets/battletalent.webp" alt="Battle Talent" class="w-full h-60 object-cover">
+                        <div class="p-6 md:p-8">
+                            <h4 class="text-2xl lg:text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-4">Battle Talent (Official Translation)</h4>
+                            <p class="text-[#ced4da] dark:text-slate-600 text-base mb-5 leading-relaxed">Official Turkish translation for this physics-based VR sword-fighting game. Provided professional localization services to ensure the game is accessible to Turkish-speaking players.</p>
+                            <div class="mb-5">
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mb-1"><strong class="text-slate-300 dark:text-slate-600">Type:</strong> Official localization.</p>
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mb-1"><strong class="text-slate-300 dark:text-slate-600">Platform:</strong> Steam VR.</p>
+                            </div>
+                            <div class="mt-6 flex justify-end space-x-3">
+                                <a href="CaseStudyPage/battle-talent-case-study.html" class="text-base text-[#1a7fbc] hover:text-[#156129] dark:text-[#1a7fbc] dark:hover:text-[#156129] font-medium py-2.5 px-5 rounded-lg bg-slate-700 hover:bg-slate-600 dark:bg-slate-100 dark:hover:bg-slate-200 transition-all duration-300 ease-in-out transform hover:scale-105">Case Study</a>
+                                <a href="https://store.steampowered.com/app/1325900/Battle_Talent/" target="_blank" class="text-base text-[#1a7fbc] hover:text-[#156129] dark:text-[#1a7fbc] dark:hover:text-[#156129] font-medium py-2.5 px-5 rounded-lg bg-slate-700 hover:bg-slate-600 dark:bg-slate-100 dark:hover:bg-slate-200 transition-all duration-300 ease-in-out transform hover:scale-105">View Game</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="bg-[#112233] rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-[#156129]/40 border border-slate-700 hover:border-[#156129]/70 dark:bg-white dark:shadow-lg dark:border-gray-200 dark:hover:border-gray-300 dark:hover:shadow-xl transform hover:-translate-y-1">
+                        <img src="Assets/localizationappthumbnail.webp" alt="Localization Comparison Tool" class="w-full h-60 object-cover">
+                        <div class="p-6 md:p-8">
+                            <h4 class="text-2xl lg:text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-4">Localization Comparison Tool</h4>
+                            <p class="text-[#ced4da] dark:text-slate-600 text-base mb-5 leading-relaxed">A Python-based application built with the Flet framework that streamlines the comparison of localization files. This tool helps translators and developers quickly identify added and removed strings in different file formats (CSV, XML, LANG, JSON). Example Use Case: Locating untranslated strings after application/game translations and/or updates.</p>
+                            <div class="flex flex-wrap gap-3 mb-5">
+                                <span class="bg-slate-700 text-[#1a7fbc] dark:bg-slate-200 dark:text-[#1a7fbc] px-4 py-1.5 rounded-full text-sm font-medium">Python</span>
+                                <span class="bg-slate-700 text-[#1a7fbc] dark:bg-slate-200 dark:text-[#1a7fbc] px-4 py-1.5 rounded-full text-sm font-medium">Flet</span>
+                                <span class="bg-slate-700 text-[#1a7fbc] dark:bg-slate-200 dark:text-[#1a7fbc] px-4 py-1.5 rounded-full text-sm font-medium">Open Source</span>
+                            </div>
+                            <div class="mt-6 flex justify-end">
+                                <a href="https://github.com/KhazP/Localization-Comparison-Tool" target="_blank" class="text-base text-[#1a7fbc] hover:text-[#156129] dark:text-[#1a7fbc] dark:hover:text-[#156129] font-medium py-2.5 px-5 rounded-lg bg-slate-700 hover:bg-slate-600 dark:bg-slate-100 dark:hover:bg-slate-200 transition-all duration-300 ease-in-out transform hover:scale-105">View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 4 -->
+                    <div class="bg-[#112233] rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-[#156129]/40 border border-slate-700 hover:border-[#156129]/70 dark:bg-white dark:shadow-lg dark:border-gray-200 dark:hover:border-gray-300 dark:hover:shadow-xl transform hover:-translate-y-1">
+                        <img src="Assets/alp.webp" alt="Portfolio Website" class="w-full h-60 object-cover">
+                        <div class="p-6 md:p-8">
+                            <h4 class="text-2xl lg:text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-4">Portfolio Website (Self)</h4>
+                            <p class="text-[#ced4da] dark:text-slate-600 text-base mb-5 leading-relaxed">My personal portfolio website showcasing translation work, projects, and professional experience. Built with HTML, CSS, and JavaScript for a responsive, multilingual experience.</p>
+                            <div class="flex flex-wrap gap-3 mb-5">
+                                <span class="bg-slate-700 text-[#1a7fbc] dark:bg-slate-200 dark:text-[#1a7fbc] px-4 py-1.5 rounded-full text-sm font-medium">HTML</span>
+                                <span class="bg-slate-700 text-[#1a7fbc] dark:bg-slate-200 dark:text-[#1a7fbc] px-4 py-1.5 rounded-full text-sm font-medium">CSS</span>
+                                <span class="bg-slate-700 text-[#1a7fbc] dark:bg-slate-200 dark:text-[#1a7fbc] px-4 py-1.5 rounded-full text-sm font-medium">JavaScript</span>
+                                <span class="bg-slate-700 text-[#1a7fbc] dark:bg-slate-200 dark:text-[#1a7fbc] px-4 py-1.5 rounded-full text-sm font-medium">Responsive Design</span>
+                            </div>
+                            <div class="mt-6 flex justify-end">
+                                <a href="https://github.com/KhazP/AlpWebsite" target="_blank" class="text-base text-[#1a7fbc] hover:text-[#156129] dark:text-[#1a7fbc] dark:hover:text-[#156129] font-medium py-2.5 px-5 rounded-lg bg-slate-700 hover:bg-slate-600 dark:bg-slate-100 dark:hover:bg-slate-200 transition-all duration-300 ease-in-out transform hover:scale-105">View on GitHub</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- End Contact Section -->
+        </section>
 
-    <!-- Footer Section -->
-    <footer class="py-8 bg-gray-800 text-gray-400 text-center text-sm">
-        <div class="container mx-auto px-4">
-            <p>&copy; 2024 Alp Yalay. All Rights Reserved.</p>
-            <div class="mt-2">
-                <a href="#home" class="hover:text-gray-200">Home</a>
-                <span class="mx-2">|</span>
-                <a href="#contact" class="hover:text-gray-200">Contact</a>
-                <span class="mx-2">|</span>
-                <a href="#projects" class="hover:text-gray-200">Projects</a>
+        <section id="experience" class="py-20 bg-[#020912] dark:bg-slate-50 transition-colors duration-300 ease-in-out">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-[#f8f9fa] dark:text-slate-800 mb-16">My Experience</h2>
+                <div class="space-y-12">
+                    <div>
+                        <h3 class="text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-10 text-center md:text-left">Work History</h3>
+                        <div class="space-y-10">
+                            <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 hover:border-[#156129]/70 transition-all duration-300 ease-in-out dark:bg-white dark:border-gray-200 dark:hover:border-gray-300 dark:shadow-lg transform hover:-translate-y-1">
+                                <h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Junior Social Media Manager, Muse İstanbul</h4>
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mb-3">Apr 2024 - Aug 2024</p>
+                                <p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">
+                                    Managed social media accounts for iGA Istanbul Airport and its CEO. Creative writing and translation of social media content.
+                                </p>
+                            </div>
+                            <!-- ... other work history items similarly styled ... -->
+                             <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 hover:border-[#156129]/70 transition-all duration-300 ease-in-out dark:bg-white dark:border-gray-200 dark:hover:border-gray-300 dark:shadow-lg transform hover:-translate-y-1"><h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Barista, Waiter, Cashier, Asma Yaprağı</h4><p class="text-sm text-slate-400 dark:text-slate-500 mb-3">Jul 2015 - Sep 2021 | Alaçatı, Turkey</p><p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">Maintained responsibility for daily operations and electronic banking payments using various methods. Supervised customer service quality and financial management. Greeted customers, took orders, and delivered food and drinks while focusing on restaurant management.</p></div>
+                             <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 hover:border-[#156129]/70 transition-all duration-300 ease-in-out dark:bg-white dark:border-gray-200 dark:hover:border-gray-300 dark:shadow-lg transform hover:-translate-y-1"><h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Intern, Şafak Tercüme</h4><p class="text-sm text-slate-400 dark:text-slate-500 mb-3">Feb 2021 - Mar 2021</p><p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">Internship at a translation agency, gaining experience in translation workflows.</p></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-10 mt-16 text-center md:text-left">Education</h3>
+                        <div class="space-y-10">
+                            <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 dark:bg-white dark:border-gray-200 dark:shadow-lg">
+                                <h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Izmir University of Economics</h4>
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mb-3">Sep 2018 - Jun 2022 | Izmir, Turkey</p>
+                                <p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">
+                                    Bachelor's Degree in Translation and Interpreting. Specialized in Economic Translation, Legal Translation & Transcreation. Learned SDL Trados & SmartCat, participated in Photographic Activities. GPA: 2.86, Last Semester: 3.45.
+                                </p>
+                            </div>
+                            <!-- ... other education items similarly styled ... -->
+                            <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 dark:bg-white dark:border-gray-200 dark:shadow-lg"><h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Pera Fine Arts High School</h4><p class="text-sm text-slate-400 dark:text-slate-500 mb-3">Sep 2014 - Jun 2018 | Istanbul, Turkey</p><p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">High School Diploma. Art Studies, Photography, English.</p></div>
+                            <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 dark:bg-white dark:border-gray-200 dark:shadow-lg"><h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Sisli Terakki Lisesi</h4><p class="text-sm text-slate-400 dark:text-slate-500 mb-3">Sep 2005 - Jun 2014 | Istanbul, Turkey</p><p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">Primary School Diploma, Middle School Diploma, and 9th Grade. Studied in the International Baccalaureate (IB) Class.</p></div>
+                            <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 dark:bg-white dark:border-gray-200 dark:shadow-lg"><h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Robert College</h4><p class="text-sm text-slate-400 dark:text-slate-500 mb-3">Sep 2001 - Jun 2005 | Istanbul, Turkey</p><p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">Kindergarten. Extensive English Education from Childhood.</p></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-10 mt-16 text-center md:text-left">Honors & Awards</h3>
+                        <div class="space-y-10">
+                            <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 dark:bg-white dark:border-gray-200 dark:shadow-lg">
+                                <h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Certificate of Achievement - Polymaths in the Republican Era Poster Exhibition</h4>
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mb-3">May 2022</p>
+                                <p class="text-[#ced4da] dark:text-slate-600 text-base leading-relaxed">
+                                    Received Honourable Mention Award for outstanding contribution to the exhibition.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-3xl font-semibold text-[#156129] dark:text-[#156129] mb-10 mt-16 text-center md:text-left">Certifications</h3>
+                        <div class="space-y-10">
+                            <div class="p-6 lg:p-8 bg-[#112233] rounded-xl shadow-xl border border-slate-700 dark:bg-white dark:border-gray-200 dark:shadow-lg">
+                                <h4 class="text-2xl font-semibold text-[#1a7fbc] dark:text-[#1a7fbc] mb-1">Microsoft Office Specialist: Microsoft Office 2010</h4>
+                                <p class="text-sm text-slate-400 dark:text-slate-500">Microsoft | Date Issued: 2010</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-[#0c1726] dark:bg-slate-100 transition-colors duration-300 ease-in-out">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-[#f8f9fa] dark:text-slate-800 mb-16">Get In Touch</h2>
+                <div class="md:flex md:space-x-10 items-stretch">
+                    <div class="md:w-2/3 mb-10 md:mb-0 bg-[#112233] p-8 md:p-10 rounded-xl shadow-2xl border border-slate-700 dark:bg-white dark:border-gray-200 transition-colors duration-300 ease-in-out">
+                        <form action="#" method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 mb-6">
+                                <div>
+                                    <label for="name" class="block text-[#ced4da] dark:text-slate-700 font-medium mb-2 text-sm">Your Name</label>
+                                    <input type="text" id="name" name="name" class="w-full px-5 py-3.5 border border-slate-600 rounded-lg bg-[#0c1726] text-[#f8f9fa] focus:ring-2 focus:ring-[#156129] focus:border-[#156129] dark:bg-white dark:text-slate-800 dark:border-slate-300 dark:focus:ring-[#156129] dark:focus:border-[#156129] transition-all duration-300 placeholder-slate-500 dark:placeholder-slate-400" placeholder="John Doe">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-[#ced4da] dark:text-slate-700 font-medium mb-2 text-sm">Your Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-5 py-3.5 border border-slate-600 rounded-lg bg-[#0c1726] text-[#f8f9fa] focus:ring-2 focus:ring-[#156129] focus:border-[#156129] dark:bg-white dark:text-slate-800 dark:border-slate-300 dark:focus:ring-[#156129] dark:focus:border-[#156129] transition-all duration-300 placeholder-slate-500 dark:placeholder-slate-400" placeholder="john.doe@example.com">
+                                </div>
+                            </div>
+                            <div class="mb-8">
+                                <label for="subject" class="block text-[#ced4da] dark:text-slate-700 font-medium mb-2 text-sm">Subject</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-5 py-3.5 border border-slate-600 rounded-lg bg-[#0c1726] text-[#f8f9fa] focus:ring-2 focus:ring-[#156129] focus:border-[#156129] dark:bg-white dark:text-slate-800 dark:border-slate-300 dark:focus:ring-[#156129] dark:focus:border-[#156129] transition-all duration-300 placeholder-slate-500 dark:placeholder-slate-400" placeholder="Regarding your portfolio">
+                            </div>
+                            <div class="mb-8">
+                                <label for="message" class="block text-[#ced4da] dark:text-slate-700 font-medium mb-2 text-sm">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-5 py-3.5 border border-slate-600 rounded-lg bg-[#0c1726] text-[#f8f9fa] focus:ring-2 focus:ring-[#156129] focus:border-[#156129] dark:bg-white dark:text-slate-800 dark:border-slate-300 dark:focus:ring-[#156129] dark:focus:border-[#156129] transition-all duration-300 placeholder-slate-500 dark:placeholder-slate-400" placeholder="Your message here..."></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="bg-[#156129] hover:bg-opacity-80 text-white dark:bg-[#156129] dark:hover:bg-opacity-90 dark:text-white font-bold py-3.5 px-12 text-lg rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#156129]/50">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="md:w-1/3">
+                        <div class="bg-[#112233] p-8 md:p-10 rounded-xl shadow-2xl h-full border border-slate-700 dark:bg-white dark:border-gray-200 flex flex-col justify-center transition-colors duration-300 ease-in-out">
+                            <p class="text-lg text-[#ced4da] dark:text-slate-600 mb-8 leading-relaxed">
+                                Let's Connect. Interested in working together or have questions about my services? You can get in touch to discuss localization, technical translation, or potential collaborations.
+                            </p>
+                            <div class="space-y-5">
+                                <a href="mailto:contact@alpyalay.org" class="flex items-center text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] transition-colors duration-300 group">
+                                    <svg class="w-7 h-7 text-[#1a7fbc] dark:text-[#1a7fbc] mr-4 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                    <span class="hover:underline">contact@alpyalay.org</span>
+                                </a>
+                                <a href="https://github.com/KhazP" target="_blank" class="flex items-center text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] transition-colors duration-300 group">
+                                    <svg class="w-7 h-7 text-[#1a7fbc] dark:text-[#1a7fbc] mr-4 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><use xlink:href="#github-icon-svg"/></svg>
+                                    <span class="hover:underline">github.com/KhazP</span>
+                                </a>
+                                <a href="https://linkedin.com/in/alpyalay" target="_blank" class="flex items-center text-[#ced4da] hover:text-[#156129] dark:text-slate-600 dark:hover:text-[#156129] transition-colors duration-300 group">
+                                    <svg class="w-7 h-7 text-[#1a7fbc] dark:text-[#1a7fbc] mr-4 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><use xlink:href="#linkedin-icon-svg"/></svg>
+                                    <span class="hover:underline">linkedin.com/in/alpyalay</span>
+                                </a>
+                            </div>
+                            <div class="mt-10 text-center">
+                                <p class="text-slate-400 dark:text-slate-500 text-sm">Alternatively, use the form to send me a message directly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 bg-[#0c1726] text-center border-t border-slate-700 dark:bg-slate-100 dark:border-gray-200 transition-colors duration-300 ease-in-out">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-6 flex justify-center space-x-6">
+                <a href="https://github.com/KhazP" target="_blank" class="text-slate-400 hover:text-[#156129] dark:text-slate-500 dark:hover:text-[#156129] transition-all duration-300 ease-in-out transform hover:scale-110">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#github-icon-svg"/></svg>
+                    <span class="sr-only">GitHub</span>
+                </a>
+                <a href="https://linkedin.com/in/alpyalay" target="_blank" class="text-slate-400 hover:text-[#156129] dark:text-slate-500 dark:hover:text-[#156129] transition-all duration-300 ease-in-out transform hover:scale-110">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#linkedin-icon-svg"/></svg>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+            </div>
+            <div class="mb-4 text-base text-slate-400 dark:text-slate-500">
+                <a href="#home" class="hover:text-[#156129] dark:hover:text-[#156129] px-3 py-1 rounded-md transition-colors duration-300 ease-in-out">Home</a>
+                <span class="text-slate-600 dark:text-slate-400 mx-1">|</span>
+                <a href="#about" class="hover:text-[#156129] dark:hover:text-[#156129] px-3 py-1 rounded-md transition-colors duration-300 ease-in-out">About</a>
+                <span class="text-slate-600 dark:text-slate-400 mx-1">|</span>
+                <a href="#experience" class="hover:text-[#156129] dark:hover:text-[#156129] px-3 py-1 rounded-md transition-colors duration-300 ease-in-out">Experience</a>
+                <span class="text-slate-600 dark:text-slate-400 mx-1">|</span>
+                <a href="#projects" class="hover:text-[#156129] dark:hover:text-[#156129] px-3 py-1 rounded-md transition-colors duration-300 ease-in-out">Projects</a>
+                <span class="text-slate-600 dark:text-slate-400 mx-1">|</span>
+                <a href="#contact" class="hover:text-[#156129] dark:hover:text-[#156129] px-3 py-1 rounded-md transition-colors duration-300 ease-in-out">Contact</a>
+            </div>
+            <p class="text-sm text-slate-500 dark:text-slate-500">&copy; 2025 Alp Yalay. All Rights Reserved.</p>
         </div>
     </footer>
-    <!-- End Footer Section -->
+    
+    <svg width="0" height="0" class="absolute">
+      <symbol id="github-icon-svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.386.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.34.725-4.04-1.61-4.04-1.61-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.082-.73.082-.73 1.205.085 1.84 1.235 1.84 1.235 1.07 1.83 2.807 1.305 3.492.997.11-.775.418-1.305.76-1.605-2.665-.3-5.466-1.33-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.12-.3-.535-1.525.115-3.175 0 0 1.005-.32 3.3 1.23.96-.265 1.98-.398 3-.402 1.02.004 2.04.137 3 .402 2.28-1.55 3.285-1.23 3.285-1.23.655 1.65.24 2.875.12 3.175.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.37.815 1.1.815 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.22.685.825.57C20.565 21.795 24 17.3 24 12 24 5.373 18.627 0 12 0z" clip-rule="evenodd"/></symbol>
+      <symbol id="linkedin-icon-svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19.5 0h-15A4.5 4.5 0 000 4.5v15A4.5 4.5 0 004.5 24h15a4.5 4.5 0 004.5-4.5v-15A4.5 4.5 0 0019.5 0zm-6.75 20.25h-3.75V9H4.5V5.625h4.5v-2.43C9 1.28 10.72.006 13.275.006c1.215 0 2.295.09 2.606.132v3.034h-1.79c-1.485 0-1.77.702-1.77 1.728v2.11h3.36l-.435 3.375h-2.925V20.25z" clip-rule="evenodd"/></symbol>
+    </svg>
 
+    <script>
+    // Theme variables
+    const themeToggleBtn = document.getElementById('theme-toggle-button');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    function setButtonIconRotation(isDark) {
+        if (isDark) {
+            if(themeToggleLightIcon) themeToggleLightIcon.classList.remove('rotate-[360deg]');
+            if(themeToggleDarkIcon) themeToggleDarkIcon.classList.add('rotate-[360deg]');
+        } else {
+            if(themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('rotate-[360deg]');
+            if(themeToggleLightIcon) themeToggleLightIcon.classList.add('rotate-[360deg]');
+        }
+    }
+
+    function applyTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const isDarkByDefault = !savedTheme || savedTheme === 'dark';
+        
+        if (isDarkByDefault) {
+            document.documentElement.classList.add('dark');
+            if(themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+            if(themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+        } else { // Light mode
+            document.documentElement.classList.remove('dark');
+            if(themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+            if(themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
+        }
+        // Set initial rotation without transition for first load
+        if(themeToggleLightIcon && themeToggleDarkIcon){
+             if (isDarkByDefault) {
+                themeToggleLightIcon.classList.remove('rotate-[360deg]');
+                themeToggleDarkIcon.classList.remove('rotate-[360deg]'); // No rotation for default state
+            } else {
+                themeToggleDarkIcon.classList.remove('rotate-[360deg]');
+                themeToggleLightIcon.classList.add('rotate-[360deg]');
+            }
+        }
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            if (isDark) {
+                if(themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+                if(themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+                setButtonIconRotation(true);
+            } else {
+                if(themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+                if(themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
+                setButtonIconRotation(false);
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        applyTheme();
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+    </script>
 </body>
 </html>
