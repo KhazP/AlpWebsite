@@ -98,6 +98,76 @@ The website is a single-page application (`index.html`) with distinct sections. 
 * `CaseStudyPage/`: Directory containing the HTML, CSS, and JS for the Battle Talent case study.
 * `Assets/`: Directory for images, logos, and other static resources.
 
+<details>
+<summary>Click to expand project file structure</summary>
+
+```text
+AlpWebsite/
+├── Assets/
+│   ├── Docs/
+│   │   ├── AlpYalayAISummary.txt
+│   │   ├── gsap-3-cheat-sheet.txt
+│   │   └── LinkedInDataExport/
+│   │       ├── Ad_Targeting.csv
+│   │       ├── Calendar.csv
+│   │       ├── coach_messages.csv
+│   │       ├── Company Follows.csv
+│   │       ├── Connections.csv
+│   │       ├── Contacts.csv
+│   │       ├── Education.csv
+│   │       ├── Email Addresses.csv
+│   │       ├── Endorsement_Given_Info.csv
+│   │       ├── Endorsement_Received_Info.csv
+│   │       ├── Honors.csv
+│   │       ├── Invitations.csv
+│   │       ├── Job Applicant Saved Answers.csv
+│   │       ├── Job Applicant Saved Screening Question Responses.csv
+│   │       ├── Jobs/
+│   │       │   ├── Job Applications.csv
+│   │       │   ├── Job Seeker Preferences.csv
+│   │       │   └── Saved Jobs.csv
+│   │       ├── Learning.csv
+│   │       ├── learning_coach_messages.csv
+│   │       ├── learning_role_play_messages.csv
+│   │       ├── messages.csv
+│   │       ├── PhoneNumbers.csv
+│   │       ├── Positions.csv
+│   │       ├── Profile.csv
+│   │       ├── Profile Summary.csv
+│   │       ├── Projects.csv
+│   │       ├── Receipts.csv
+│   │       ├── Registration.csv
+│   │       ├── Rich_Media.csv
+│   │       ├── SavedJobAlerts.csv
+│   │       ├── Skills.csv
+│   │       ├── TestScores.csv
+│   │       ├── Verifications/
+│   │       │   └── Verifications.csv
+│   │       └── Whatsapp Phone Numbers.csv
+│   ├── alp.webp
+│   ├── alpface.webp
+│   ├── alplogo.webp
+│   ├── autotidy.webp
+│   ├── battletalent.webp
+│   ├── can.webp
+│   ├── f1regassistantthumbnail.webp
+│   ├── heroesofhammerwatch2.webp
+│   ├── localizationappthumbnail.webp
+│   └── sait.webp
+├── CaseStudyPage/
+│   ├── battle-talent-case-study.html
+│   ├── battletalentcasestudy.txt
+│   ├── case-study.css
+│   └── case-study.js
+├── index.html
+├── LICENSE.md
+├── README.md
+├── robots.txt
+├── scripts.js
+├── sitemap.xml
+└── styles.css
+```
+
 ---
 
 ## 📱 Responsive Design Details
