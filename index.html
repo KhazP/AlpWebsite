@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alp Yalay - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo/Name -->
+            <a href="#home" class="text-2xl font-bold text-blue-600">Alp Yalay</a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-4">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 font-medium">About</a>
+                <a href="#projects" class="text-gray-600 hover:text-blue-600 font-medium">Projects</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-600 font-medium">Experience</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium">Contact</a>
+            </nav>
+
+            <!-- Language Switcher (Desktop) -->
+            <div class="hidden md:flex items-center space-x-2">
+                <button class="text-sm text-gray-700 hover:text-black font-semibold">EN</button>
+                <button class="text-sm text-gray-500 hover:text-black">TR</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu (Initially Hidden) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-2">
+        <a href="#home" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Home</a>
+        <a href="#about" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">About</a>
+        <a href="#projects" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Projects</a>
+        <a href="#experience" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Experience</a>
+        <a href="#contact" class="block px-4 py-2 text-gray-600 hover:bg-blue-50">Contact</a>
+        <!-- Language Switcher (Mobile) -->
+        <div class="px-4 py-2 border-t border-gray-200">
+            <button class="text-sm text-gray-700 hover:text-black font-semibold w-full text-left mb-1">EN</button>
+            <button class="text-sm text-gray-500 hover:text-black w-full text-left">TR</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        <div class="text-center px-6 py-12">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-800 mb-4">Alp Yalay</h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8">Translator, Localizer & Developer</p>
+            <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 inline-block">View My Work</a>
+            <br>
+            <a href="#contact" class="mt-4 text-blue-600 hover:underline inline-block">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Placeholder for About, Projects, Experience, Contact sections -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">About Me</h2>
+            <div class="md:flex md:space-x-10 items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <img src="https://placehold.co/400x400?text=Alp+Yalay" alt="Alp Yalay" class="rounded-lg shadow-xl mx-auto">
+                </div>
+                <div class="md:w-2/3">
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Hello! I'm Alp Yalay, a passionate Translator, Localizer, and Developer based in Istanbul. I specialize in bringing digital content to new audiences and crafting intuitive web experiences. With a background in both linguistics and technology, I bridge communication gaps and build useful tools.
+                    </p>
+                    
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-4 mt-6">My Skills</h4>
+                    <div class="mb-4">
+                        <h5 class="text-md font-semibold text-gray-700 mb-2">Translation & Localization</h5>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Game Localization</span>
+                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Technical Translation</span>
+                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">Software Localization</span>
+                            <span class="bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full text-sm font-medium">CAT Tools (Trados, MemoQ)</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="text-md font-semibold text-gray-700 mb-2">Technical Skills</h5>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Python</span>
+                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">JavaScript</span>
+                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">HTML & CSS</span>
+                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Tailwind CSS</span>
+                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">SQL</span>
+                            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium">Git & GitHub</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="text-md font-semibold text-gray-700 mb-2">Soft Skills</h5>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Project Management</span>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Communication</span>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Problem Solving</span>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-sm font-medium">Attention to Detail</span>
+                        </div>
+                    </div>
+
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-4 mt-6">My Approach</h4>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        I believe in a hybrid approach, combining meticulous manual work with AI-assisted tools to ensure accuracy, speed, and cultural relevance in all my projects. Quality and client satisfaction are my top priorities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About Me Section -->
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Featured Projects</h2>
+
+            <!-- Category: Web Development -->
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Web Development</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: Portfolio Website -->
+                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/600x400?text=Portfolio+Website" alt="Portfolio Website" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Portfolio Website</h4>
+                        <p class="text-gray-600 text-sm mb-3">This very portfolio, designed to showcase my skills and projects. Built with HTML, Tailwind CSS, and JavaScript.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">HTML</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Tailwind CSS</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">JavaScript</span>
+                        </div>
+                        <div class="mt-4 flex justify-start space-x-3">
+                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
+                            <a href="#home" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Can Maden Website -->
+                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/600x400?text=Can+Maden+Website" alt="Can Maden Website" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Can Maden Website</h4>
+                        <p class="text-gray-600 text-sm mb-3">A professional website for a mining consultancy business, featuring services, projects, and contact information. Built using WordPress and custom CSS.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">WordPress</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">CSS</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">PHP</span>
+                        </div>
+                        <div class="mt-4 flex justify-start space-x-3">
+                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
+                            <a href="#" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Software & AI Tools -->
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Software & AI Tools</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 3: Localization Comparison Tool -->
+                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/600x400?text=L10N+Compare+Tool" alt="Localization Comparison Tool" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Localization Comparison Tool</h4>
+                        <p class="text-gray-600 text-sm mb-3">A desktop application to compare multiple translated files (e.g., JSON, XML) side-by-side, highlighting differences and aiding in quality assurance.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Python</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Flet</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">XML</span>
+                             <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">JSON</span>
+                        </div>
+                        <div class="mt-4 flex justify-start space-x-3">
+                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4: F1 Regulations Assistant -->
+                <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/600x400?text=F1+AI+Assistant" alt="F1 Regulations Assistant" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-blue-700 mb-2">F1 Regulations Assistant</h4>
+                        <p class="text-gray-600 text-sm mb-3">An AI-powered chatbot trained on FIA F1 regulations, allowing users to ask questions and get answers about complex sporting and technical rules.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Python</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Langchain</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">LLM</span>
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">Streamlit</span>
+                        </div>
+                        <div class="mt-4 flex justify-start space-x-3">
+                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-md bg-indigo-50 hover:bg-indigo-100 transition duration-150">View on GitHub</a>
+                            <a href="#" class="text-sm text-green-600 hover:text-green-800 font-medium py-1 px-3 rounded-md bg-green-50 hover:bg-green-100 transition duration-150">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Projects Section -->
+
+    <section id="experience" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">My Experience</h2>
+
+            <!-- Work History -->
+            <h3 class="text-3xl font-semibold text-gray-700 mb-8 text-center md:text-left">Work History</h3>
+            
+            <div class="space-y-8">
+                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
+                    <h4 class="text-xl font-semibold text-blue-700">Localization Specialist (Freelance)</h4>
+                    <p class="text-sm text-gray-500">Various Clients | Jan 2023 - Present</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mt-3 space-y-1 leading-relaxed">
+                        <li>Translated and localized video games, software applications, and technical documentation from English to Turkish.</li>
+                        <li>Managed terminology databases and style guides to ensure consistency across multiple projects.</li>
+                        <li>Collaborated with development teams to address localization issues and improve user experience.</li>
+                        <li>Utilized CAT tools and AI-assisted translation technologies to enhance productivity and quality.</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
+                    <h4 class="text-xl font-semibold text-blue-700">Junior Web Developer (Intern)</h4>
+                    <p class="text-sm text-gray-500">Tech Solutions Ltd. | Jun 2022 - Dec 2022</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mt-3 space-y-1 leading-relaxed">
+                        <li>Assisted in the development and maintenance of client websites using HTML, CSS, and JavaScript.</li>
+                        <li>Contributed to front-end development tasks, focusing on responsive design and user interface improvements.</li>
+                        <li>Participated in code reviews and learned agile development methodologies.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <h3 class="text-3xl font-semibold text-gray-700 mb-8 mt-16 text-center md:text-left">Education</h3>
+            <div class="space-y-8">
+                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
+                    <h4 class="text-xl font-semibold text-blue-700">B.A. in Translation and Interpreting</h4>
+                    <p class="text-sm text-gray-500">Bogazici University | Sep 2018 - Jun 2022</p>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Focused on written translation, localization, and terminology management. Completed a thesis on the challenges of game localization.
+                    </p>
+                </div>
+                <div class="p-6 rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-gray-50">
+                    <h4 class="text-xl font-semibold text-blue-700">Full-Stack Web Development Bootcamp</h4>
+                    <p class="text-sm text-gray-500">Tech Academy Online | Mar 2023 - Aug 2023</p>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Intensive training in modern web development technologies including React, Node.js, Express, and MongoDB. Developed several full-stack projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Experience Section -->
+
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Get In Touch</h2>
+            <div class="md:flex md:space-x-10">
+                <!-- Contact Form -->
+                <div class="md:w-2/3 mb-10 md:mb-0 bg-white p-8 rounded-lg shadow-lg">
+                    <form action="#" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-1">Your Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-1">Your Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="john.doe@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="block text-gray-700 font-medium mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Regarding your portfolio">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-1">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Your message here..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="md:w-1/3">
+                    <div class="bg-white p-8 rounded-lg shadow-lg h-full">
+                        <p class="text-lg text-gray-700 mb-6">
+                            Feel free to reach out for collaborations, project inquiries, or just to say hello! I'm always open to discussing new opportunities.
+                        </p>
+                        <div class="space-y-3">
+                            <p class="flex items-center">
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                <strong class="mr-2">Email:</strong> <a href="mailto:alp.yalay.dev@example.com" class="text-blue-600 hover:underline">alp.yalay.dev@example.com</a>
+                            </p>
+                            <p class="flex items-center">
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.5 0h-15A4.5 4.5 0 000 4.5v15A4.5 4.5 0 004.5 24h15a4.5 4.5 0 004.5-4.5v-15A4.5 4.5 0 0019.5 0zm-6.75 20.25h-3.75V9H4.5V5.625h4.5v-2.43C9 1.28 10.72.006 13.275.006c1.215 0 2.295.09 2.606.132v3.034h-1.79c-1.485 0-1.77.702-1.77 1.728v2.11h3.36l-.435 3.375h-2.925V20.25z" clip-rule="evenodd"/></svg> <!-- Placeholder for LinkedIn Icon -->
+                                <strong class="mr-2">LinkedIn:</strong> <a href="https://linkedin.com/in/alpyalay-placeholder" target="_blank" class="text-blue-600 hover:underline">linkedin.com/in/alpyalay</a>
+                            </p>
+                            <p class="flex items-center">
+                                <svg class="w-5 h-5 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.386.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.34.725-4.04-1.61-4.04-1.61-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.082-.73.082-.73 1.205.085 1.84 1.235 1.84 1.235 1.07 1.83 2.807 1.305 3.492.997.11-.775.418-1.305.76-1.605-2.665-.3-5.466-1.33-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.12-.3-.535-1.525.115-3.175 0 0 1.005-.32 3.3 1.23.96-.265 1.98-.398 3-.402 1.02.004 2.04.137 3 .402 2.28-1.55 3.285-1.23 3.285-1.23.655 1.65.24 2.875.12 3.175.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.37.815 1.1.815 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.22.685.825.57C20.565 21.795 24 17.3 24 12 24 5.373 18.627 0 12 0z" clip-rule="evenodd"/></svg> <!-- Placeholder for GitHub Icon -->
+                                <strong class="mr-2">GitHub:</strong> <a href="https://github.com/alpyalay-placeholder" target="_blank" class="text-blue-600 hover:underline">github.com/alpyalay</a>
+                            </p>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <p class="text-gray-600 text-sm">Alternatively, connect with me on social media!</p>
+                            <!-- More social icons could go here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Contact Section -->
+
+    <!-- Footer Section -->
+    <footer class="py-8 bg-gray-800 text-gray-400 text-center text-sm">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Alp Yalay. All Rights Reserved.</p>
+            <div class="mt-2">
+                <a href="#home" class="hover:text-gray-200">Home</a>
+                <span class="mx-2">|</span>
+                <a href="#contact" class="hover:text-gray-200">Contact</a>
+                <span class="mx-2">|</span>
+                <a href="#projects" class="hover:text-gray-200">Projects</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Section -->
+
+</body>
+</html>
