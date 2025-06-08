@@ -10,10 +10,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.alpyalay.dev"),
+  metadataBase: new URL("https://www.alpyalay.org"),
   title: "Alp Yalay | Translator & Localizer",
   description: "Portfolio of Alp Yalay, Translator & Localizer",
-  generator: "v0.dev",
   keywords: ["translator", "localizer", "portfolio", "Alp Yalay"],
   authors: [{ name: "Alp Yalay" }],
   creator: "Alp Yalay",
