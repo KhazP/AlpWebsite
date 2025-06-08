@@ -95,7 +95,7 @@ The website is a single-page application (`index.html`) with distinct sections. 
 * `robots.txt`: Instructions for web crawlers.
 * `sitemap.xml`: Sitemap for search engine indexing.
 * `LICENSE.md`: MIT License for the project.
-* `CaseStudyPage/`: Directory containing the HTML, CSS, and JS for the Battle Talent case study.
+* `CaseStudyPage/`: Directory containing the HTML, CSS, and JS for the case study.
 * `Assets/`: Directory for images, logos, and other static resources.
 
 ---
