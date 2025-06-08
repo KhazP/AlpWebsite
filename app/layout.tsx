@@ -29,17 +29,11 @@ export const metadata: Metadata = {
         url: "/images/alplogo.webp",
         width: 800,
         height: 600,
+        alt: "Alp Yalay Logo",
       },
     ],
     locale: "en_US",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Alp Yalay | Translator & Localizer",
-    description: "Portfolio of Alp Yalay, Translator & Localizer",
-    creator: "@alpyalay",
-    images: ["/images/alplogo.webp"],
   },
 }
 

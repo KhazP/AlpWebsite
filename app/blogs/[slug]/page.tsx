@@ -2,7 +2,7 @@
 
 export const runtime = "edge"
 
-import React from "react"
+import type React from "react"
 import { useParams } from "next/navigation"
 import { motion } from "framer-motion"
 import {
@@ -21,38 +21,383 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
-import { blogPosts } from "../blog-data"
+
+interface BlogPost {
+  slug: string
+  titleKey: string
+  excerptKey: string
+  content: React.ReactNode
+  dateKey: string
+  readTimeKey: string
+  authorKey: string
+  category: {
+    nameKey: string
+    icon: React.ReactNode
+    color: string
+  }
+  tags: Array<{
+    nameKey: string
+    icon: React.ReactNode
+    color: string
+  }>
+}
 
 export default function BlogPost() {
   const params = useParams()
   const slug = params.slug as string
   const { t } = useLanguage()
 
+  const blogPosts: Record<string, BlogPost> = {
+    "battle-talent-case-study": {
+      slug: "battle-talent-case-study",
+      titleKey: "casestudy.title",
+      excerptKey: "casestudy.excerpt",
+      dateKey: "casestudy.date",
+      readTimeKey: "casestudy.readTime",
+      authorKey: "casestudy.author",
+      category: {
+        nameKey: "casestudy.category",
+        icon: <Brain className="w-3 h-3 mr-1" />,
+        color: "purple",
+      },
+      tags: [
+        {
+          nameKey: "casestudy.tag.localization",
+          icon: <Brain className="w-3 h-3 mr-1" />,
+          color: "purple",
+        },
+        {
+          nameKey: "casestudy.tag.vr",
+          icon: <Zap className="w-3 h-3 mr-1" />,
+          color: "cyan",
+        },
+        {
+          nameKey: "casestudy.tag.turkish",
+          icon: <Shield className="w-3 h-3 mr-1" />,
+          color: "green",
+        },
+      ],
+      content: (
+        <div className="space-y-8">
+          {/* Project Overview */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+              <Brain className="w-6 h-6 text-purple-400" />
+              {t("casestudy.overview.title")}
+            </h2>
+            <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-6">
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-gray-300">
+                    <strong className="text-white">
+                      {t("casestudy.overview.project")}:
+                    </strong>{" "}
+                    {t("casestudy.overview.project.value")}
+                  </p>
+                  <p className="text-gray-300">
+                    <strong className="text-white">
+                      {t("casestudy.overview.client")}:
+                    </strong>{" "}
+                    {t("casestudy.overview.client.value")}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-300">
+                    <strong className="text-white">
+                      {t("casestudy.overview.platform")}:
+                    </strong>{" "}
+                    {t("casestudy.overview.platform.value")}
+                  </p>
+                  <p className="text-gray-300">
+                    <strong className="text-white">
+                      {t("casestudy.overview.timeline")}:
+                    </strong>{" "}
+                    {t("casestudy.overview.timeline.value")}
+                  </p>
+                </div>
+              </div>
+              <p className="text-gray-300 mt-4">
+                <strong className="text-white">
+                  {t("casestudy.overview.volume")}:
+                </strong>{" "}
+                {t("casestudy.overview.volume.value")}
+              </p>
+            </div>
+          </div>
+
+          {/* Introduction */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white">
+              {t("casestudy.intro.title")}
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              {t("casestudy.intro.content")}
+            </p>
+          </div>
+
+          {/* The Challenge */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+              <AlertTriangle className="w-6 h-6 text-red-400" />
+              {t("casestudy.challenge.title")}
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              {t("casestudy.challenge.intro")}
+            </p>
+            <div className="space-y-4">
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-red-300 mb-2">
+                  {t("casestudy.challenge.indirect.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.challenge.indirect.content")}
+                </p>
+              </div>
+              <div className="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-orange-300 mb-2">
+                  {t("casestudy.challenge.tooling.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.challenge.tooling.content")}
+                </p>
+              </div>
+              <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-yellow-300 mb-2">
+                  {t("casestudy.challenge.terminology.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.challenge.terminology.content")}
+                </p>
+              </div>
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-blue-300 mb-2">
+                  {t("casestudy.challenge.testing.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.challenge.testing.content")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Process & Solution */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+              <Zap className="w-6 h-6 text-cyan-400" />
+              {t("casestudy.process.title")}
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              {t("casestudy.process.intro")}
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-cyan-300 mb-2">
+                  {t("casestudy.process.research.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.process.research.content")}
+                </p>
+              </div>
+              <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-green-300 mb-2">
+                  {t("casestudy.process.glossary.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.process.glossary.content")}
+                </p>
+              </div>
+              <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-purple-300 mb-2">
+                  {t("casestudy.process.lqa.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.process.lqa.content")}
+                </p>
+              </div>
+              <div className="bg-pink-500/10 border border-pink-500/30 rounded-lg p-4">
+                <h3 className="font-semibold text-pink-300 mb-2">
+                  {t("casestudy.process.hybrid.title")}
+                </h3>
+                <p className="text-sm text-gray-300">
+                  {t("casestudy.process.hybrid.content")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Results & Impact */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+              <Shield className="w-6 h-6 text-green-400" />
+              {t("casestudy.results.title")}
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              {t("casestudy.results.intro")}
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="font-semibold text-green-300">
+                    {t("casestudy.results.accessibility.title")}
+                  </h3>
+                  <p className="text-sm text-gray-300">
+                    {t("casestudy.results.accessibility.content")}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="font-semibold text-cyan-300">
+                    {t("casestudy.results.relationship.title")}
+                  </h3>
+                  <p className="text-sm text-gray-300">
+                    {t("casestudy.results.relationship.content")}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="font-semibold text-purple-300">
+                    {t("casestudy.results.career.title")}
+                  </h3>
+                  <p className="text-sm text-gray-300">
+                    {t("casestudy.results.career.content")}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <h3 className="font-semibold text-yellow-300">
+                    {t("casestudy.results.foundation.title")}
+                  </h3>
+                  <p className="text-sm text-gray-300">
+                    {t("casestudy.results.foundation.content")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Conclusion */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white">
+              {t("casestudy.conclusion.title")}
+            </h2>
+            <div className="bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/30 rounded-lg p-6">
+              <p className="text-gray-300 leading-relaxed">
+                {t("casestudy.conclusion.content")}
+              </p>
+            </div>
+          </div>
+
+          {/* Key Metrics */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white">
+              {t("casestudy.metrics.title")}
+            </h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-purple-300">
+                  14,700+
+                </div>
+                <div className="text-sm text-gray-300">
+                  {t("casestudy.metrics.words")}
+                </div>
+              </div>
+              <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-cyan-300">
+                  4+ {t("casestudy.metrics.years.short")}
+                </div>
+                <div className="text-sm text-gray-300">
+                  {t("casestudy.metrics.ongoing")}
+                </div>
+              </div>
+              <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-green-300">84</div>
+                <div className="text-sm text-gray-300">
+                  {t("casestudy.metrics.players")}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    "automation-trends-2025": {
+      slug: "automation-trends-2025",
+      titleKey: "blog.automation.title",
+      excerptKey: "blog.automation.excerpt",
+      dateKey: "blog.automation.date",
+      readTimeKey: "blog.automation.readTime",
+      authorKey: "casestudy.author",
+      category: {
+        nameKey: "blog.category.automation",
+        icon: <Zap className="w-3 h-3 mr-1" />,
+        color: "cyan",
+      },
+      tags: [
+        {
+          nameKey: "blog.category.automation",
+          icon: <Zap className="w-3 h-3 mr-1" />,
+          color: "cyan",
+        },
+      ],
+      content: (
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white">Coming Soon</h2>
+            <p className="text-gray-300 leading-relaxed">This blog post is currently in development.</p>
+          </div>
+        </div>
+      ),
+    },
+    "ai-safety-ethics": {
+      slug: "ai-safety-ethics",
+      titleKey: "blog.ai.title",
+      excerptKey: "blog.ai.excerpt",
+      dateKey: "blog.ai.date",
+      readTimeKey: "blog.ai.readTime",
+      authorKey: "casestudy.author",
+      category: {
+        nameKey: "blog.category.safety",
+        icon: <Shield className="w-3 h-3 mr-1" />,
+        color: "red",
+      },
+      tags: [
+        {
+          nameKey: "blog.category.safety",
+          icon: <Shield className="w-3 h-3 mr-1" />,
+          color: "red",
+        },
+      ],
+      content: (
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white">Coming Soon</h2>
+            <p className="text-gray-300 leading-relaxed">This blog post is currently in development.</p>
+          </div>
+        </div>
+      ),
+    },
+  }
+
   const post = blogPosts[slug]
 
   if (!post) {
-    return <div>{t("blog.postNotFound")}</div>
+    return (
+      <div className="container mx-auto px-4 py-20 text-center">
+        <h1 className="text-3xl font-bold mb-4">{t("blog.notfound.title")}</h1>
+        <p>{t("blog.notfound.message")}</p>
+        <Button asChild className="mt-6">
+          <Link href="/">{t("blog.back")}</Link>
+        </Button>
+      </div>
+    )
   }
-
-  const renderContent = (node: React.ReactNode): React.ReactNode => {
-    if (typeof node === 'string') {
-      return t(node);
-    }
-
-    if (Array.isArray(node)) {
-      return node.map((child, index) => <React.Fragment key={index}>{renderContent(child)}</React.Fragment>);
-    }
-
-    if (React.isValidElement(node)) {
-      const { children, ...props } = node.props;
-      const translatedChildren = renderContent(children);
-      return React.cloneElement(node, props, translatedChildren);
-    }
-    
-    return node;
-  };
-  
-  const content = renderContent(post.content);
 
   return (
     <div className="bg-background text-foreground">
@@ -116,7 +461,7 @@ export default function BlogPost() {
             </header>
 
             <div className="prose prose-invert prose-lg max-w-none">
-              {content}
+              {post.content}
             </div>
           </article>
 
