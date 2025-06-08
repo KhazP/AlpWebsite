@@ -10,30 +10,15 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.alpyalay.org"),
+  metadataBase: new URL("https://www.alpyalay.dev"),
   title: "Alp Yalay | Translator & Localizer",
   description: "Portfolio of Alp Yalay, Translator & Localizer",
+  generator: "v0.dev",
   keywords: ["translator", "localizer", "portfolio", "Alp Yalay"],
   authors: [{ name: "Alp Yalay" }],
   creator: "Alp Yalay",
   icons: {
     icon: "/images/alplogo.webp",
-  },
-  openGraph: {
-    title: "Alp Yalay | Translator & Localizer",
-    description: "Portfolio of Alp Yalay, Translator & Localizer",
-    url: "https://www.alpyalay.org",
-    siteName: "Alp Yalay",
-    images: [
-      {
-        url: "/images/alplogo.webp",
-        width: 800,
-        height: 600,
-        alt: "Alp Yalay Logo",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
   },
 }
 
