@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import LoadingScreen from "@/components/loading-screen"
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/images/alplogo.webp",
   },
+  verification: {
+    me: "https://mastodon.social/@alpyalay",
+  },
 }
 
 export default function RootLayout({
@@ -35,6 +39,16 @@ export default function RootLayout({
             {children}
           </LanguageProvider>
         </ThemeProvider>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-4J01ZWL5BJ" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-4J01ZWL5BJ');
+          `}
+        </Script>
       </body>
     </html>
   )
