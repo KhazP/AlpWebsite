@@ -136,6 +136,28 @@ stıll present ıssue
 
 _**Assistant**_
 
+I see the issue. The Turkish hero titles are still showing even though I set them to empty strings. Let me check how the hero component handles these translations and fix this properly. Let me check the correct hero section file that's being used: Let me continue reading the hero section to see how the titles are being used: I can see the issue! The component is looking for `t("hero.title.a")` but we only have `hero.title.translator` and `hero.title.localizer` in the translations. Let me check if there's a `hero.title.a` translation defined, and also look at how the desktop version handles the titles: Now I need to check if there's a `hero.title.a` translation defined or if it's missing. Let me search for it in the language context: I see the problem! The component is looking for `t("hero.title.a")` which doesn't exist in our translations. We need to add this translation key. Based on the component structure, it looks like `hero.title.a` should be the "A" part for English and empty for Turkish. 
+````
+
+````
+Perfect! I've fixed the issue by adding the missing `hero.title.a` translation key to both English and Turkish versions in `language-context.tsx`. 
+
+Now:
+- For English: It will show "A TRANSLATOR & LOCALIZER" 
+- For Turkish: All title parts will be empty strings, so no titles will be displayed
+
+This should resolve the display issue you were seeing in the screenshots.
+
+---
+
+_**User**_
+
+eng is fine, but turkish looks like this
+
+---
+
+_**Assistant**_
+
 
 
 ---
