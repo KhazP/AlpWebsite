@@ -1,6 +1,6 @@
 "use client"
 
-export const runtime = "edge"
+export const runtime = "nodejs"
 
 import type React from "react"
 import { motion } from "framer-motion"
