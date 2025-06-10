@@ -27,7 +27,6 @@ const translations = {
 
     // Hero Section
     "hero.greeting": "👋 Hi, I'm Alp Yalay",
-    "hero.title.a": "",
     "hero.title.translator": "TRANSLATOR &",
     "hero.title.localizer": "LOCALIZER",
     "hero.description":
@@ -274,7 +273,6 @@ const translations = {
 
     // Hero Section
     "hero.greeting": "👋 Merhaba, ben Alp Yalay",
-    "hero.title.a": "",
     "hero.title.translator": "ÇEVİRMEN VE",
     "hero.title.localizer": "YERELLEŞTİRİCİ",
     "hero.description":
@@ -346,7 +344,7 @@ const translations = {
 
     // Blog Section
     "blog.title": "Son Yazılarım",
-    "blog.blog.subtitle": "Yapay zeka ve otomasyon alanındaki en son trendler ve gelişmelerden haberdar olun.",
+    "blog.subtitle": "Yapay zeka ve otomasyon alanındaki en son trendler ve gelişmelerden haberdar olun.",
     "blog.read": "Oku",
     "blog.min.read": "dk okuma",
     "blog.insights": "Görüşler",

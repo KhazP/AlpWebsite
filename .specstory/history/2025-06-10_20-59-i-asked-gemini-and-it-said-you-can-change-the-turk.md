@@ -147,6 +147,46 @@ lets change this as well, remove BIR and A in tr and en. And make the alt text b
 
 _**Assistant**_
 
+OK. I'll make those changes in `language-context.tsx`.
+
+I will:
+1.  Remove "A" from the English hero title (`hero.title.a`).
+2.  Remove "BİR" from the Turkish hero title (`hero.title.a`).
+3.  Revise the English hero description (`hero.description`) to: "Currently developing my skills in Turkish ↔ English translation with a focus on video game localization. Based in Istanbul, Turkey."
+4.  Revise the Turkish hero description (`hero.description`) to: "Video oyunlarının yerelleştirilmesi alanına büyük bir ilgiyle yaklaşıyor, Türkçe ve İngilizce dilleri arasında çeviri hizmetleri sunuyorum. İstanbul, Türkiye'de çalışmalarıma devam ediyorum."
+5.  Revise the English mobile hero description (`hero.description.mobile`) to: "Developing skills in video game localization and Turkish ↔ English translation."
+6.  Revise the Turkish mobile hero description (`hero.description.mobile`) to: "Video oyunlarının yerelleştirilmesi ve Türkçe ↔ İngilizce çeviri alanlarında kendimi geliştiriyorum."
+
+This will make the hero section more concise and align the Turkish description with the growth-oriented tone.
+
+ 
+````
+
+````
+All right, I've updated the hero section text in `language-context.tsx` for both English and Turkish.
+
+Here's a summary of the changes:
+
+*   Removed "A" from `hero.title.a` in English.
+*   Removed "BİR" from `hero.title.a` in Turkish.
+*   Updated `hero.description` and `hero.description.mobile` in both English and Turkish to reflect a more growth-oriented and humble tone, similar to the other changes we've made.
+
+The hero section should now better align with the overall tone of your website.
+
+---
+
+_**User**_
+
+remove hero.title.a
+it appeared after you deleted A and BİR
+
+Also error in about, it says about.expertise
+and lastly, it says ai chat unavailable, and in the blog section it says blog,subtitle
+
+---
+
+_**Assistant**_
+
 
 
 ---
