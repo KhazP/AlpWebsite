@@ -158,6 +158,54 @@ eng is fine, but turkish looks like this
 
 _**Assistant**_
 
+I understand the English version is displaying correctly, but the Turkish version is showing the translation keys themselves (e.g., "hero.title.a") instead of being empty. This is unexpected if the Turkish translations for these keys are set to empty strings in your `language-context.tsx` and the `t` function is working as intended.
+
+For the `t` function to return the key itself, it would typically mean that the key is not found in the current language's translations *and* also not found in the English fallback translations. However, since English is working, the English keys must be present.
+
+This suggests there might still be an issue with how the Turkish translations for these specific keys are defined or accessed in `language-context.tsx`.
+
+Let's re-examine the `language-context.tsx` file to ensure the hero title keys for Turkish are correctly set to empty strings and that there are no typos or structural issues. You are absolutely right! My apologies. The issue is with how the translation function `t` handles empty string values.
+
+When a translation key's value is an empty string (like we set for the Turkish titles), the current `t` function:
+`return langSpecificTranslations[key] || key;`
+will treat the empty string `""` as a falsy value. This causes the `|| key` part to execute, returning the key itself instead of the intended empty string.
+
+To fix this, the `t` function needs to explicitly check if the key exists in the translations, even if its value is an empty string.
+
+I'll update the `t` function in `language-context.tsx`.
+
+ 
+````
+
+````
+Ah, I see the problem! The translation function `t` was defaulting to the translation key itself if the translation string was empty. This is why you were seeing "hero.title.a", "hero.title.translator", and "hero.title.localizer" on the Turkish version.
+
+I've modified the `t` function in `language-context.tsx` to correctly return an empty string when that's the defined translation, instead of falling back to the key. This should now display the Turkish hero section correctly with no titles, as intended.
+
+---
+
+_**User**_
+
+it dssapeared now
+
+---
+
+_**Assistant**_
+
+The second screenshot you provided for the Turkish version looks correct – the titles "hero.title.a", "hero.title.translator", and "hero.title.localizer" have disappeared, and no text is shown for the main hero title, which was the intention for the Turkish language setting.
+
+Could you please check if the English version is still displaying the titles correctly as "A TRANSLATOR & LOCALIZER"? If the English titles have also disappeared, then we might need to look into it further.
+
+---
+
+_**User**_
+
+no? Turkish language was supposed to only not have the A word. Like A TRANSLATOR AND LOCALIZER IN ENGLISH and TRANSLATOR AND LOCALIZER IN TURKISH
+
+---
+
+_**Assistant**_
+
 
 
 ---

@@ -273,8 +273,8 @@ const translations = {
     // Hero Section
     "hero.greeting": "👋 Merhaba, ben Alp Yalay",
     "hero.title.a": "",
-    "hero.title.translator": "",
-    "hero.title.localizer": "",
+    "hero.title.translator": "ÇEVİRMEN VE",
+    "hero.title.localizer": "YERELLEŞTİRİCİ",
     "hero.description":
       "Video oyunlarının yerelleştirilmesi alanına odaklanmış, Türkçe ve İngilizce dilleri arasında çeviri hizmetleri sunuyorum. İstanbul, Türkiye'de çalışmalarıma devam ediyorum.",
     "hero.description.mobile": "Video oyunlarının yerelleştirilmesi ve Türkçe ↔ İngilizce çeviri hizmetleri.",
