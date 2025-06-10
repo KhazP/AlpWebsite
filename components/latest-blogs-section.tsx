@@ -30,7 +30,7 @@ export default function LatestBlogsSection() {
   const blogPosts: BlogPost[] = [
     {
       id: "battle-talent-case-study",
-      slug: "battle-talent-case-study",
+      slug: "case-studies/battle-talent", // MODIFIED SLUG TO POINT TO NEW PATH
       title: t("blog.battle.title") || "Case Study: Bringing Battle Talent VR to Turkish Players",
       excerpt:
         t("blog.battle.excerpt") ||
@@ -105,7 +105,7 @@ export default function LatestBlogsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="h-full"
             >
-              <Link href={`/blogs/${post.slug}`}>
+              <Link href={`/${post.slug}`}> {/* MODIFIED to ensure leading slash for correct path generation */}
                 <Card className="glass h-full flex flex-col cursor-pointer transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-lg">
                   <CardContent className="p-6 flex flex-col h-full">
                     <Badge

@@ -56,6 +56,7 @@ const translations = {
     "about.education.intern":
       "Intern: Şafak Tercüme (Feb 2021 - Mar 2021), gaining experience in translation workflows",
     "about.quote": "Bridging language gaps with precision and cultural understanding.",
+    "about.expertise": "My Areas of Focus",
 
     // Skills Section
     "skills.title": "My Skills",
@@ -300,6 +301,7 @@ const translations = {
     "about.education.intern":
       "Stajyer: Şafak Tercüme (Şubat 2021 - Mart 2021). Profesyonel çeviri süreçlerinde deneyim edindim.",
     "about.quote": "Diller arasındaki engelleri hassasiyet ve kültürel anlayışla aşmayı hedefliyorum.",
+    "about.expertise": "Odak Alanlarım",
 
     // Skills Section
     "skills.title": "Yeteneklerim",
