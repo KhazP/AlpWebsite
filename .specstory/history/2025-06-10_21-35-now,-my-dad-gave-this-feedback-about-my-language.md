@@ -84,6 +84,33 @@ ok now check the rest please
 
 _**Assistant**_
 
+Okay, I've reviewed the rest of `language-context.tsx`.
+
+I found a couple of instances in the English translations where the word "specialize" or "specializing" was used, which could imply a similar level of expertise as "uzmanlaşmış." I'll adjust these to better reflect your experience, similar to how we changed the Turkish text.
+
+Here are the changes I'll make:
+
+1.  In the English translation for `about.who.description`, I'll change "I specialize in video game localization..." to "I focus on video game localization...".
+2.  In the English translation for `footer.description`, I'll change "Translator & Localizer specializing in video game localization..." to "Translator & Localizer focusing on video game localization...".
+
+The case study descriptions and other sections appear to use language that is appropriate for someone who graduated 4 years ago and is building their career.
+
+ 
+````
+
+````
+OK. I've reviewed the rest of the English translations in `language-context.tsx` and made adjustments to ensure consistency with the tone and experience level we've discussed. Specifically, I've changed "specialize" or "specializing" to "focus on" or "focusing on" in relevant descriptions.
+
+---
+
+_**User**_
+
+please remove hero title in turkish, and add A for it in english
+
+---
+
+_**Assistant**_
+
 
 
 ---

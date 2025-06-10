@@ -27,7 +27,7 @@ const translations = {
 
     // Hero Section
     "hero.greeting": "👋 Hi, I'm Alp Yalay",
-    "hero.title.translator": "TRANSLATOR &",
+    "hero.title.translator": "A TRANSLATOR &",
     "hero.title.localizer": "LOCALIZER",
     "hero.description":
       "I offer Turkish ↔ English translation services with a focus on video game localization. Based in Istanbul, Turkey.",
@@ -271,8 +271,8 @@ const translations = {
 
     // Hero Section
     "hero.greeting": "👋 Merhaba, ben Alp Yalay",
-    "hero.title.translator": "ÇEVİRMEN VE",
-    "hero.title.localizer": "YERELLEŞTİRİCİ",
+    "hero.title.translator": "",
+    "hero.title.localizer": "",
     "hero.description":
       "Video oyunlarının yerelleştirilmesi alanına odaklanmış, Türkçe ve İngilizce dilleri arasında çeviri hizmetleri sunuyorum. İstanbul, Türkiye'de çalışmalarıma devam ediyorum.",
     "hero.description.mobile": "Video oyunlarının yerelleştirilmesi ve Türkçe ↔ İngilizce çeviri hizmetleri.",
