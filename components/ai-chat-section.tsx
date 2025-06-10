@@ -7,7 +7,7 @@ import { motion, useInView, useAnimation } from "framer-motion"
 import { Send, Bot, User, Sparkles, RefreshCw } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
-import Chatbot from "@/components/chatbot/Chatbot"
+// import Chatbot from "@/components/chatbot/Chatbot"
 
 export default function AIChatSection() {
   const { t } = useLanguage()
@@ -53,9 +53,9 @@ export default function AIChatSection() {
 
       <div className="container mx-auto px-4">
         <motion.div
-          ref={ref}
+          // ref={ref}
           initial="hidden"
-          animate={controls}
+          // animate={controls}
           variants={containerVariants}
           className="text-center mb-12"
           style={{ opacity: 1 }}
@@ -75,8 +75,9 @@ export default function AIChatSection() {
           ></motion.div>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto" ref={chatContainerRef}>
-          <Chatbot />
+        <div className="max-w-3xl mx-auto" /* ref={chatContainerRef} */>
+          {/* <Chatbot /> */}
+          <p className="text-center text-gray-400">AI Chat feature is temporarily unavailable.</p>
         </div>
       </div>
     </section>
