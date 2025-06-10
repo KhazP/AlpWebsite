@@ -30,8 +30,8 @@ const translations = {
     "hero.title.translator": "TRANSLATOR &",
     "hero.title.localizer": "LOCALIZER",
     "hero.description":
-      "Currently developing my skills in Turkish ↔ English translation with a focus on video game localization. Based in Istanbul, Turkey.",
-    "hero.description.mobile": "Developing skills in video game localization and Turkish ↔ English translation.",
+      "I offer Turkish ↔ English translation services with a focus on video game localization. Based in Istanbul, Turkey.",
+    "hero.description.mobile": "Video game localization and Turkish ↔ English translation services.",
     "hero.cta.contact": "Contact Me",
     "hero.scroll": "Discover More",
     "hero.status": "Available for projects",
@@ -44,9 +44,7 @@ const translations = {
     "about.title": "About Me",
     "about.who.title": "Who I Am",
     "about.who.description":
-      "I'm Alp Yalay, a Translator and Localizer based in Istanbul, Turkey. I graduated from Izmir University of Economics with a degree in Translation and Interpretation.",
-    "about.expertise":
-      "I focus on video game localization. In this field, I combine my language and technology skills to deliver quality translations that resonate with the target audience.",
+      "I'm Alp Yalay, a Translator and Localizer based in Istanbul, Turkey. I graduated from Izmir University of Economics with a degree in Translation and Interpretation. I focus on video game localization, combining my passion for language and technology to help make games accessible to a wider audience.",
     "about.education.title": "Education & Experience",
     "about.education.degree":
       "Bachelor's Degree: Translation and Interpreting, Izmir University of Economics (2018-2022)",
@@ -85,7 +83,7 @@ const translations = {
 
     // Experience/AI Chat Section
     "experience.title": "Chat with AlpGPT 3.5",
-    "experience.subtitle": "Chat with AlpGPT 3.5 to learn about Alp's journey in translation, his developing skills, projects, and educational background.",
+    "experience.subtitle": "Chat with AlpGPT 3.5 to learn about Alp's professional journey, skills, projects, and educational background.",
     "experience.placeholder": "Ask AlpGPT 3.5 about Alp's translation journey, skills, or projects...",
     "experience.send": "Send",
     "experience.reset": "Reset chat",
@@ -95,7 +93,7 @@ const translations = {
     "experience.quick.projects": "Projects",
     "experience.quick.education": "Education",
     "experience.ai.greeting":
-      "👋 Hi there! I'm AlpGPT 3.5, your AI assistant. I can help you learn about Alp's journey in translation and the skills he's currently developing.",
+      "👋 Hi there! I'm AlpGPT 3.5, your AI assistant. I can help you learn about Alp's professional journey, skills, and project experiences.",
 
     // Blog Section
     "blog.title": "My Latest Articles",
@@ -147,7 +145,7 @@ const translations = {
     "contact.form.error.message.length": "Message must be at least 10 characters",
 
     // Footer
-    "footer.description": "Translator & Localizer specializing in video game localization between Turkish and English.",
+    "footer.description": "Translator & Localizer focusing on video game localization between Turkish and English.",
     "footer.links": "Quick Links",
     "footer.services": "Services",
     "footer.services.translation": "Translation",
@@ -276,8 +274,8 @@ const translations = {
     "hero.title.translator": "ÇEVİRMEN VE",
     "hero.title.localizer": "YERELLEŞTİRİCİ",
     "hero.description":
-      "Video oyunlarının yerelleştirilmesi alanına büyük bir ilgiyle yaklaşıyor, Türkçe ve İngilizce dilleri arasında çeviri hizmetleri sunuyorum. İstanbul, Türkiye'de çalışmalarıma devam ediyorum.",
-    "hero.description.mobile": "Video oyunlarının yerelleştirilmesi ve Türkçe ↔ İngilizce çeviri alanlarında kendimi geliştiriyorum.",
+      "Video oyunlarının yerelleştirilmesi alanına odaklanmış, Türkçe ve İngilizce dilleri arasında çeviri hizmetleri sunuyorum. İstanbul, Türkiye'de çalışmalarıma devam ediyorum.",
+    "hero.description.mobile": "Video oyunlarının yerelleştirilmesi ve Türkçe ↔ İngilizce çeviri hizmetleri.",
     "hero.cta.contact": "İletişime Geç",
     "hero.scroll": "Daha Fazlasını Keşfet",
     "hero.status": "Projeler için müsait",
@@ -290,9 +288,7 @@ const translations = {
     "about.title": "Hakkımda",
     "about.who.title": "Ben Kimim",
     "about.who.description":
-      "Ben Alp Yalay. İzmir Ekonomi Üniversitesi Çeviribilim bölümü mezunu, İstanbul'da yaşayan bir çevirmenim. Özellikle video oyunlarının yerelleştirilmesi alanına büyük ilgi duyuyor ve bu alanda kendimi geliştiriyorum. Dil ve teknoloji bilgimi kullanarak hedef kitleye uygun, akıcı ve kaliteli çeviriler sunmak için özenle çalışıyorum.",
-    "about.expertise":
-      "",
+      "Ben Alp Yalay. İzmir Ekonomi Üniversitesi Çeviribilim bölümü mezunu, İstanbul'da yaşayan bir çevirmenim. Özellikle video oyunlarının yerelleştirilmesi alanına odaklandım. Dil ve teknoloji bilgimi kullanarak hedef kitleye uygun, akıcı ve kaliteli çeviriler sunmak için özenle çalışıyorum.",
     "about.education.title": "Eğitim ve Deneyimlerim",
     "about.education.degree": "Lisans Derecesi: İzmir Ekonomi Üniversitesi, Çeviribilim (2018-2022)",
     "about.education.social":
@@ -330,7 +326,7 @@ const translations = {
 
     // Experience/AI Chat Section
     "experience.title": "AlpGPT 3.5 ile Sohbet Et",
-    "experience.subtitle": "Alp'in çeviri yolculuğu, geliştirmekte olduğu beceriler, projeleri ve eğitim geçmişi hakkında bilgi almak için AlpGPT 3.5 ile sohbet edin.",
+    "experience.subtitle": "Alp'in profesyonel yolculuğu, becerileri, projeleri ve eğitim geçmişi hakkında bilgi almak için AlpGPT 3.5 ile sohbet edin.",
     "experience.placeholder": "AlpGPT 3.5'e Alp'in çeviri yolculuğu, becerileri veya projeleri hakkında soru sorun...",
     "experience.send": "Gönder",
     "experience.reset": "Sohbeti sıfırla",
@@ -340,7 +336,7 @@ const translations = {
     "experience.quick.projects": "Projeler",
     "experience.quick.education": "Eğitim",
     "experience.ai.greeting":
-      "👋 Merhaba! Ben AlpGPT 3.5, yapay zeka asistanınız. Alp'in çeviri yolculuğu ve geliştirmekte olduğu beceriler hakkında bilgi edinmenize yardımcı olabilirim.",
+      "👋 Merhaba! Ben AlpGPT 3.5, yapay zeka asistanınız. Alp'in profesyonel yolculuğu, becerileri ve proje deneyimleri hakkında bilgi edinmenize yardımcı olabilirim.",
 
     // Blog Section
     "blog.title": "Son Yazılarım",
@@ -538,7 +534,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   // Translation function
   const t = (key: string): string => {
-    return translations[language][key] || key
+    const langSpecificTranslations = translations[language] as Record<string, string>;
+    return langSpecificTranslations[key] || key;
   }
 
   return (
