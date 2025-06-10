@@ -27,12 +27,12 @@ const translations = {
 
     // Hero Section
     "hero.greeting": "👋 Hi, I'm Alp Yalay",
-    "hero.title.a": "A",
+    "hero.title.a": "",
     "hero.title.translator": "TRANSLATOR &",
     "hero.title.localizer": "LOCALIZER",
     "hero.description":
-      "I offer Turkish ↔ English translation services with a focus on video game localization. Based in Istanbul, Turkey.",
-    "hero.description.mobile": "Focusing on video game localization. Turkish ↔ English translation services.",
+      "Currently developing my skills in Turkish ↔ English translation with a focus on video game localization. Based in Istanbul, Turkey.",
+    "hero.description.mobile": "Developing skills in video game localization and Turkish ↔ English translation.",
     "hero.cta.contact": "Contact Me",
     "hero.scroll": "Discover More",
     "hero.status": "Available for projects",
@@ -85,18 +85,18 @@ const translations = {
     "projects.gemini": "Gemini",
 
     // Experience/AI Chat Section
-    "experience.title": "Chat with AI Alp",
-    "experience.subtitle": "Ask about my translation services, skills, projects, or education",
-    "experience.placeholder": "Ask about my translation services, skills, or projects...",
+    "experience.title": "Chat with AlpGPT 3.5",
+    "experience.subtitle": "Chat with AlpGPT 3.5 to learn about Alp's journey in translation, his developing skills, projects, and educational background.",
+    "experience.placeholder": "Ask AlpGPT 3.5 about Alp's translation journey, skills, or projects...",
     "experience.send": "Send",
     "experience.reset": "Reset chat",
-    "experience.typing": "AI Alp is typing...",
+    "experience.typing": "AlpGPT 3.5 is typing...",
     "experience.quick.experience": "Work experience",
     "experience.quick.skills": "Skills",
     "experience.quick.projects": "Projects",
     "experience.quick.education": "Education",
     "experience.ai.greeting":
-      "👋 Hi there! I'm AI Alp, your virtual assistant. Ask me about Alp's translation services or skills!",
+      "👋 Hi there! I'm AlpGPT 3.5, your AI assistant. I can help you learn about Alp's journey in translation and the skills he's currently developing.",
 
     // Blog Section
     "blog.title": "My Latest Articles",
@@ -274,12 +274,12 @@ const translations = {
 
     // Hero Section
     "hero.greeting": "👋 Merhaba, ben Alp Yalay",
-    "hero.title.a": "BİR",
+    "hero.title.a": "",
     "hero.title.translator": "ÇEVİRMEN VE",
     "hero.title.localizer": "YERELLEŞTİRİCİ",
     "hero.description":
-      "Video oyun lokalizasyonuna ilgi duyan, Türkçe ↔ İngilizce çeviri hizmetleri sunuyorum. İstanbul, Türkiye merkezli.",
-    "hero.description.mobile": "Video oyun lokalizasyonuna ilgi duyuyorum. Türkçe ↔ İngilizce çeviri hizmetleri.",
+      "Video oyunlarının yerelleştirilmesi alanına büyük bir ilgiyle yaklaşıyor, Türkçe ve İngilizce dilleri arasında çeviri hizmetleri sunuyorum. İstanbul, Türkiye'de çalışmalarıma devam ediyorum.",
+    "hero.description.mobile": "Video oyunlarının yerelleştirilmesi ve Türkçe ↔ İngilizce çeviri alanlarında kendimi geliştiriyorum.",
     "hero.cta.contact": "İletişime Geç",
     "hero.scroll": "Daha Fazlasını Keşfet",
     "hero.status": "Projeler için müsait",
@@ -292,9 +292,9 @@ const translations = {
     "about.title": "Hakkımda",
     "about.who.title": "Ben Kimim",
     "about.who.description":
-      "Ben Alp Yalay. İstanbul, Türkiye'de yaşayan bir çevirmen ve yerelleştirme uzmanıyım. İzmir Ekonomi Üniversitesi Çeviribilim bölümü mezunuyum.",
+      "Ben Alp Yalay. İzmir Ekonomi Üniversitesi Çeviribilim bölümü mezunu, İstanbul'da yaşayan bir çevirmenim. Özellikle video oyunlarının yerelleştirilmesi alanına büyük ilgi duyuyor ve bu alanda kendimi geliştiriyorum. Dil ve teknoloji bilgimi kullanarak hedef kitleye uygun, akıcı ve kaliteli çeviriler sunmak için özenle çalışıyorum.",
     "about.expertise":
-      "Video oyunlarının yerelleştirilmesi üzerine yoğunlaşıyorum. Bu alanda dil ve teknoloji bilgimi birleştirerek hedef kitleye uygun, kaliteli çeviriler sunmayı hedefliyorum.",
+      "",
     "about.education.title": "Eğitim ve Deneyimlerim",
     "about.education.degree": "Lisans Derecesi: İzmir Ekonomi Üniversitesi, Çeviribilim (2018-2022)",
     "about.education.social":
@@ -303,7 +303,7 @@ const translations = {
       "Barista, Garson, Kasiyer: Asma Yaprağı (Temmuz 2015 - Eylül 2021). Müşteri hizmetleri ve finansal yönetim konularında çalıştım.",
     "about.education.intern":
       "Stajyer: Şafak Tercüme (Şubat 2021 - Mart 2021). Profesyonel çeviri süreçlerinde deneyim edindim.",
-    "about.quote": "Diller arasındaki engelleri hassasiyet ve kültürel anlayışla aşıyorum.",
+    "about.quote": "Diller arasındaki engelleri hassasiyet ve kültürel anlayışla aşmayı hedefliyorum.",
 
     // Skills Section
     "skills.title": "Yeteneklerim",
@@ -331,18 +331,18 @@ const translations = {
     "projects.gemini": "Gemini",
 
     // Experience/AI Chat Section
-    "experience.title": "AI Alp ile Sohbet Et",
-    "experience.subtitle": "Çeviri hizmetlerim, becerilerim, projelerim veya eğitimim hakkında sor",
-    "experience.placeholder": "Çeviri hizmetlerim, becerilerim veya projelerim hakkında sor...",
+    "experience.title": "AlpGPT 3.5 ile Sohbet Et",
+    "experience.subtitle": "Alp'in çeviri yolculuğu, geliştirmekte olduğu beceriler, projeleri ve eğitim geçmişi hakkında bilgi almak için AlpGPT 3.5 ile sohbet edin.",
+    "experience.placeholder": "AlpGPT 3.5'e Alp'in çeviri yolculuğu, becerileri veya projeleri hakkında soru sorun...",
     "experience.send": "Gönder",
     "experience.reset": "Sohbeti sıfırla",
-    "experience.typing": "AI Alp yazıyor...",
+    "experience.typing": "AlpGPT 3.5 yazıyor...",
     "experience.quick.experience": "İş deneyimi",
     "experience.quick.skills": "Beceriler",
     "experience.quick.projects": "Projeler",
     "experience.quick.education": "Eğitim",
     "experience.ai.greeting":
-      "👋 Merhaba! Ben AI Alp, sanal asistanınız. Alp'in çeviri hizmetleri veya becerileri hakkında sorularınızı sorabilirsiniz!",
+      "👋 Merhaba! Ben AlpGPT 3.5, yapay zeka asistanınız. Alp'in çeviri yolculuğu ve geliştirmekte olduğu beceriler hakkında bilgi edinmenize yardımcı olabilirim.",
 
     // Blog Section
     "blog.title": "Son Yazılarım",
