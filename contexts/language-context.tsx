@@ -31,8 +31,8 @@ const translations = {
     "hero.title.translator": "TRANSLATOR &",
     "hero.title.localizer": "LOCALIZER",
     "hero.description":
-      "Specializing in video game localization with Turkish ↔ English translation services. Based in Istanbul, Turkey.",
-    "hero.description.mobile": "Specializing in video game localization. Turkish ↔ English translation services.",
+      "I offer Turkish ↔ English translation services with a focus on video game localization. Based in Istanbul, Turkey.",
+    "hero.description.mobile": "Focusing on video game localization. Turkish ↔ English translation services.",
     "hero.cta.contact": "Contact Me",
     "hero.scroll": "Discover More",
     "hero.status": "Available for projects",
@@ -45,14 +45,14 @@ const translations = {
     "about.title": "About Me",
     "about.who.title": "Who I Am",
     "about.who.description":
-      "I'm Alp Yalay, a Translator & Localizer based in Istanbul, Turkey, with a degree in Translation and Interpretation from Izmir University of Economics.",
+      "I'm Alp Yalay, a Translator and Localizer based in Istanbul, Turkey. I graduated from Izmir University of Economics with a degree in Translation and Interpretation.",
     "about.expertise":
-      "My main area of expertise is video game localization. Working in this field, I use my language and technology knowledge together to deliver high-quality translations that resonate with the target audience.",
+      "I focus on video game localization. In this field, I combine my language and technology skills to deliver quality translations that resonate with the target audience.",
     "about.education.title": "Education & Experience",
     "about.education.degree":
-      "Bachelor's Degree: Translation and Interpreting from Izmir University of Economics (2018-2022)",
+      "Bachelor's Degree: Translation and Interpreting, Izmir University of Economics (2018-2022)",
     "about.education.social":
-      "Junior Social Media Manager: Muse İstanbul (Apr 2024 - Aug 2024), managing social media accounts for iGA Istanbul Airport",
+      "Social Media Intern: Muse İstanbul (Apr 2024 - Aug 2024), assisted with managing social media accounts for iGA Istanbul Airport",
     "about.education.barista":
       "Barista, Waiter, Cashier: Asma Yaprağı (Jul 2015 - Sep 2021), handling customer service and financial management",
     "about.education.intern":
@@ -61,19 +61,19 @@ const translations = {
 
     // Skills Section
     "skills.title": "My Skills",
-    "skills.tech.title": "Tech Stack",
+    "skills.tech.title": "Technologies I Use",
     "skills.translation.title": "Translation",
-    "skills.translation.desc": "Professional translation services between Turkish and English",
+    "skills.translation.desc": "Translation services between Turkish and English",
     "skills.localization.title": "Localization",
-    "skills.localization.desc": "Adapting content for cultural and regional appropriateness",
+    "skills.localization.desc": "Adapting content for cultural and regional relevance",
     "skills.technical.title": "Technical Translation",
-    "skills.technical.desc": "Specialized translation for technical and software content",
+    "skills.technical.desc": "Translation for technical and software content",
     "skills.transcreation.title": "Transcreation",
     "skills.transcreation.desc": "Creative adaptation of marketing and promotional materials",
 
     // Projects Section
-    "projects.title": "Featured Projects",
-    "projects.subtitle": "A showcase of my translation work, software projects, and technical skills",
+    "projects.title": "My Projects",
+    "projects.subtitle": "A showcase of my translation work, software projects, and technical skills.",
     "projects.swipe.hint": "Swipe left or right to navigate projects",
     "projects.read.more": "Read more",
     "projects.read.less": "Show less",
@@ -99,8 +99,8 @@ const translations = {
       "👋 Hi there! I'm AI Alp, your virtual assistant. Ask me about Alp's translation services or skills!",
 
     // Blog Section
-    "blog.title": "Latest Insights",
-    "blog.subtitle": "Stay updated with the latest trends and breakthroughs in AI and automation",
+    "blog.title": "My Latest Articles",
+    "blog.subtitle": "Stay updated with the latest trends and breakthroughs in AI and automation.",
     "blog.read": "Read",
     "blog.min.read": "min read",
     "blog.insights": "Insights",
@@ -204,58 +204,48 @@ const translations = {
 
     "casestudy.intro.title": "Introduction",
     "casestudy.intro.content":
-      "This case study details the ongoing Turkish localization project for Battle Talent, a physics-based VR rogue-lite action game developed by CyDream Technologies. Undertaken initially as a personal challenge while completing university studies in Translation & Interpretation, this project served as a crucial first step into the world of professional game localization, demanding adaptability, resourcefulness, and a long-term commitment.",
+      "This case study details the ongoing Turkish localization project for Battle Talent, a physics-based VR rogue-lite action game by CyDream Technologies. I initially took on this project out of personal interest while completing my university studies in Translation & Interpretation. It served as an important first step into game localization, helping me develop adaptability, resourcefulness, and a long-term perspective.",
 
-    "casestudy.challenge.title": "The Challenge: Navigating Early Career Localization Hurdles",
+    "casestudy.challenge.title": "The Challenges: Navigating Localization Hurdles Early in My Career",
     "casestudy.challenge.intro":
-      "The primary objective was to proactively seek practical game localization experience, applying academic knowledge to a real-world project and demonstrating capability in the field. However, this ambition came with several significant hurdles:",
-    "casestudy.challenge.indirect.title": "Indirect Source Text",
+      "My main goal was to gain practical game localization experience by applying my academic knowledge to a real-world project and demonstrating my abilities in this field. However, I encountered several significant hurdles along the way:",
     "casestudy.challenge.indirect.content":
-      "The English text used as the source for Turkish translation was itself a non-professional translation from the original Simplified Chinese, introducing a layer of potential ambiguity and requiring careful interpretation.",
-    "casestudy.challenge.tooling.title": "Tooling & Workflow Constraints",
+      "The English text used as the source for the Turkish translation was itself a non-professional translation from the original Simplified Chinese. This introduced potential ambiguities and required careful interpretation.",
     "casestudy.challenge.tooling.content":
-      "The localization process relied entirely on a shared Google Sheet for all translators across different languages. This lacked the robust features of standard CAT tools, making terminology management and consistency tracking difficult.",
-    "casestudy.challenge.terminology.title": "Terminology & Consistency",
+      "The localization process for all languages relied on a shared Google Sheet. This lacked the robust features of standard CAT tools, making terminology management and consistency tracking more difficult.",
     "casestudy.challenge.terminology.content":
-      "Establishing appropriate Turkish terminology for unique game concepts was challenging due to the lack of established Turkish gaming glossaries or accessible translation memories.",
-    "casestudy.challenge.testing.title": "Limited Testing Environment",
+      "Finding suitable Turkish terminology for unique game concepts was challenging due to the lack of established Turkish gaming glossaries or readily accessible translation memories.",
     "casestudy.challenge.testing.content":
-      "No dedicated developer build was available for testing. Validating translations required waiting for monthly public game updates and testing within the live VR environment.",
+      "No dedicated developer build was available for testing. Validating translations meant waiting for monthly public game updates and testing within the live VR environment.",
 
-    "casestudy.process.title": "Process & Solution: Adaptability and Continuous Improvement",
-    "casestudy.process.intro": "Despite the constraints, a pragmatic and evolving workflow was established:",
-    "casestudy.process.research.title": "Research-Driven Translation",
+    "casestudy.process.title": "My Process & Solutions: Adaptability and Continuous Improvement",
+    "casestudy.process.intro": "Despite the constraints, I established a pragmatic and evolving workflow:",
     "casestudy.process.research.content":
-      "Each term was approached with research, utilizing online dictionaries, cross-referencing translations in other Turkish-localized games, and leveraging AI for obscure terms.",
-    "casestudy.process.glossary.title": "Personal Glossary Development",
+      "I approached each term with research, utilizing online dictionaries, cross-referencing with other Turkish-localized games, and leveraging AI for more obscure terms.",
     "casestudy.process.glossary.content":
-      "A personal glossary was created and maintained to track key terms and ensure consistency, with plans to develop a dedicated terminology management app.",
-    "casestudy.process.lqa.title": "Post-Update LQA",
+      "I created and maintained a personal glossary to track key terms and ensure consistency, and I plan to develop a dedicated terminology management app.",
     "casestudy.process.lqa.content":
-      "Following each monthly game update, dedicated time was spent testing newly added Turkish strings within the VR game itself, identifying and correcting errors.",
-    "casestudy.process.hybrid.title": "Hybrid Translation Methodology",
+      "Following each monthly game update, I dedicated time to test the newly added Turkish strings within the VR game itself, identifying and correcting errors or awkward phrasing.",
     "casestudy.process.hybrid.content":
-      "Leveraged AI (Gemini 1.5 Pro) to identify potential inconsistencies by feeding the entire translation text periodically, allowing for targeted rectification.",
+      "I periodically fed the entire translation text into AI (Gemini 1.5 Pro) to identify potential inconsistencies, allowing for targeted corrections.",
 
     "casestudy.results.title": "Results & Impact: Delivering Value and Fostering Growth",
     "casestudy.results.intro":
-      "The ongoing localization effort has successfully made Battle Talent accessible to its Turkish-speaking audience and yielded significant personal development:",
-    "casestudy.results.accessibility.title": "Enhanced Accessibility for Turkish Players",
+      "The ongoing localization effort has successfully made Battle Talent accessible to its Turkish-speaking audience and has been a significant source of personal development for me:",
     "casestudy.results.accessibility.content":
-      "Delivered and maintained a complete Turkish localization, making the VR experience fully accessible for Turkish-speaking players. Developer data indicated approximately 84 players engaging with the game in Turkey.",
-    "casestudy.results.relationship.title": "Strong Developer Relationship",
+      "I delivered and have maintained a complete Turkish localization, making the VR experience fully accessible for Turkish-speaking players. Developer data indicated that approximately 84 players in Turkey were engaging with the game in Turkish.",
     "casestudy.results.relationship.content":
-      "Trust was established and maintained with CyDream Technologies, who relied on this sole effort for the Turkish market.",
-    "casestudy.results.career.title": "Solidified Career Path",
+      "I established and maintained a relationship of trust with CyDream Technologies, who relied on my efforts for the Turkish market.",
+    "casestudy.results.career.title": "Shaping My Career Path",
     "casestudy.results.career.content":
-      "The project confirmed a passion for game localization and highlighted the need for quality localization in the Turkish market.",
-    "casestudy.results.foundation.title": "Foundation for Future Projects",
+      "This project solidified my passion for game localization and deepened my understanding of the need for quality localization in the Turkish market.",
+    "casestudy.results.foundation.title": "A Stepping Stone for Future Projects",
     "casestudy.results.foundation.content":
-      "The experience provided confidence and skillset to take on larger, more complex localization projects, such as Heroes of Hammerwatch II.",
+      "This experience gave me the confidence and skillset to take on larger, more complex localization projects, such as Heroes of Hammerwatch II.",
 
     "casestudy.conclusion.title": "Conclusion",
     "casestudy.conclusion.content":
-      "The Battle Talent Turkish localization project stands as a testament to proactive learning and dedication. Overcoming initial challenges related to resources, tools, and testing methodology, this ongoing effort not only delivered a valuable localization for Turkish VR gamers but also provided an invaluable foundation, shaping a dedicated approach to game localization characterized by continuous improvement, adaptability, and a commitment to quality.",
+      "The Battle Talent Turkish localization project is a testament to my commitment to proactive learning and dedication. Overcoming initial challenges related to resources, tools, and testing methodology, this ongoing effort has not only delivered a valuable localization for Turkish VR gamers but has also provided an invaluable foundation, shaping my approach to game localization—one characterized by continuous improvement, adaptability, and a commitment to quality.",
 
     "casestudy.metrics.title": "Key Project Metrics",
     "casestudy.metrics.words": "Words Translated",
@@ -288,8 +278,8 @@ const translations = {
     "hero.title.translator": "ÇEVİRMEN VE",
     "hero.title.localizer": "YERELLEŞTİRİCİ",
     "hero.description":
-      "Video oyun lokalizasyonunda uzmanlaşmış, Türkçe ↔ İngilizce çeviri hizmetleri sunuyorum. İstanbul, Türkiye merkezli.",
-    "hero.description.mobile": "Video oyun lokalizasyonunda uzmanlaşmış. Türkçe ↔ İngilizce çeviri hizmetleri.",
+      "Video oyun lokalizasyonuna ilgi duyan, Türkçe ↔ İngilizce çeviri hizmetleri sunuyorum. İstanbul, Türkiye merkezli.",
+    "hero.description.mobile": "Video oyun lokalizasyonuna ilgi duyuyorum. Türkçe ↔ İngilizce çeviri hizmetleri.",
     "hero.cta.contact": "İletişime Geç",
     "hero.scroll": "Daha Fazlasını Keşfet",
     "hero.status": "Projeler için müsait",
@@ -302,34 +292,34 @@ const translations = {
     "about.title": "Hakkımda",
     "about.who.title": "Ben Kimim",
     "about.who.description":
-      "Ben Alp Yalay, İstanbul, Türkiye merkezli bir Çevirmen ve Yerelleştiriciyim. İzmir Ekonomi Üniversitesi'nden Çeviribilim bölümü mezunuyum.",
+      "Ben Alp Yalay. İstanbul, Türkiye'de yaşayan bir çevirmen ve yerelleştirme uzmanıyım. İzmir Ekonomi Üniversitesi Çeviribilim bölümü mezunuyum.",
     "about.expertise":
-      "Ana uzmanlık alanım video oyun lokalizasyonudur. Bu alanda çalışırken, dil ve teknoloji bilgimi bir araya getirerek hedef kitleye hitap eden yüksek kaliteli çeviriler sunuyorum.",
-    "about.education.title": "Eğitim ve Deneyim",
-    "about.education.degree": "Lisans Derecesi: İzmir Ekonomi Üniversitesi Çeviribilim (2018-2022)",
+      "Video oyunlarının yerelleştirilmesi üzerine yoğunlaşıyorum. Bu alanda dil ve teknoloji bilgimi birleştirerek hedef kitleye uygun, kaliteli çeviriler sunmayı hedefliyorum.",
+    "about.education.title": "Eğitim ve Deneyimlerim",
+    "about.education.degree": "Lisans Derecesi: İzmir Ekonomi Üniversitesi, Çeviribilim (2018-2022)",
     "about.education.social":
-      "Genç Sosyal Medya Uzmanı: Muse İstanbul (Nisan 2024 - Ağustos 2024), iGA İstanbul Havalimanı sosyal medya hesaplarını yönettim",
+      "Sosyal Medya Stajyeri: Muse İstanbul (Nisan 2024 - Ağustos 2024). iGA İstanbul Havalimanı sosyal medya hesaplarının yönetimine destek verdim.",
     "about.education.barista":
-      "Barista, Garson, Kasiyer: Asma Yaprağı (Temmuz 2015 - Eylül 2021), müşteri hizmetleri ve mali yönetim",
+      "Barista, Garson, Kasiyer: Asma Yaprağı (Temmuz 2015 - Eylül 2021). Müşteri hizmetleri ve finansal yönetim konularında çalıştım.",
     "about.education.intern":
-      "Stajyer: Şafak Tercüme (Şubat 2021 - Mart 2021), profesyonel çeviri iş akışlarında deneyim kazandım",
-    "about.quote": "Dil boşluklarını hassasiyet ve kültürel anlayışla köprülüyorum.",
+      "Stajyer: Şafak Tercüme (Şubat 2021 - Mart 2021). Profesyonel çeviri süreçlerinde deneyim edindim.",
+    "about.quote": "Diller arasındaki engelleri hassasiyet ve kültürel anlayışla aşıyorum.",
 
     // Skills Section
     "skills.title": "Yeteneklerim",
-    "skills.tech.title": "Teknoloji Yığını",
+    "skills.tech.title": "Kullandığım Teknolojiler",
     "skills.translation.title": "Çeviri",
-    "skills.translation.desc": "Türkçe ve İngilizce arasında profesyonel çeviri hizmetleri",
+    "skills.translation.desc": "Türkçe ve İngilizce arasında çeviri hizmetleri",
     "skills.localization.title": "Lokalizasyon",
     "skills.localization.desc": "İçeriği kültürel ve bölgesel uygunluk için uyarlama",
     "skills.technical.title": "Teknik Çeviri",
-    "skills.technical.desc": "Teknik ve yazılım içeriği için özelleşmiş çeviri",
+    "skills.technical.desc": "Teknik ve yazılım içeriği için çeviri",
     "skills.transcreation.title": "Transkrasyon",
     "skills.transcreation.desc": "Pazarlama ve tanıtım materyallerinin yaratıcı uyarlaması",
 
     // Projects Section
-    "projects.title": "Öne Çıkan Projeler",
-    "projects.subtitle": "Çeviri çalışmalarım, yazılım projelerim ve teknik becerilerimin bir vitrinı",
+    "projects.title": "Öne Çıkan Projelerim",
+    "projects.subtitle": "Çeviri çalışmalarımı, yazılım projelerimi ve teknik becerilerimi burada bulabilirsiniz.",
     "projects.swipe.hint": "Projelerde gezinmek için sola veya sağa kaydırın",
     "projects.read.more": "Devamını oku",
     "projects.read.less": "Daha az göster",
@@ -355,8 +345,8 @@ const translations = {
       "👋 Merhaba! Ben AI Alp, sanal asistanınız. Alp'in çeviri hizmetleri veya becerileri hakkında sorularınızı sorabilirsiniz!",
 
     // Blog Section
-    "blog.title": "Son Görüşler",
-    "blog.blog.subtitle": "AI ve otomasyon alanındaki en son trendler ve atılımlardan haberdar olun",
+    "blog.title": "Son Yazılarım",
+    "blog.blog.subtitle": "Yapay zeka ve otomasyon alanındaki en son trendler ve gelişmelerden haberdar olun.",
     "blog.read": "Oku",
     "blog.min.read": "dk okuma",
     "blog.insights": "Görüşler",
@@ -405,7 +395,7 @@ const translations = {
 
     // Footer
     "footer.description":
-      "Türkçe ve İngilizce arasında video oyun lokalizasyonunda uzmanlaşmış Çevirmen ve Yerelleştirici.",
+      "Türkçe ve İngilizce arasında video oyun lokalizasyonuna ilgi duyan Çevirmen ve Yerelleştirici.",
     "footer.links": "Hızlı Bağlantılar",
     "footer.services": "Hizmetler",
     "footer.services.translation": "Çeviri",
@@ -461,58 +451,58 @@ const translations = {
 
     "casestudy.intro.title": "Giriş",
     "casestudy.intro.content":
-      "Bu vaka çalışması, CyDream Technologies tarafından geliştirilen fizik tabanlı VR rogue-lite aksiyon oyunu Battle Talent için devam eden Türkçe lokalizasyon projesini detaylandırıyor. Başlangıçta Çeviribilim lisans eğitimi sırasında kişisel bir meydan okuma olarak üstlenilen bu proje, profesyonel oyun lokalizasyonu dünyasına atılan kritik ilk adım olarak hizmet etti ve uyum sağlama, kaynak bulma ve uzun vadeli bağlılık gerektirdi.",
+      "Bu vaka çalışması, CyDream Technologies tarafından geliştirilen fizik tabanlı VR rogue-lite aksiyon oyunu Battle Talent için devam eden Türkçe lokalizasyon projesini detaylandırıyor. Başlangıçta Çeviribilim lisans eğitimi sırasında kişisel bir ilgiyle başladığım bu proje, oyun lokalizasyonu dünyasına adım atmamda önemli bir rol oynadı ve uyum sağlama, kaynakları doğru kullanma ve uzun vadeli bir bakış açısı geliştirmemi sağladı.",
 
-    "casestudy.challenge.title": "Zorluk: Erken Kariyer Lokalizasyon Engellerinde Gezinmek",
+    "casestudy.challenge.title": "Zorluklar: Kariyerimin Başlangıcındaki Lokalizasyon Engelleri",
     "casestudy.challenge.intro":
-      "Birincil hedef, akademik bilgiyi gerçek dünya projesine uygulayarak pratik oyun lokalizasyonu deneyimi aramak ve alandaki yeterliliği göstermekti. Ancak bu hırs birkaç önemli engelle geldi:",
+      "Temel amacım, akademik bilgilerimi gerçek bir projeye uygulayarak pratik oyun lokalizasyonu deneyimi kazanmak ve bu alandaki yeteneklerimi göstermekti. Ancak bu süreçte bazı önemli engellerle karşılaştım:",
     "casestudy.challenge.indirect.title": "Dolaylı Kaynak Metin",
     "casestudy.challenge.indirect.content":
-      "Türkçe çeviri için kaynak olarak kullanılan İngilizce metin, kendisi orijinal Basitleştirilmiş Çince'den profesyonel olmayan bir çeviriydi, bu da potansiyel belirsizlik katmanı getirdi ve dikkatli yorumlama gerektirdi.",
+      "Türkçe çevirinin kaynağı olan İngilizce metin, orijinal Basitleştirilmiş Çince metinden profesyonel olmayan bir çeviriydi. Bu durum, metinde olası anlam belirsizliklerine yol açıyor ve dikkatli bir yorumlama gerektiriyordu.",
     "casestudy.challenge.tooling.title": "Araç ve İş Akışı Kısıtlamaları",
     "casestudy.challenge.tooling.content":
-      "Lokalizasyon süreci tamamen farklı dillerdeki tüm çevirmenler için paylaşılan bir Google Sheet'e dayanıyordu. Bu, standart CAT araçlarının güçlü özelliklerinden yoksundu ve terminoloji yönetimi ile tutarlılık takibini zorlaştırdı.",
+      "Yerelleştirme süreci, farklı dillerdeki tüm çevirmenler için ortak kullanılan bir Google E-Tablosu üzerinden yürütülüyordu. Bu yöntem, standart CAT araçlarının sunduğu güçlü özelliklerden yoksundu ve terminoloji yönetimi ile tutarlılık takibini zorlaştırıyordu.",
     "casestudy.challenge.terminology.title": "Terminoloji ve Tutarlılık",
     "casestudy.challenge.terminology.content":
-      "Benzersiz oyun kavramları için uygun Türkçe terminoloji oluşturmak, yerleşik Türkçe oyun sözlükleri veya erişilebilir çeviri belleklerinin eksikliği nedeniyle zordu.",
+      "Oyuna özgü kavramlar için uygun Türkçe karşılıklar bulmak, yerleşik Türkçe oyun sözlüklerinin veya erişilebilir çeviri belleklerinin olmaması nedeniyle zordu.",
     "casestudy.challenge.testing.title": "Sınırlı Test Ortamı",
     "casestudy.challenge.testing.content":
-      "Test için özel geliştirici yapısı mevcut değildi. Çevirileri doğrulamak aylık genel oyun güncellemelerini beklemeyi ve canlı VR ortamında test etmeyi gerektiriyordu.",
+      "Test için özel bir geliştirici sürümü mevcut değildi. Çevirilerin doğrulanması, aylık olarak yayınlanan genel oyun güncellemelerini beklemeyi ve testleri canlı VR ortamında yapmayı gerektiriyordu.",
 
-    "casestudy.process.title": "Süreç ve Çözüm: Uyum Sağlama ve Sürekli İyileştirme",
-    "casestudy.process.intro": "Kısıtlamalara rağmen, pragmatik ve gelişen bir iş akışı kuruldu:",
+    "casestudy.process.title": "Süreç ve Çözümlerim: Uyum Sağlama ve Sürekli Gelişim",
+    "casestudy.process.intro": "Kısıtlamalara rağmen, pratik ve gelişime açık bir iş akışı oluşturdum:",
     "casestudy.process.research.title": "Araştırma Odaklı Çeviri",
     "casestudy.process.research.content":
-      "Her terime araştırmayla yaklaşıldı, çevrimiçi sözlükler kullanıldı, diğer Türkçe lokalize edilmiş oyunlardaki çevirilerle çapraz referans yapıldı ve belirsiz terimler için AI kullanıldı.",
+      "Her bir terime araştırma yaparak yaklaştım. Çevrimiçi sözlüklerden yararlandım, diğer Türkçe yerelleştirilmiş oyunlardaki çevirilerle karşılaştırmalar yaptım ve anlaşılması zor terimler için yapay zekadan destek aldım.",
     "casestudy.process.glossary.title": "Kişisel Sözlük Geliştirme",
     "casestudy.process.glossary.content":
-      "Anahtar terimleri takip etmek ve tutarlılığı sağlamak için kişisel bir sözlük oluşturuldu ve sürdürüldü, özel terminoloji yönetimi uygulaması geliştirme planlarıyla.",
+      "Anahtar terimleri takip etmek ve tutarlılığı sağlamak amacıyla kişisel bir sözlük oluşturdum ve bunu düzenli olarak güncelledim. Ayrıca, özel bir terminoloji yönetimi uygulaması geliştirmeyi planlıyorum.",
     "casestudy.process.lqa.title": "Güncelleme Sonrası LQA",
     "casestudy.process.lqa.content":
-      "Her aylık oyun güncellemesinin ardından, VR oyununun kendisinde yeni eklenen Türkçe dizgileri test etmeye, hataları ve garip ifadeleri belirlemeye ve düzeltmeye özel zaman ayrıldı.",
+      "Her aylık oyun güncellemesinin ardından, VR oyunu içinde yeni eklenen Türkçe metinleri test etmeye, hataları ve kulağa doğal gelmeyen ifadeleri belirleyip düzeltmeye özel zaman ayırdım.",
     "casestudy.process.hybrid.title": "Hibrit Çeviri Metodolojisi",
     "casestudy.process.hybrid.content":
-      "Tüm çeviri metnini periyodik olarak besleyerek potansiyel tutarsızlıkları belirlemek için AI'dan (Gemini 1.5 Pro) yararlanıldı, hedefli düzeltmeye olanak sağlandı.",
+      "Tüm çeviri metnini düzenli aralıklarla Gemini 1.5 Pro'ya yükleyerek olası tutarsızlıkları belirledim ve bu sayede hedefli düzeltmeler yapabildim.",
 
-    "casestudy.results.title": "Sonuçlar ve Etki: Değer Sunma ve Büyümeyi Destekleme",
+    "casestudy.results.title": "Sonuçlar ve Etkileri: Değer Yaratmak ve Gelişimi Desteklemek",
     "casestudy.results.intro":
-      "Devam eden lokalizasyon çabası, Battle Talent'ı Türkçe konuşan kitlesine başarıyla erişilebilir hale getirdi ve önemli kişisel gelişim sağladı:",
+      "Devam eden yerelleştirme çabalarım, Battle Talent'ın Türkçe konuşan kitleye başarıyla ulaşmasını sağladı ve kişisel gelişimime önemli katkılarda bulundu:",
     "casestudy.results.accessibility.title": "Türk Oyuncular için Gelişmiş Erişilebilirlik",
     "casestudy.results.accessibility.content":
-      "Eksiksiz bir Türkçe lokalizasyon sunuldu ve sürdürüldü, VR deneyimini Türkçe konuşan oyuncular için tamamen erişilebilir hale getirdi. Geliştirici verileri Türkiye'de yaklaşık 84 oyuncunun oyunla etkileşim kurduğunu gösterdi.",
+      "Tamamlanmış bir Türkçe yerelleştirme sundum ve bunun sürekliliğini sağladım. Bu sayede VR deneyimi, Türkçe konuşan oyuncular için tamamen erişilebilir hale geldi. Geliştirici verilerine göre, Türkiye'de yaklaşık 84 oyuncu oyunu Türkçe olarak deneyimledi.",
     "casestudy.results.relationship.title": "Güçlü Geliştirici İlişkisi",
     "casestudy.results.relationship.content":
-      "Türk pazarı için bu tek çabaya güvenen CyDream Technologies ile güven kuruldu ve sürdürüldü.",
-    "casestudy.results.career.title": "Sağlamlaştırılmış Kariyer Yolu",
+      "Türk pazarı için yürüttüğüm bu çalışma sayesinde CyDream Technologies ile güvene dayalı bir ilişki kurdum ve bu ilişkiyi sürdürdüm.",
+    "casestudy.results.career.title": "Kariyer Yolumun Şekillenmesi",
     "casestudy.results.career.content":
-      "Proje oyun lokalizasyonuna olan tutkuyu doğruladı ve Türk pazarında kaliteli lokalizasyon ihtiyacını vurguladı.",
-    "casestudy.results.foundation.title": "Gelecek Projeler için Temel",
+      "Bu proje, oyun lokalizasyonuna olan ilgimi pekiştirdi ve Türk pazarında kaliteli lokalizasyon ihtiyacını daha iyi anlamamı sağladı.",
+    "casestudy.results.foundation.title": "Gelecek Projeler İçin Bir Adım",
     "casestudy.results.foundation.content":
-      "Deneyim, Heroes of Hammerwatch II gibi daha büyük, daha karmaşık lokalizasyon projelerini üstlenme güveni ve beceri setini sağladı.",
+      "Bu deneyim, Heroes of Hammerwatch II gibi daha büyük ve karmaşık lokalizasyon projelerini üstlenmem için bana güven ve beceri kazandırdı.",
 
     "casestudy.conclusion.title": "Sonuç",
     "casestudy.conclusion.content":
-      "Battle Talent Türkçe lokalizasyon projesi, proaktif öğrenme ve adanmışlığın bir kanıtı olarak duruyor. Kaynaklar, araçlar ve test metodolojisiyle ilgili başlangıç zorluklarını aşarak, bu devam eden çaba sadece Türk VR oyuncuları için değerli bir lokalizasyon sunmakla kalmadı, aynı zamanda sürekli iyileştirme, uyum sağlama ve kalite bağlılığıyla karakterize edilen oyun lokalizasyonuna adanmış bir yaklaşımı şekillendiren paha biçilmez bir temel sağladı.",
+      "Battle Talent Türkçe lokalizasyon projesi, öğrenmeye ve gelişime verdiğim önemin bir göstergesidir. Kaynaklar, araçlar ve test metodolojisiyle ilgili başlangıçtaki zorlukların üstesinden gelerek yürüttüğüm bu çalışma, sadece Türk VR oyuncuları için değerli bir lokalizasyon sunmakla kalmadı, aynı zamanda sürekli iyileştirme, uyum sağlama ve kaliteye verdiğim önemle karakterize edilen oyun lokalizasyonuna yönelik yaklaşımımı şekillendiren önemli bir deneyim oldu.",
 
     "casestudy.metrics.title": "Temel Proje Metrikleri",
     "casestudy.metrics.words": "Çevrilen Kelimeler",
