@@ -145,6 +145,24 @@ remove it please
 _**Assistant**_
 
 
+````
+
+````
+I've commented out the import and usage of the `Chatbot` component in `ai-chat-section.tsx`. I've also added a placeholder message "AI Chat feature is temporarily unavailable." where the chatbot was previously rendered. This should resolve the build error.
+
+Please try building your project again.
+
+---
+
+_**User**_
+
+I've reinstated the old ai-chat-section.tsx in components. Can you check if its good to go?
+
+---
+
+_**Assistant**_
+
+
 
 ---
 
