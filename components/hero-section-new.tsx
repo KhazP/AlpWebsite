@@ -103,9 +103,9 @@ export default function HeroSectionNew() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-2xl sm:text-3xl font-heading font-bold leading-tight"
           >
-            <span className="block">{t("hero.title.a")}</span>
-            <span className="block text-gradient">{t("hero.title.translator")}</span>
-            <span className="block italic text-secondary">{t("hero.title.localizer")}</span>
+            {t("hero.title.a") && <span className="block">{t("hero.title.a")}</span>}
+            {t("hero.title.translator") && <span className="block text-gradient">{t("hero.title.translator")}</span>}
+            {t("hero.title.localizer") && <span className="block italic text-secondary">{t("hero.title.localizer")}</span>}
           </motion.h1>
 
           <motion.p
@@ -153,7 +153,7 @@ export default function HeroSectionNew() {
               <div className="text-center">
                 <h3 className="text-base font-bold mb-1">Alp Yalay</h3>
                 <p className="text-primary font-medium text-xs mb-2">
-                  {t("hero.title.translator")} {t("hero.title.localizer")}
+                  {[t("hero.title.translator"), t("hero.title.localizer")].filter(Boolean).join(" ")}
                 </p>
                 <div className="flex items-center justify-center gap-1">
                   <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
@@ -197,9 +197,9 @@ export default function HeroSectionNew() {
               </div>
 
               <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
-                <span className="block">{t("hero.title.a")}</span>
-                <span className="block text-gradient">{t("hero.title.translator")}</span>
-                <span className="block italic text-secondary">{t("hero.title.localizer")}</span>
+                {t("hero.title.a") && <span className="block">{t("hero.title.a")}</span>}
+                {t("hero.title.translator") && <span className="block text-gradient">{t("hero.title.translator")}</span>}
+                {t("hero.title.localizer") && <span className="block italic text-secondary">{t("hero.title.localizer")}</span>}
               </h1>
 
               <motion.p

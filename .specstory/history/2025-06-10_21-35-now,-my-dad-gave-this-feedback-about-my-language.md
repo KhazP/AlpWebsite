@@ -111,6 +111,31 @@ please remove hero title in turkish, and add A for it in english
 
 _**Assistant**_
 
+Okay, I'll make those changes.
+
+For the Turkish version, I'll remove the hero titles.
+For the English version, I'll add "A" to the translator title.
+
+Here's how I'll update `language-context.tsx`:
+ 
+````
+
+````
+OK, I've made the following changes to `language-context.tsx`:
+
+*   Removed the Turkish translations for `hero.title.translator` and `hero.title.localizer`.
+*   Added "A" to the English translation for `hero.title.translator`, so it now reads "A TRANSLATOR &".
+
+---
+
+_**User**_
+
+stıll present ıssue
+
+---
+
+_**Assistant**_
+
 
 
 ---
