@@ -23,10 +23,12 @@ const translations = {
     "nav.projects": "Projects",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
-    "nav.blog": "Blog",    // Hero Section
+    "nav.blog": "Blog",
+
+    // Hero Section
     "hero.greeting": "👋 Hi, I'm Alp Yalay",
-    "hero.title.a": "",
-    "hero.title.translator": "A TRANSLATOR &",
+    "hero.title.a": "A",
+    "hero.title.translator": "TRANSLATOR &",
     "hero.title.localizer": "LOCALIZER",
     "hero.description":
       "I offer Turkish ↔ English translation services with a focus on video game localization. Based in Istanbul, Turkey.",
@@ -266,7 +268,9 @@ const translations = {
     "nav.projects": "Projeler",
     "nav.experience": "Deneyim",
     "nav.contact": "İletişim",
-    "nav.blog": "Blog",    // Hero Section
+    "nav.blog": "Blog",
+
+    // Hero Section
     "hero.greeting": "👋 Merhaba, ben Alp Yalay",
     "hero.title.a": "",
     "hero.title.translator": "",
