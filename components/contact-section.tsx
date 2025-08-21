@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { Mail, Phone, MapPin, Send, AlertCircle } from "lucide-react"
+import { Mail, MapPin, Send, AlertCircle } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
 type FormData = {
@@ -164,15 +164,7 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="glass p-6 flex items-start space-x-4">
-              <div className="p-3 rounded-full bg-secondary/20">
-                <Phone className="w-6 h-6 text-secondary" />
-              </div>
-              <div>
-                <h3 className="text-lg font-medium mb-1">{t("contact.phone")}</h3>
-                <p className="text-gray-400">+90 555 123 4567</p>
-              </div>
-            </div>
+
 
             <div className="glass p-6 flex items-start space-x-4">
               <div className="p-3 rounded-full bg-accent/20">
