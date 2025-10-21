@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
 import { Send, Bot, User, Sparkles, RefreshCw } from "lucide-react"
 import Image from "next/image"
@@ -257,14 +257,17 @@ export default function AIChatSection() {
   // ... existing state and effects
 
   // Update initial messages to use translations
-  const getInitialMessages = () => [
-    {
-      role: "assistant",
-      content: t("experience.ai.greeting"),
-    },
-  ]
+  const getInitialMessages = useCallback(
+    () => [
+      {
+        role: "assistant",
+        content: t("experience.ai.greeting"),
+      },
+    ],
+    [t],
+  )
 
-  const [messages, setMessages] = useState(getInitialMessages())
+  const [messages, setMessages] = useState(() => getInitialMessages())
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -313,7 +316,7 @@ export default function AIChatSection() {
   // Update the component when language changes
   useEffect(() => {
     setMessages(getInitialMessages())
-  }, [t])
+  }, [getInitialMessages])
 
   // Listen for service click events
   useEffect(() => {
