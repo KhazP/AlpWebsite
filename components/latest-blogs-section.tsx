@@ -10,6 +10,13 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
 
+const categoryBadgeColorClasses: Record<string, string> = {
+  purple: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+  cyan: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+  red: "bg-red-500/20 text-red-300 border-red-500/30",
+  default: "bg-slate-500/20 text-slate-300 border-slate-500/30",
+}
+
 interface BlogPost {
   id: string
   slug: string
@@ -110,7 +117,7 @@ export default function LatestBlogsSection() {
                   <CardContent className="p-6 flex flex-col h-full">
                     <Badge
                       variant="secondary"
-                      className={`bg-${post.category.color}-500/20 text-${post.category.color}-300 border-${post.category.color}-500/30 self-start mb-4`}
+                      className={`${categoryBadgeColorClasses[post.category.color] ?? categoryBadgeColorClasses.default} self-start mb-4`}
                     >
                       {post.category.icon}
                       {post.category.name}
