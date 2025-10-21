@@ -125,6 +125,8 @@ export default function HeroSectionNew() {
           >
             <motion.a
               href="#contact"
+              aria-label={t("hero.cta.contact")}
+              title={t("hero.cta.contact")}
               className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full text-white shadow-lg shadow-primary/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
