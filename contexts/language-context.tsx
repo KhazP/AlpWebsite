@@ -220,31 +220,41 @@ const translations = {
     "casestudy.challenge.title": "The Challenges: Navigating Localization Hurdles Early in My Career",
     "casestudy.challenge.intro":
       "My main goal was to gain practical game localization experience by applying my academic knowledge to a real-world project and demonstrating my abilities in this field. However, I encountered several significant hurdles along the way:",
+    "casestudy.challenge.indirect.title": "Indirect Source Text",
     "casestudy.challenge.indirect.content":
       "The English text used as the source for the Turkish translation was itself a non-professional translation from the original Simplified Chinese. This introduced potential ambiguities and required careful interpretation.",
+    "casestudy.challenge.tooling.title": "Tooling & Workflow Limitations",
     "casestudy.challenge.tooling.content":
       "The localization process for all languages relied on a shared Google Sheet. This lacked the robust features of standard CAT tools, making terminology management and consistency tracking more difficult.",
+    "casestudy.challenge.terminology.title": "Terminology & Consistency",
     "casestudy.challenge.terminology.content":
       "Finding suitable Turkish terminology for unique game concepts was challenging due to the lack of established Turkish gaming glossaries or readily accessible translation memories.",
+    "casestudy.challenge.testing.title": "Limited Testing Environment",
     "casestudy.challenge.testing.content":
       "No dedicated developer build was available for testing. Validating translations meant waiting for monthly public game updates and testing within the live VR environment.",
 
     "casestudy.process.title": "My Process & Solutions: Adaptability and Continuous Improvement",
     "casestudy.process.intro": "Despite the constraints, I established a pragmatic and evolving workflow:",
+    "casestudy.process.research.title": "Research-Driven Translation",
     "casestudy.process.research.content":
       "I approached each term with research, utilizing online dictionaries, cross-referencing with other Turkish-localized games, and leveraging AI for more obscure terms.",
+    "casestudy.process.glossary.title": "Personal Glossary Development",
     "casestudy.process.glossary.content":
       "I created and maintained a personal glossary to track key terms and ensure consistency, and I plan to develop a dedicated terminology management app.",
+    "casestudy.process.lqa.title": "Post-Update LQA",
     "casestudy.process.lqa.content":
       "Following each monthly game update, I dedicated time to test the newly added Turkish strings within the VR game itself, identifying and correcting errors or awkward phrasing.",
+    "casestudy.process.hybrid.title": "Hybrid QA Approach",
     "casestudy.process.hybrid.content":
       "I periodically fed the entire translation text into AI (Gemini 1.5 Pro) to identify potential inconsistencies, allowing for targeted corrections.",
 
     "casestudy.results.title": "Results & Impact: Delivering Value and Fostering Growth",
     "casestudy.results.intro":
       "The ongoing localization effort has successfully made Battle Talent accessible to its Turkish-speaking audience and has been a significant source of personal development for me:",
+    "casestudy.results.accessibility.title": "Enhanced Accessibility for Turkish Players",
     "casestudy.results.accessibility.content":
       "I delivered and have maintained a complete Turkish localization, making the VR experience fully accessible for Turkish-speaking players. Developer data indicated that approximately 84 players in Turkey were engaging with the game in Turkish.",
+    "casestudy.results.relationship.title": "Strengthened Developer Relationship",
     "casestudy.results.relationship.content":
       "I established and maintained a relationship of trust with CyDream Technologies, who relied on my efforts for the Turkish market.",
     "casestudy.results.career.title": "Shaping My Career Path",
