@@ -56,8 +56,8 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="#skills" className="text-gray-400 hover:text-white transition-colors">
-                    {t("nav.skills")}
+                  <a href="#blog" className="text-gray-400 hover:text-white transition-colors">
+                    {t("nav.blog")}
                   </a>
                 </li>
                 <li>
