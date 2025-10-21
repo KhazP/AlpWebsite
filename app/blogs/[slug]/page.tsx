@@ -22,6 +22,20 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
 
+const categoryBadgeColorClasses: Record<string, string> = {
+  purple: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+  cyan: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+  red: "bg-red-500/20 text-red-300 border-red-500/30",
+  default: "bg-slate-500/20 text-slate-300 border-slate-500/30",
+}
+
+const tagBadgeColorClasses: Record<string, string> = {
+  purple: "bg-purple-900/20 text-purple-300 border-purple-500/40",
+  cyan: "bg-cyan-900/20 text-cyan-300 border-cyan-500/40",
+  red: "bg-red-900/20 text-red-300 border-red-500/40",
+  default: "bg-slate-900/20 text-slate-300 border-slate-500/40",
+}
+
 interface BlogPost {
   slug: string
   titleKey: string
@@ -149,7 +163,7 @@ export default function BlogPost() {
             <header className="mb-12">
               <Badge
                 variant="secondary"
-                className={`bg-${post.category.color}-500/20 text-${post.category.color}-300 border-${post.category.color}-500/30 self-start mb-4`}
+                className={`${categoryBadgeColorClasses[post.category.color] ?? categoryBadgeColorClasses.default} self-start mb-4`}
               >
                 {post.category.icon}
                 {t(post.category.nameKey)}
@@ -176,7 +190,7 @@ export default function BlogPost() {
                   <Badge
                     key={tag.nameKey}
                     variant="outline"
-                    className={`bg-${tag.color}-900/20 text-${tag.color}-300 border-${tag.color}-500/40`}
+                    className={tagBadgeColorClasses[tag.color] ?? tagBadgeColorClasses.default}
                   >
                     {tag.icon}
                     {t(tag.nameKey)}
