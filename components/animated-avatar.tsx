@@ -129,7 +129,7 @@ export default function AnimatedAvatar() {
         <div className="avatar-glow rounded-full p-1 bg-gradient-to-r from-primary to-secondary">
           <div className="bg-card rounded-full p-2 backdrop-blur-sm">
             <div className="relative w-[280px] h-[280px] rounded-full overflow-hidden border-2 border-white/10">
-              <Image src="/images/ibrahim-avatar.png" alt="Ibrahim Mustafa" fill className="object-cover" priority />
+              <Image src="/images/alp-avatar.webp" alt="Ibrahim Mustafa" fill className="object-cover" priority />
             </div>
           </div>
         </div>
