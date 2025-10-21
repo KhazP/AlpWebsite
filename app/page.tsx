@@ -13,8 +13,10 @@ import ScrollAnimations from "@/components/scroll-animations"
 import GlobalBackground from "@/components/global-background"
 import SectionIndicators from "@/components/section-indicators"
 
+let hasInitialLoadCompleted = false
+
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(hasInitialLoadCompleted)
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -29,11 +31,22 @@ export default function Home() {
     }
 
     // Ensure all components are loaded before showing content
-    const timer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 3000) // Wait for loading screen to complete
+    let timer: ReturnType<typeof setTimeout> | null = null
 
-    return () => clearTimeout(timer)
+    if (!hasInitialLoadCompleted) {
+      timer = setTimeout(() => {
+        hasInitialLoadCompleted = true
+        setIsLoaded(true)
+      }, 3000) // Wait for loading screen to complete on the first visit
+    } else {
+      setIsLoaded(true)
+    }
+
+    return () => {
+      if (timer) {
+        clearTimeout(timer)
+      }
+    }
   }, [])
 
   // Don't render anything during SSR to avoid hydration issues
