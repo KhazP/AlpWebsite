@@ -12,7 +12,7 @@ const navItems = [
   { name: "nav.home", href: "#home", icon: Home },
   { name: "nav.about", href: "#about", icon: User },
   { name: "nav.projects", href: "#projects", icon: Briefcase },
-  { name: "nav.experience", href: "#experience", icon: MessageCircle },
+  { name: "nav.experience", href: "#ai-chat", icon: MessageCircle },
   { name: "nav.contact", href: "#contact", icon: MessageCircle },
 ]
 

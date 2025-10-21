@@ -440,7 +440,7 @@ export default function AIChatSection() {
   }
 
   return (
-    <section id="experience" className="py-20 md:py-32 relative bg-gradient-to-b from-card/50 to-background">
+    <section id="ai-chat" className="py-20 md:py-32 relative bg-gradient-to-b from-card/50 to-background">
       {/* ... existing background */}
 
       <div className="absolute inset-0 z-0 overflow-hidden">
