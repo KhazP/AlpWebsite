@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react"
+import { Github, Linkedin } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
 export default function Footer() {
@@ -18,7 +18,9 @@ export default function Footer() {
               <p className="text-gray-400 mb-4 max-w-xs">{t("footer.description")}</p>
               <div className="flex space-x-4">
                 <motion.a
-                  href="#"
+                  href="https://github.com/KhazP"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
@@ -27,31 +29,15 @@ export default function Footer() {
                   <Github size={20} />
                 </motion.a>
                 <motion.a
-                  href="#"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter size={20} />
-                </motion.a>
-                <motion.a
-                  href="#"
+                  href="https://www.linkedin.com/in/alp-yalay/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-2 rounded-full bg-card/50 hover:bg-card transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={20} />
                 </motion.a>
               </div>
             </div>
