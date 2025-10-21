@@ -94,6 +94,18 @@ const translations = {
     "experience.quick.skills": "Skills",
     "experience.quick.projects": "Projects",
     "experience.quick.education": "Education",
+    "experience.quick.message.experience": "Could you tell me about Alp's work experience?",
+    "experience.quick.message.skills": "What are Alp's key skills?",
+    "experience.quick.message.projects": "Could you share details about Alp's projects?",
+    "experience.quick.message.education": "What is Alp's educational background?",
+    "experience.service.translation": "I'm interested in Alp's translation services. Could you tell me more?",
+    "experience.service.localization": "Could you explain Alp's localization services?",
+    "experience.service.technical": "Do you provide technical translation services?",
+    "experience.service.transcreation": "I'd like to learn about Alp's transcreation offerings.",
+    "experience.response.general":
+      "I can share insights into Alp's professional journey, skills, project experiences, or educational background. What are you curious about?",
+    "experience.response.service":
+      "Thank you for your interest! I'd be happy to discuss this service with you. What specific requirements do you have?",
     "experience.ai.greeting":
       "👋 Hi there! I'm AlpGPT 3.5, your AI assistant. I can help you learn about Alp's professional journey, skills, and project experiences.",
 
@@ -338,6 +350,18 @@ const translations = {
     "experience.quick.skills": "Beceriler",
     "experience.quick.projects": "Projeler",
     "experience.quick.education": "Eğitim",
+    "experience.quick.message.experience": "Alp'in iş deneyimi hakkında bilgi verebilir misiniz?",
+    "experience.quick.message.skills": "Alp'in temel becerileri neler?",
+    "experience.quick.message.projects": "Alp'in projeleri hakkında detay paylaşır mısınız?",
+    "experience.quick.message.education": "Alp'in eğitim geçmişi nedir?",
+    "experience.service.translation": "Alp'in çeviri hizmetleriyle ilgileniyorum. Daha fazla bilgi alabilir miyim?",
+    "experience.service.localization": "Alp'in lokalizasyon hizmetlerini açıklayabilir misiniz?",
+    "experience.service.technical": "Teknik çeviri hizmeti sunuyor musunuz?",
+    "experience.service.transcreation": "Alp'in transkreasyon çalışmalarını öğrenmek istiyorum.",
+    "experience.response.general":
+      "Alp'in profesyonel yolculuğu, becerileri, projeleri veya eğitim geçmişi hakkında bilgi paylaşabilirim. Hangi konuda meraklısınız?",
+    "experience.response.service":
+      "İlginiz için teşekkürler! Bu hizmeti sizinle konuşmaktan memnuniyet duyarım. Özel gereksinimleriniz nelerdir?",
     "experience.ai.greeting":
       "👋 Merhaba! Ben AlpGPT 3.5, yapay zeka asistanınız. Alp'in profesyonel yolculuğu, becerileri ve proje deneyimleri hakkında bilgi edinmenize yardımcı olabilirim.",
 

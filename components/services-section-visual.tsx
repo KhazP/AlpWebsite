@@ -4,6 +4,8 @@ import { useRef, useEffect } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
 import { Brain, Workflow, BarChart3, MessageSquare, Code, Database, ArrowRight } from "lucide-react"
 
+import { useLanguage } from "@/contexts/language-context"
+
 const services = [
   {
     icon: Brain,
@@ -13,8 +15,8 @@ const services = [
     size: "large",
     position: "top-left",
     clickable: true,
-    chatMessage:
-      "I'm interested in AI development services. Can you tell me about your machine learning and AI solutions?",
+    chatTopic: "translation",
+    chatMessageKey: "experience.service.translation",
   },
   {
     icon: Workflow,
@@ -24,7 +26,8 @@ const services = [
     size: "medium",
     position: "top-right",
     clickable: true,
-    chatMessage: "I need help with process automation. What workflow optimization solutions do you offer?",
+    chatTopic: "localization",
+    chatMessageKey: "experience.service.localization",
   },
   {
     icon: BarChart3,
@@ -34,7 +37,8 @@ const services = [
     size: "medium",
     position: "middle-left",
     clickable: true,
-    chatMessage: "I'm looking for data analytics solutions. How can you help me extract insights from my data?",
+    chatTopic: "technical",
+    chatMessageKey: "experience.service.technical",
   },
   {
     icon: MessageSquare,
@@ -44,8 +48,8 @@ const services = [
     size: "small",
     position: "middle-right",
     clickable: true,
-    chatMessage:
-      "I'm interested in chatbot development services. Can you tell me more about your conversational AI solutions?",
+    chatTopic: "transcreation",
+    chatMessageKey: "experience.service.transcreation",
   },
   {
     icon: Code,
@@ -55,7 +59,8 @@ const services = [
     size: "medium",
     position: "bottom-left",
     clickable: true,
-    chatMessage: "I need custom software development. What bespoke solutions can you create for my business?",
+    chatTopic: "translation",
+    chatMessageKey: "experience.service.translation",
   },
   {
     icon: Database,
@@ -65,7 +70,8 @@ const services = [
     size: "small",
     position: "bottom-right",
     clickable: true,
-    chatMessage: "I need help with data management solutions. What services do you offer for efficient data systems?",
+    chatTopic: "technical",
+    chatMessageKey: "experience.service.technical",
   },
 ]
 
@@ -73,6 +79,7 @@ export default function ServicesSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
   const controls = useAnimation()
+  const { t } = useLanguage()
 
   useEffect(() => {
     if (isInView) {
@@ -92,7 +99,10 @@ export default function ServicesSection() {
           // Dispatch custom event to trigger chat message
           window.dispatchEvent(
             new CustomEvent("triggerChatMessage", {
-              detail: { message: service.chatMessage },
+              detail: {
+                message: service.chatMessageKey ? t(service.chatMessageKey) : undefined,
+                topic: service.chatTopic,
+              },
             }),
           )
         }, 1000)

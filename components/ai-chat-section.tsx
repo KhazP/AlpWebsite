@@ -138,6 +138,102 @@ const educationResponses = [
   },
 ]
 
+type ChatTopic =
+  | "experience"
+  | "skills"
+  | "projects"
+  | "translation"
+  | "localization"
+  | "technical"
+  | "transcreation"
+  | "education"
+
+type AssistantMessage = {
+  role: "assistant"
+  content: string
+}
+
+type QuickQuestionConfig = {
+  topic: ChatTopic
+  label: string
+  message: string
+}
+
+type ServiceEventDetail = {
+  message?: string
+  topic?: ChatTopic
+}
+
+const responseByTopic: Record<ChatTopic, AssistantMessage> = {
+  experience: experienceResponses[0],
+  skills: skillsResponses[0],
+  projects: projectResponses[0],
+  translation: translationResponses[0],
+  localization: localizationResponses[0],
+  technical: technicalTranslationResponses[0],
+  transcreation: transcreationResponses[0],
+  education: educationResponses[0],
+}
+
+const topicKeywords: { topic: ChatTopic; keywords: string[] }[] = [
+  {
+    topic: "translation",
+    keywords: ["translation", "translate", "çeviri", "çevir"],
+  },
+  {
+    topic: "localization",
+    keywords: ["localization", "localise", "localize", "lokalizasyon", "yerelleştirme"],
+  },
+  {
+    topic: "technical",
+    keywords: ["technical", "tech", "teknik"],
+  },
+  {
+    topic: "transcreation",
+    keywords: ["transcreation", "creative", "transkreasyon", "yaratıcı"],
+  },
+  {
+    topic: "experience",
+    keywords: ["experience", "work", "job", "career", "deneyim", "iş", "kariyer"],
+  },
+  {
+    topic: "skills",
+    keywords: ["skill", "skills", "know", "capabilities", "beceri", "yetenek"],
+  },
+  {
+    topic: "projects",
+    keywords: ["project", "projects", "portfolio", "build", "proje", "projeler", "çalışma"],
+  },
+  {
+    topic: "education",
+    keywords: ["education", "study", "degree", "school", "üniversite", "eğitim"],
+  },
+]
+
+const servicePromptKeyMap: Partial<Record<ChatTopic, string>> = {
+  translation: "experience.service.translation",
+  localization: "experience.service.localization",
+  technical: "experience.service.technical",
+  transcreation: "experience.service.transcreation",
+}
+
+const getResponseForTopic = (topic: ChatTopic): AssistantMessage => {
+  const response = responseByTopic[topic]
+  return {
+    role: response.role,
+    content: response.content,
+  }
+}
+
+const detectTopicFromText = (text: string): ChatTopic | null => {
+  for (const { topic, keywords } of topicKeywords) {
+    if (keywords.some((keyword) => text.includes(keyword))) {
+      return topic
+    }
+  }
+  return null
+}
+
 // Rich text formatting function
 const formatMessage = (content: string) => {
   // Convert **text** to bold
@@ -181,6 +277,29 @@ export default function AIChatSection() {
 
   const chatContainerRef = useRef<HTMLDivElement>(null)
 
+  const quickQuestions: QuickQuestionConfig[] = [
+    {
+      topic: "experience",
+      label: t("experience.quick.experience"),
+      message: t("experience.quick.message.experience"),
+    },
+    {
+      topic: "skills",
+      label: t("experience.quick.skills"),
+      message: t("experience.quick.message.skills"),
+    },
+    {
+      topic: "projects",
+      label: t("experience.quick.projects"),
+      message: t("experience.quick.message.projects"),
+    },
+    {
+      topic: "education",
+      label: t("experience.quick.education"),
+      message: t("experience.quick.message.education"),
+    },
+  ]
+
   useEffect(() => {
     if (isInView) {
       controls.start("visible")
@@ -198,44 +317,42 @@ export default function AIChatSection() {
 
   // Listen for service click events
   useEffect(() => {
-    const handleServiceMessage = (event: any) => {
-      const { message } = event.detail
-      if (message) {
-        // Add user message
-        const userMessage = { role: "user", content: message }
-        setMessages((prev) => [...prev, userMessage])
-        setIsTyping(true)
+    const handleServiceMessage = (event: Event) => {
+      const customEvent = event as CustomEvent<ServiceEventDetail>
+      const detail = customEvent.detail
 
-        // Simulate AI response
-        setTimeout(() => {
-          let response
-          const lowercaseMessage = message.toLowerCase()
-
-          if (lowercaseMessage.includes("translation")) {
-            response = translationResponses[0]
-          } else if (lowercaseMessage.includes("localization")) {
-            response = localizationResponses[0]
-          } else if (lowercaseMessage.includes("technical")) {
-            response = technicalTranslationResponses[0]
-          } else if (lowercaseMessage.includes("transcreation")) {
-            response = transcreationResponses[0]
-          } else {
-            response = {
-              role: "assistant",
-              content:
-                "Thank you for your interest! I'd be happy to discuss this service with you. What specific requirements do you have?",
-            }
-          }
-
-          setMessages((prev) => [...prev, response])
-          setIsTyping(false)
-        }, 1500)
+      if (!detail) {
+        return
       }
+
+      const resolvedTopic =
+        detail.topic ??
+        (detail.message ? detectTopicFromText(detail.message.toLowerCase()) : null)
+
+      const serviceKey = resolvedTopic ? servicePromptKeyMap[resolvedTopic] : undefined
+      const resolvedMessage = detail.message ?? (serviceKey ? t(serviceKey) : undefined)
+
+      if (!resolvedMessage) {
+        return
+      }
+
+      const userMessage = { role: "user" as const, content: resolvedMessage }
+      setMessages((prev) => [...prev, userMessage])
+      setIsTyping(true)
+
+      setTimeout(() => {
+        const response: AssistantMessage = resolvedTopic
+          ? getResponseForTopic(resolvedTopic)
+          : { role: "assistant", content: t("experience.response.service") }
+
+        setMessages((prev) => [...prev, response])
+        setIsTyping(false)
+      }, 1500)
     }
 
-    window.addEventListener("triggerChatMessage", handleServiceMessage)
-    return () => window.removeEventListener("triggerChatMessage", handleServiceMessage)
-  }, [])
+    window.addEventListener("triggerChatMessage", handleServiceMessage as EventListener)
+    return () => window.removeEventListener("triggerChatMessage", handleServiceMessage as EventListener)
+  }, [t])
 
   const scrollToBottom = () => {
     // Only scroll within the chat container, not the entire page
@@ -250,8 +367,10 @@ export default function AIChatSection() {
 
     if (!input.trim()) return
 
+    const submittedInput = input
+
     // Add user message
-    const userMessage = { role: "user", content: input }
+    const userMessage = { role: "user" as const, content: submittedInput }
     setMessages((prev) => [...prev, userMessage])
     setInput("")
     setIsTyping(true)
@@ -263,69 +382,26 @@ export default function AIChatSection() {
 
     // Simulate AI response
     setTimeout(() => {
-      let response
-      const lowercaseInput = input.toLowerCase()
-
-      if (lowercaseInput.includes("experience") || lowercaseInput.includes("work") || lowercaseInput.includes("job")) {
-        response = experienceResponses[0]
-      } else if (lowercaseInput.includes("skill") || lowercaseInput.includes("know") || lowercaseInput.includes("do")) {
-        response = skillsResponses[0]
-      } else if (
-        lowercaseInput.includes("project") ||
-        lowercaseInput.includes("portfolio") ||
-        lowercaseInput.includes("build")
-      ) {
-        response = projectResponses[0]
-      } else if (lowercaseInput.includes("translation") || lowercaseInput.includes("translate")) {
-        response = translationResponses[0]
-      } else if (lowercaseInput.includes("localization") || lowercaseInput.includes("localize")) {
-        response = localizationResponses[0]
-      } else if (lowercaseInput.includes("technical") || lowercaseInput.includes("tech")) {
-        response = technicalTranslationResponses[0]
-      } else if (lowercaseInput.includes("transcreation") || lowercaseInput.includes("creative")) {
-        response = transcreationResponses[0]
-      } else if (
-        lowercaseInput.includes("education") ||
-        lowercaseInput.includes("study") ||
-        lowercaseInput.includes("degree")
-      ) {
-        response = educationResponses[0]
-      } else {
-        response = {
-          role: "assistant",
-          content:
-            "I can share insights into Alp's professional journey, skills, project experiences, or educational background. What are you curious about?",
-        }
-      }
+      const topic = detectTopicFromText(submittedInput.toLowerCase())
+      const response: AssistantMessage = topic
+        ? getResponseForTopic(topic)
+        : { role: "assistant", content: t("experience.response.general") }
 
       setMessages((prev) => [...prev, response])
       setIsTyping(false)
     }, 1500)
   }
 
-  const handleQuickQuestion = (question: string) => {
+  const handleQuickQuestion = (question: QuickQuestionConfig) => {
     // Simulate user clicking a quick question
-    const userMessage = { role: "user", content: question }
+    const userMessage = { role: "user" as const, content: question.message }
     setMessages((prev) => [...prev, userMessage])
     setIsTyping(true)
 
     // Simulate AI response
     setTimeout(() => {
-      let response
-
-      if (question.includes("experience")) {
-        response = experienceResponses[0]
-      } else if (question.includes("skills")) {
-        response = skillsResponses[0]
-      } else if (question.includes("projects")) {
-        response = projectResponses[0]
-      } else if (question.includes("education")) {
-        response = educationResponses[0]
-      }
-
-      if (response) {
-        setMessages((prev) => [...prev, response])
-      }
+      const response = getResponseForTopic(question.topic)
+      setMessages((prev) => [...prev, response])
       setIsTyping(false)
     }, 1500)
   }
@@ -495,34 +571,16 @@ export default function AIChatSection() {
 
             {/* Quick questions */}
             <div className="p-3 border-t border-white/10 flex gap-2 overflow-x-auto hide-scrollbar">
-              <button
-                type="button"
-                onClick={() => handleQuickQuestion("Tell me about Alp's work experience")}
-                className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
-              >
-                {t("experience.quick.experience")}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickQuestion("What are Alp's skills?")}
-                className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
-              >
-                {t("experience.quick.skills")}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickQuestion("Tell me about Alp's projects")}
-                className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
-              >
-                {t("experience.quick.projects")}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickQuestion("Tell me about Alp's education")}
-                className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
-              >
-                {t("experience.quick.education")}
-              </button>
+              {quickQuestions.map((question) => (
+                <button
+                  key={question.topic}
+                  type="button"
+                  onClick={() => handleQuickQuestion(question)}
+                  className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
+                >
+                  {question.label}
+                </button>
+              ))}
             </div>
 
             {/* Chat input */}
