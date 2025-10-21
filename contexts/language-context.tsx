@@ -156,6 +156,7 @@ const translations = {
     "contact.form.error.email.invalid": "Please enter a valid email address",
     "contact.form.error.message.required": "Message is required",
     "contact.form.error.message.length": "Message must be at least 10 characters",
+    "contact.form.error.submit": "Something went wrong. Please try again.",
 
     // Footer
     "footer.description": "Translator & Localizer focusing on video game localization between Turkish and English.",
@@ -412,6 +413,7 @@ const translations = {
     "contact.form.error.email.invalid": "Lütfen geçerli bir e-posta adresi girin",
     "contact.form.error.message.required": "Mesaj gereklidir",
     "contact.form.error.message.length": "Mesaj en az 10 karakter olmalıdır",
+    "contact.form.error.submit": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin.",
 
     // Footer
     "footer.description":

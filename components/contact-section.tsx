@@ -25,6 +25,7 @@ export default function ContactSection() {
   const isInView = useInView(ref, { once: true, amount: 0.1 })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submissionError, setSubmissionError] = useState<string | null>(null)
 
   // Form data state
   const [formData, setFormData] = useState<FormData>({
@@ -91,6 +92,7 @@ export default function ContactSection() {
       return
     }
 
+    setSubmissionError(null)
     setIsSubmitting(true)
 
     // Get the form element and submit it to Web3Forms
@@ -104,6 +106,7 @@ export default function ContactSection() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          setSubmissionError(null)
           setIsSubmitted(true)
           // Reset form
           setFormData({
@@ -113,12 +116,12 @@ export default function ContactSection() {
           })
         } else {
           // Show error if submission fails
-          alert("Something went wrong. Please try again.")
+          setSubmissionError(t("contact.form.error.submit"))
         }
       })
       .catch((err) => {
         console.error("Error submitting form:", err)
-        alert("Something went wrong. Please try again.")
+        setSubmissionError(t("contact.form.error.submit"))
       })
       .finally(() => {
         setIsSubmitting(false)
@@ -198,6 +201,13 @@ export default function ContactSection() {
                   <input type="hidden" name="subject" value="New Contact Form Submission - Translation Services" />
                   <input type="hidden" name="from_name" value="Alp Yalay Portfolio" />
                   <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+
+                  {submissionError && (
+                    <div className="flex items-center space-x-2 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-400">
+                      <AlertCircle size={16} className="flex-shrink-0" />
+                      <span>{submissionError}</span>
+                    </div>
+                  )}
 
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
