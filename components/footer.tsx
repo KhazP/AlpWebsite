@@ -66,7 +66,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="#experience" className="text-gray-400 hover:text-white transition-colors">
+                  <a href="#ai-chat" className="text-gray-400 hover:text-white transition-colors">
                     {t("nav.experience")}
                   </a>
                 </li>
