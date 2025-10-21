@@ -90,7 +90,7 @@ export default function ServicesSection() {
   const handleServiceClick = (service: any) => {
     if (service.clickable) {
       // Scroll to AI chat section
-      const chatSection = document.getElementById("experience")
+      const chatSection = document.getElementById("ai-chat")
       if (chatSection) {
         chatSection.scrollIntoView({ behavior: "smooth" })
 
