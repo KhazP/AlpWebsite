@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useEffect, useCallback } from "react"
 
 type Language = "en" | "tr"
 
@@ -561,14 +561,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }
 
   // Translation function
-  const t = (key: string): string => {
-    const langSpecificTranslations = translations[language] as Record<string, string>;
-    // Check if the key exists, even if its value is an empty string
-    if (Object.prototype.hasOwnProperty.call(langSpecificTranslations, key)) {
-      return langSpecificTranslations[key];
-    }
-    return key; // Fallback to key only if the key truly doesn't exist
-  }
+  const t = useCallback(
+    (key: string): string => {
+      const langSpecificTranslations = translations[language] as Record<string, string>
+      // Check if the key exists, even if its value is an empty string
+      if (Object.prototype.hasOwnProperty.call(langSpecificTranslations, key)) {
+        return langSpecificTranslations[key]
+      }
+      return key // Fallback to key only if the key truly doesn't exist
+    },
+    [language],
+  )
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
