@@ -127,7 +127,6 @@ const translations = {
     "contact.subtitle":
       "Have a translation project in mind or want to discuss a localization collaboration? I'd love to hear from you!",
     "contact.email": "Email",
-    "contact.phone": "Phone",
     "contact.location": "Location",
     "contact.form.name": "Name",
     "contact.form.email": "Email",
@@ -372,7 +371,6 @@ const translations = {
     "contact.subtitle":
       "Aklınızda bir çeviri projesi var mı veya lokalizasyon işbirliği tartışmak istiyor musunuz? Sizden haber almayı çok isterim!",
     "contact.email": "E-posta",
-    "contact.phone": "Telefon",
     "contact.location": "Konum",
     "contact.form.name": "Ad",
     "contact.form.email": "E-posta",
