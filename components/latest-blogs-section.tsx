@@ -83,7 +83,7 @@ export default function LatestBlogsSection() {
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section id="blog" className="py-20 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-cyan-900/10" />
       <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
