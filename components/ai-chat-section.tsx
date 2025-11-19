@@ -4,9 +4,10 @@ import type React from "react"
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
-import { Send, Bot, User, Sparkles, RefreshCw } from "lucide-react"
+import { Send, Bot, User, Sparkles, RefreshCw, Copy, ThumbsUp, ThumbsDown, Check, Plus, Mic, AudioWaveform } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
+import { findBestMatch } from "@/lib/utils"
 
 // Predefined chat messages
 const initialMessages = [
@@ -19,122 +20,98 @@ const initialMessages = [
 const experienceResponses = [
   {
     role: "assistant",
-    content: `Alp has a growing professional experience. Here's a summary of his journey so far:
+    content: `Alp has diverse experience in Technical Production, Web Development, and Localization. Here is his journey:
+
+**Technical Producer** at Çağla Cabaoğlu Gallery (Aug 2025 - Present)
+• Lead end‑to‑end delivery of the gallery website: scope, backlog, sprints, vendor/stack decisions, accessibility, SEO, Q&A, and launch operations.
+• Provide technical consulting on content workflows, technical areas, and integrations to improve discoverability and engagement.
+• Run IT support for staff and exhibitions (devices, software, network, show PCs/kiosks).
 
 **Junior Social Media Manager** at Muse İstanbul (Apr 2024 - Aug 2024)
-• Managed social media accounts, including for iGA Istanbul Airport.
-• Focused on creating engaging content and analyzing performance metrics.
-• Contributed to marketing team collaborations and campaign execution.
+• Managed, provided creative writing, and translated social media accounts/posts for iGA Istanbul Airport and its CEO Selahattin Bilgen.
 
 **Barista, Waiter, Cashier** at Asma Yaprağı (Jul 2015 - Sep 2021)
-• Developed customer service and financial management skills in a dynamic environment.
-• Honed his ability to provide excellent service in a high-volume setting.
+• Worked as a Barista, Waiter, and Cashier. Focusing on Cash-flow Management and General Restaurant Management.
 
 **Intern** at Şafak Tercüme (Feb 2021 - Mar 2021)
-• Gained experience in professional translation workflows and industry practices.`,
+• Completed a 20-workday internship focused on translation processes.`,
   },
 ]
 
 const skillsResponses = [
   {
     role: "assistant",
-    content: `Alp possesses a diverse skill set, with a focus on:
+    content: `Alp's top skills cover Technical Production, Web Development, and Language Services:
 
-**Translation** - Expertise in professional translation between Turkish and English.
-**Localization** - Adapting content effectively for cultural nuances.
-**Technical Translation** - Experience in specialized translation for technical domains.
-**Game Localization** - Skills in translating video games and related materials.
-**Transcreation** - Experience with creative adaptation of marketing materials to maintain impact across languages.
+**Technical Production & Development:**
+• **Back-End Web Development**
+• **Front-End Development**
+• Microsoft Office Suite, Photoshop, Premiere Pro.
+• General computer knowledge and IT support.
 
-He is proficient with tools like SDL Trados, SmartCat, Microsoft Office, and various CAT tools, and is committed to enhancing his technical capabilities.`,
+**Language & Translation:**
+• **Translation & Interpretation** (English/Turkish)
+• Localization, Transcreation, Subtitle Translation, Proofreading.
+• Specialized in diplomatic, consecutive, audio-visual, literary, medical, economic, legal, media, and computer-assisted translation.
+• Proficient in SDL Trados and Subtitle Edit.
+
+**Domain Expertise:**
+• Art and culture, video game lexicon, terminology.`,
   },
 ]
 
 const projectResponses = [
   {
     role: "assistant",
-    content: `Alp has engaged in several key projects that showcase his skills and development:
+    content: `Alp has engaged in several key projects that showcase his skills:
 
-**Heroes of Hammerwatch II** - This project provided an opportunity to work on the complete Turkish localization for an action roguelite, which enhanced his understanding of game-specific language and workflows.
-**Battle Talent** - Undertaking the official Turkish translation for this VR sword-fighting game where he translated immersive experiences.
-**Localization Comparison Tool** - Building this Python-based application deepened his technical skills and understanding of practical localization needs.
-**F1 Regulations Assistant** - Creating this specialized AI assistant provided experience in AI application and information management.
-**AutoTidy** - Developing this utility application provided practical experience in software development and problem-solving.
+**Gallery Website Delivery:** Leading end-to-end delivery, including scope, sprints, stack decisions, SEO, and launch operations at Çağla Cabaoğlu Gallery.
 
-Each project demonstrates his growing translation, localization, and technical abilities.`,
+**Localization & Translation Projects:**
+• **Heroes of Hammerwatch II:** Complete Turkish localization for an action roguelite.
+• **Battle Talent:** Official Turkish translation for this VR sword-fighting game.
+• **Localization Comparison Tool:** Python-based application to deepen technical skills.
+• **F1 Regulations Assistant:** Specialized AI assistant for information management.
+• **AutoTidy:** Utility application for file management.
+
+Each project demonstrates his blend of technical and linguistic abilities.`,
   },
 ]
 
 const translationResponses = [
   {
     role: "assistant",
-    content: `Alp offers professional translation services between Turkish and English. He focuses on understanding client needs and delivering quality work in areas such as:
+    content: `Alp brings passion for language interpretation and translation into the digital world. His services include:
 
-**Document Translation** - Accurate translation of various document types.
-**Website Translation** - Adapting web content effectively for Turkish audiences.
-**Technical Translation** - Experience in specialized translation of technical documents.
-**Certified Translation** - Knowledge of requirements for official translations for legal and academic purposes.
-**Proofreading** - Attention to detail to ensure quality assurance for existing translations.
+**Localization & Transcreation:** Adapting content for cultural nuances and creative marketing impact.
+**Subtitle Translation:** For audio-visual media.
+**Proofreading:** Ensuring quality and accuracy.
+**Specialized Translation:** Diplomatic, consecutive, literary, medical, economic, legal, media, and technical fields.
 
-He is ready to discuss your specific project requirements and how he can contribute to your goals.`,
-  },
-]
-
-const localizationResponses = [
-  {
-    role: "assistant",
-    content: `Alp has a strong interest and growing expertise in localization services, especially for video games. His competence includes:
-
-**Game Localization** - Localizing video games for the Turkish market.
-**UI/UX Localization** - Adapting user interfaces for Turkish users.
-**Cultural Adaptation** - Ensuring content is culturally appropriate and resonant.
-**Terminology Management** - Maintaining consistent and accurate terminology.
-**Localization Testing** - Verifying translations in context to ensure quality.
-
-He is ready to understand the type of content you're looking to localize and apply his skills.`,
-  },
-]
-
-const technicalTranslationResponses = [
-  {
-    role: "assistant",
-    content: `Alp possesses strong technical translation skills. He provides precise and contextually accurate translations for:
-
-**Software Documentation** - Experience in translating user manuals and guides.
-**Technical Specifications** - Accurate translation of technical details.
-**API Documentation** - Translating developer documentation effectively.
-**Technical Manuals** - Converting complex instructions between languages.
-**Scientific Content** - Translating research papers and scientific documents.
-
-He understands that technical translation requires precision and domain knowledge, and is committed to excellence in these areas.`,
-  },
-]
-
-const transcreationResponses = [
-  {
-    role: "assistant",
-    content: `Alp offers transcreation services, focusing on adapting marketing and creative content effectively:
-
-**Marketing Materials** - Creative adaptation of marketing campaigns to ensure they resonate with the target audience.
-**Advertising Copy** - Crafting culturally relevant translations of advertisements.
-**Slogans & Taglines** - Creating impactful messaging that connects with local sensibilities.
-**Brand Voice** - Maintaining a consistent brand voice across different languages and cultures.
-**Creative Content** - Adapting creative works while preserving their original intent and impact.
-
-He believes transcreation is key to ensuring content has the same emotional resonance and impact in the target language and is ready to apply his skills.`,
+He uses tools like SDL Trados and Subtitle Edit to deliver high-quality results.`,
   },
 ]
 
 const educationResponses = [
   {
     role: "assistant",
-    content: `Alp's educational background provides a solid foundation for his professional expertise:
+    content: `Alp's educational background includes:
 
-**Bachelor's Degree** - Translation and Interpreting from Izmir University of Economics (2018-2022). This program equipped him with fundamental translation and interpreting skills.
-**TOEFL Score** - A score of 92 demonstrates his advanced proficiency in English, which is crucial for his work.
-**Specialized Training** - He has undertaken specialized training in game localization and technical translation, deepening his expertise.
-**Software Proficiency** - He is proficient with CAT tools like SDL Trados and SmartCat.
-**Continuous Learning** - Alp is committed to lifelong learning and regularly updates his skills through online courses, workshops, and practical experience to maintain a high level of expertise.`,
+**İzmir Ekonomi Üniversitesi** (2018 - July 2022)
+• Bachelor's degree in Language Interpretation and Translation.
+• Major courses in diplomatic, consecutive, audio-visual, literary, medical, economic, legal, media, and computer-assisted translation.
+
+**Pera Güzel Sanatlar Lisesi** (2014 - 2018)
+• High School Diploma, Art/Art Studies, General.
+
+**Sisli Terakki Lisesi** (2005 - 2014)
+• Primary and Middle School Diplomas.
+
+**Robert College Child Study Center** (2001 - 2005)
+• Kindergarten.
+
+**Certificates:**
+• Certificate of Achievement for participation in the Polymaths in the Republican Era Poster Exhibition (May 2022).`,
   },
 ]
 
@@ -143,9 +120,6 @@ type ChatTopic =
   | "skills"
   | "projects"
   | "translation"
-  | "localization"
-  | "technical"
-  | "transcreation"
   | "education"
 
 type AssistantMessage = {
@@ -169,52 +143,34 @@ const responseByTopic: Record<ChatTopic, AssistantMessage> = {
   skills: skillsResponses[0],
   projects: projectResponses[0],
   translation: translationResponses[0],
-  localization: localizationResponses[0],
-  technical: technicalTranslationResponses[0],
-  transcreation: transcreationResponses[0],
   education: educationResponses[0],
 }
 
 const topicKeywords: { topic: ChatTopic; keywords: string[] }[] = [
   {
     topic: "translation",
-    keywords: ["translation", "translate", "çeviri", "çevir"],
-  },
-  {
-    topic: "localization",
-    keywords: ["localization", "localise", "localize", "lokalizasyon", "yerelleştirme"],
-  },
-  {
-    topic: "technical",
-    keywords: ["technical", "tech", "teknik"],
-  },
-  {
-    topic: "transcreation",
-    keywords: ["transcreation", "creative", "transkreasyon", "yaratıcı"],
+    keywords: ["translation", "translate", "çeviri", "çevir", "localization", "transcreation", "subtitle"],
   },
   {
     topic: "experience",
-    keywords: ["experience", "work", "job", "career", "deneyim", "iş", "kariyer"],
+    keywords: ["experience", "work", "job", "career", "deneyim", "iş", "kariyer", "history"],
   },
   {
     topic: "skills",
-    keywords: ["skill", "skills", "know", "capabilities", "beceri", "yetenek"],
+    keywords: ["skill", "skills", "know", "capabilities", "beceri", "yetenek", "tech", "development", "software"],
   },
   {
     topic: "projects",
-    keywords: ["project", "projects", "portfolio", "build", "proje", "projeler", "çalışma"],
+    keywords: ["project", "projects", "portfolio", "build", "proje", "projeler", "çalışma", "gallery", "game"],
   },
   {
     topic: "education",
-    keywords: ["education", "study", "degree", "school", "üniversite", "eğitim"],
+    keywords: ["education", "study", "degree", "school", "üniversite", "eğitim", "university", "college"],
   },
 ]
 
 const servicePromptKeyMap: Partial<Record<ChatTopic, string>> = {
   translation: "experience.service.translation",
-  localization: "experience.service.localization",
-  technical: "experience.service.technical",
-  transcreation: "experience.service.transcreation",
 }
 
 const getResponseForTopic = (topic: ChatTopic): AssistantMessage => {
@@ -226,10 +182,11 @@ const getResponseForTopic = (topic: ChatTopic): AssistantMessage => {
 }
 
 const detectTopicFromText = (text: string): ChatTopic | null => {
-  for (const { topic, keywords } of topicKeywords) {
-    if (keywords.some((keyword) => text.includes(keyword))) {
-      return topic
-    }
+  const keywords = topicKeywords.flatMap(tk => tk.keywords)
+  const match = findBestMatch(text, keywords)
+
+  if (match) {
+    return topicKeywords.find(tk => tk.keywords.includes(match))?.topic || null
   }
   return null
 }
@@ -270,6 +227,7 @@ export default function AIChatSection() {
   const [messages, setMessages] = useState(() => getInitialMessages())
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatMessagesRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -413,6 +371,12 @@ export default function AIChatSection() {
     setMessages(getInitialMessages())
   }
 
+  const handleCopy = (content: string, index: number) => {
+    navigator.clipboard.writeText(content.replace(/<[^>]*>?/gm, '')) // simplistic HTML strip for copy
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 2000)
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -443,124 +407,127 @@ export default function AIChatSection() {
   }
 
   return (
-    <section id="ai-chat" className="py-20 md:py-32 relative bg-gradient-to-b from-card/50 to-background">
+    <section id="ai-chat" className="py-20 md:py-32 relative bg-[#212121] text-white">
       {/* ... existing background */}
 
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+         {/* Minimal ambient glow */}
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-20"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl opacity-20"></div>
       </div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 h-full flex flex-col">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="text-center mb-12"
+          className="text-center mb-8"
           style={{ opacity: 1 }}
         >
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            {t("experience.title").split(" ")[0]}{" "}
-            <span className="text-gradient">
-              {t("experience.title").split(" ")[1]} {t("experience.title").split(" ")[2]}
-            </span>
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-gray-300 max-w-2xl mx-auto">
-            {t("experience.subtitle")}
-          </motion.p>
-          <motion.div
-            variants={itemVariants}
-            className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-4"
-          ></motion.div>
+           {/* Minimal Header */}
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 mb-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-white" />
+              </div>
+             <span className="font-bold text-xl">AlpGPT</span>
+             <span className="text-xs px-2 py-0.5 rounded bg-white/10 text-gray-400">3.5</span>
+          </motion.div>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto" ref={chatContainerRef}>
+        <div className="max-w-3xl mx-auto w-full flex-1 flex flex-col min-h-[600px]" ref={chatContainerRef}>
           <motion.div
-            className="glass rounded-2xl overflow-hidden chat-element"
+            className="flex-1 flex flex-col overflow-hidden"
             variants={chatElementVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            {/* Chat header */}
-            <div className="p-4 border-b border-white/10 flex items-center justify-between bg-card/50">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-medium">AI Alp</h3>
-                  <p className="text-xs text-gray-400">Virtual Assistant</p>
-                </div>
-              </div>
-              <button
-                onClick={resetChat}
-                className="p-2 rounded-full hover:bg-white/10 transition-colors"
-                title={t("experience.reset")}
-                type="button"
-              >
-                <RefreshCw size={16} />
-              </button>
-            </div>
 
-            {/* Chat messages - Fixed height container with internal scrolling */}
+            {/* Chat messages */}
             <div
               ref={chatMessagesRef}
-              className="h-[400px] overflow-y-auto p-4 space-y-4 scroll-smooth"
+              className="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth no-scrollbar"
               style={{ scrollBehavior: "smooth" }}
             >
+              {messages.length === 0 && (
+                 <div className="h-full flex items-center justify-center">
+                     <div className="bg-white/5 px-4 py-2 rounded-full text-sm text-gray-300">hello</div>
+                 </div>
+              )}
+
               {messages.map((message, index) => (
                 <motion.div
                   key={index}
-                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start w-full"}`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
+                    {message.role === "assistant" && (
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex-shrink-0 flex items-center justify-center mr-4 mt-1">
+                            <Bot className="w-5 h-5 text-white" />
+                        </div>
+                    )}
+
                   <div
-                    className={`max-w-[80%] rounded-2xl p-3 ${
-                      message.role === "user" ? "bg-primary/20 text-white" : "bg-card/50 text-white"
+                    className={`max-w-[85%] ${
+                      message.role === "user"
+                      ? "bg-[#2f2f2f] text-white rounded-3xl px-5 py-3"
+                      : "text-gray-100 px-0 py-1"
                     }`}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      {message.role === "assistant" ? (
-                        <Bot size={16} className="text-primary" />
-                      ) : (
-                        <User size={16} className="text-secondary" />
-                      )}
-                      <span className="text-xs font-medium">{message.role === "assistant" ? "AI Alp" : "You"}</span>
-                    </div>
                     <div
-                      className="text-sm rich-text"
+                      className="text-base leading-relaxed rich-text"
                       dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
                     />
+
+                    {/* Action Bar for Assistant */}
+                    {message.role === "assistant" && (
+                         <div className="flex items-center gap-2 mt-3 text-gray-400">
+                             <button
+                                onClick={() => handleCopy(message.content, index)}
+                                className="p-1 hover:bg-white/10 rounded transition-colors"
+                                title="Copy"
+                             >
+                                {copiedIndex === index ? <Check size={16} /> : <Copy size={16} />}
+                             </button>
+                             <button className="p-1 hover:bg-white/10 rounded transition-colors" title="Good response">
+                                 <ThumbsUp size={16} />
+                             </button>
+                             <button className="p-1 hover:bg-white/10 rounded transition-colors" title="Bad response">
+                                 <ThumbsDown size={16} />
+                             </button>
+                             <button className="p-1 hover:bg-white/10 rounded transition-colors" title="Regenerate">
+                                 <RefreshCw size={16} />
+                             </button>
+                         </div>
+                    )}
                   </div>
                 </motion.div>
               ))}
 
               {isTyping && (
                 <motion.div
-                  className="flex justify-start"
+                  className="flex justify-start w-full"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="max-w-[80%] rounded-2xl p-3 bg-card/50 text-white">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Bot size={16} className="text-primary" />
-                      <span className="text-xs font-medium">AI Alp</span>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex-shrink-0 flex items-center justify-center mr-4 mt-1">
+                        <Bot className="w-5 h-5 text-white" />
                     </div>
-                    <div className="flex gap-1">
+                  <div className="text-gray-100 px-0 py-1">
+                    <div className="flex gap-1 h-6 items-center">
                       <span
-                        className="w-2 h-2 rounded-full bg-primary animate-bounce"
+                        className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
                         style={{ animationDelay: "0ms" }}
                       ></span>
                       <span
-                        className="w-2 h-2 rounded-full bg-primary animate-bounce"
+                        className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
                         style={{ animationDelay: "150ms" }}
                       ></span>
                       <span
-                        className="w-2 h-2 rounded-full bg-primary animate-bounce"
+                        className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
                         style={{ animationDelay: "300ms" }}
                       ></span>
                     </div>
@@ -572,65 +539,61 @@ export default function AIChatSection() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick questions */}
-            <div className="p-3 border-t border-white/10 flex gap-2 overflow-x-auto hide-scrollbar">
-              {quickQuestions.map((question) => (
-                <button
-                  key={question.topic}
-                  type="button"
-                  onClick={() => handleQuickQuestion(question)}
-                  className="px-3 py-1 text-xs rounded-full bg-card/50 border border-white/10 whitespace-nowrap hover:bg-primary/20 transition-colors"
-                >
-                  {question.label}
-                </button>
-              ))}
-            </div>
+            {/* Quick questions - Centered pills */}
+             {messages.length < 3 && (
+                <div className="px-4 pb-4 flex flex-wrap gap-2 justify-center">
+                {quickQuestions.map((question) => (
+                    <button
+                    key={question.topic}
+                    type="button"
+                    onClick={() => handleQuickQuestion(question)}
+                    className="px-4 py-2 text-sm rounded-xl bg-[#2f2f2f] border border-white/5 text-gray-300 hover:bg-[#3f3f3f] hover:text-white transition-colors"
+                    >
+                    {question.label}
+                    </button>
+                ))}
+                </div>
+             )}
 
-            {/* Chat input */}
-            <div className="p-4 border-t border-white/10">
-              <form onSubmit={handleSubmit} className="flex gap-2">
-                <input
-                  type="text"
-                  ref={inputRef}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder={t("experience.placeholder")}
-                  className="flex-1 bg-card/50 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50"
-                  autoComplete="off"
-                />
-                <button
-                  type="submit"
-                  className="p-2 rounded-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity disabled:opacity-50"
-                  disabled={!input.trim()}
-                >
-                  <Send size={18} className="text-white" />
-                </button>
+
+            {/* Chat input area */}
+            <div className="p-4 md:pb-8">
+              <form onSubmit={handleSubmit} className="relative max-w-3xl mx-auto">
+                <div className="relative flex items-center bg-[#2f2f2f] rounded-3xl border border-white/10 focus-within:border-white/20 transition-colors">
+                    <button type="button" className="p-3 ml-1 text-gray-400 hover:text-white transition-colors">
+                        <Plus size={20} />
+                    </button>
+                    <input
+                    type="text"
+                    ref={inputRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder={t("experience.placeholder")}
+                    className="flex-1 bg-transparent text-white px-2 py-4 focus:outline-none placeholder:text-gray-500"
+                    autoComplete="off"
+                    />
+                     <div className="flex items-center pr-2 gap-1">
+                        {input.trim() ? (
+                             <button
+                             type="submit"
+                             className="p-2 rounded-full bg-white text-black hover:opacity-90 transition-opacity"
+                             >
+                             <Send size={18} />
+                             </button>
+                        ) : (
+                             <button type="button" className="p-2 text-gray-400 hover:text-white transition-colors">
+                                 <AudioWaveform size={20} />
+                             </button>
+                        )}
+                     </div>
+                </div>
+                <div className="text-center mt-2">
+                    <p className="text-[10px] text-gray-500">AlpGPT can make mistakes. Check important info.</p>
+                </div>
               </form>
             </div>
           </motion.div>
 
-          {/* AI Assistant image */}
-          <motion.div
-            className="mt-8 flex justify-center chat-element"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-primary/30 glow-effect">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/alpface-XaxIdCkA6rU20A2ulrhY6D6BdvSpOA.webp"
-                  alt="Alp Yalay"
-                  width={96}
-                  height={96}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                <Sparkles size={14} className="text-white" />
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
