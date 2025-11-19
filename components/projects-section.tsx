@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { motion, useInView, useAnimation, type PanInfo } from "framer-motion"
+import { motion, useInView, useAnimation, type PanInfo, AnimatePresence } from "framer-motion"
 import { ExternalLink, Github, ChevronLeft, ChevronRight, Gamepad2, Globe, Code, FileText, Bot } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
@@ -145,7 +145,10 @@ export default function ProjectsSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: false, amount: 0.1, fallback: true })
   const controls = useAnimation()
+
+  // State for carousel logic
   const [activeIndex, setActiveIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
   const [isExpanded, setIsExpanded] = useState(false)
   const projectsRef = useRef<HTMLDivElement>(null)
 
@@ -153,47 +156,89 @@ export default function ProjectsSection() {
     controls.start("visible")
   }, [controls])
 
-  const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
+  // Variants for sliding animations
+  const slideVariants = {
+    enter: (direction: number) => {
+      if (direction === 0) return { opacity: 1, scale: 1 } // Instant visibility for morph
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0
+      }
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 }
+      }
+    },
+    exit: (direction: number) => {
+      if (direction === 0) return { opacity: 0, scale: 1, transition: { duration: 0.2 } }
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
         transition: {
-          staggerChildren: 0.15,
-          delayChildren: 0.1,
-        },
-      },
-    },
-    cardVariants = {
-      hidden: { y: 30, opacity: 0 },
-      visible: {
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.8, ease: "easeOut" },
-      },
-    },
-    itemVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, ease: "easeOut" },
-      },
+          x: { type: "spring", stiffness: 300, damping: 30 },
+          opacity: { duration: 0.2 }
+        }
+      }
     }
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  }
 
   const nextProject = () => {
-    setActiveIndex((prev) => (prev + 1) % projects.length)
+    setDirection(1)
+    setIsExpanded(false)
+    setTimeout(() => setActiveIndex((prev) => (prev + 1) % projects.length), 10)
   }
 
   const prevProject = () => {
-    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length)
+    setDirection(-1)
+    setIsExpanded(false)
+    setTimeout(() => setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length), 10)
   }
 
-  const handleDragEnd = (event: any, info: PanInfo) => {
-    const threshold = 50
-    if (info.offset.x > threshold) {
-      prevProject()
-    } else if (info.offset.x < -threshold) {
+  const jumpToProject = (index: number) => {
+    setDirection(0)
+    setIsExpanded(false)
+    setActiveIndex(index)
+  }
+
+  const swipeConfidenceThreshold = 10000
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity
+  }
+
+  const handleDragEnd = (e: any, { offset, velocity }: PanInfo) => {
+    const swipe = swipePower(offset.x, velocity.x)
+
+    if (swipe < -swipeConfidenceThreshold) {
       nextProject()
+    } else if (swipe > swipeConfidenceThreshold) {
+      prevProject()
     }
   }
 
@@ -367,120 +412,123 @@ export default function ProjectsSection() {
 
           {/* Project Content with Swipe Support */}
           <div className="overflow-hidden">
-            <motion.div
-              key={activeIndex}
-              initial="hidden"
-              animate="visible"
-              variants={cardVariants}
-              className="grid md:grid-cols-2 gap-8 items-center project-card"
-              drag="x"
-              dragConstraints={{ left: -100, right: 100 }}
-              dragElastic={0.2}
-              onDragEnd={handleDragEnd}
-              whileDrag={{ scale: 0.95 }}
-            >
-              <div className="order-2 md:order-1">
-                <motion.div
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                  className="space-y-6"
-                  style={{ opacity: 1 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                      {getProjectIcon(activeIndex)}
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              <motion.div
+                key={activeIndex}
+                custom={direction}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                variants={slideVariants}
+                className="grid md:grid-cols-2 gap-8 items-center project-card w-full"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={handleDragEnd}
+                whileDrag={{ cursor: "grabbing" }}
+              >
+                <div className="order-2 md:order-1">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    className="space-y-6"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        {getProjectIcon(activeIndex)}
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-heading font-bold">{projects[activeIndex].title}</h3>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-heading font-bold">{projects[activeIndex].title}</h3>
-                  </div>
 
-                  <motion.p
-                    className="text-gray-300"
-                    initial={{ height: "auto" }}
-                    animate={{ height: "auto" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {isExpanded
-                      ? typeof projects[activeIndex].longDescription === "object"
-                        ? projects[activeIndex].longDescription[language]
-                        : projects[activeIndex].longDescription
-                      : typeof projects[activeIndex].description === "object"
-                        ? projects[activeIndex].description[language]
-                        : projects[activeIndex].description}
-                  </motion.p>
-
-                  <motion.button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="text-sm text-primary hover:text-secondary transition-colors"
-                    whileHover={{ x: 5 }}
-                  >
-                    {isExpanded ? t("projects.read.less") : t("projects.read.more")}
-                  </motion.button>
-
-                  <div className="flex flex-wrap gap-2">
-                    {(typeof projects[activeIndex].tags === "object"
-                      ? projects[activeIndex].tags[language]
-                      : projects[activeIndex].tags
-                    ).map((tag) => (
-                      <motion.span
-                        key={tag}
-                        className="px-3 py-1 text-xs rounded-full glass border border-primary/20"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                      >
-                        {tag}
-                      </motion.span>
-                    ))}
-                  </div>
-
-                  <div className="space-y-3 pt-4 border-t border-white/10">
-                    <h4 className="text-lg font-medium">{t("projects.features")}</h4>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {(typeof projects[activeIndex].features === "object"
-                        ? projects[activeIndex].features[language]
-                        : projects[activeIndex].features
-                      ).map((feature, idx) => (
-                        <motion.li
-                          key={idx}
-                          className="flex items-center gap-2 text-sm text-gray-300"
-                          initial={{ opacity: 1 }}
-                          animate={{ opacity: 1 }}
-                          style={{ opacity: 1 }}
-                        >
-                          <div className="w-2 h-2 rounded-full bg-primary"></div>
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4">{renderProjectButtons(projects[activeIndex])}</div>
-                </motion.div>
-              </div>
-
-              <div className="order-1 md:order-2">
-                <motion.div
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                  className="gradient-border p-1 rounded-2xl overflow-hidden"
-                  style={{ opacity: 1 }}
-                >
-                  <div className={`rounded-xl overflow-hidden bg-gradient-to-br ${projects[activeIndex].color} p-4`}>
-                    <motion.div
-                      whileHover={{ scale: 1.03, rotate: 1 }}
+                    <motion.p
+                      className="text-gray-300"
+                      initial={{ height: "auto" }}
+                      animate={{ height: "auto" }}
                       transition={{ duration: 0.3 }}
-                      className="neomorphic overflow-hidden rounded-lg"
                     >
-                      <Image
-                        src={projects[activeIndex].image || "/placeholder.svg"}
-                        alt={projects[activeIndex].title}
-                        width={800}
-                        height={600}
-                        className="w-full h-auto object-cover rounded-lg"
-                      />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+                      {isExpanded
+                        ? typeof projects[activeIndex].longDescription === "object"
+                          ? projects[activeIndex].longDescription[language]
+                          : projects[activeIndex].longDescription
+                        : typeof projects[activeIndex].description === "object"
+                          ? projects[activeIndex].description[language]
+                          : projects[activeIndex].description}
+                    </motion.p>
+
+                    <motion.button
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className="text-sm text-primary hover:text-secondary transition-colors"
+                      whileHover={{ x: 5 }}
+                    >
+                      {isExpanded ? t("projects.read.less") : t("projects.read.more")}
+                    </motion.button>
+
+                    <div className="flex flex-wrap gap-2">
+                      {(typeof projects[activeIndex].tags === "object"
+                        ? projects[activeIndex].tags[language]
+                        : projects[activeIndex].tags
+                      ).map((tag) => (
+                        <motion.span
+                          key={tag}
+                          className="px-3 py-1 text-xs rounded-full glass border border-primary/20"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                        >
+                          {tag}
+                        </motion.span>
+                      ))}
+                    </div>
+
+                    <div className="space-y-3 pt-4 border-t border-white/10">
+                      <h4 className="text-lg font-medium">{t("projects.features")}</h4>
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {(typeof projects[activeIndex].features === "object"
+                          ? projects[activeIndex].features[language]
+                          : projects[activeIndex].features
+                        ).map((feature, idx) => (
+                          <motion.li
+                            key={idx}
+                            className="flex items-center gap-2 text-sm text-gray-300"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 + idx * 0.1 }}
+                          >
+                            <div className="w-2 h-2 rounded-full bg-primary"></div>
+                            {feature}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4">{renderProjectButtons(projects[activeIndex])}</div>
+                  </motion.div>
+                </div>
+
+                <div className="order-1 md:order-2">
+                  <motion.div
+                    className="gradient-border p-1 rounded-2xl overflow-hidden"
+                    layoutId={direction === 0 ? `project-container-${projects[activeIndex].title}` : undefined}
+                  >
+                    <div className={`rounded-xl overflow-hidden bg-gradient-to-br ${projects[activeIndex].color} p-4`}>
+                      <motion.div
+                        whileHover={{ scale: 1.03, rotate: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="neomorphic overflow-hidden rounded-lg"
+                        layoutId={direction === 0 ? `project-image-${projects[activeIndex].title}` : undefined}
+                      >
+                        <Image
+                          src={projects[activeIndex].image || "/placeholder.svg"}
+                          alt={projects[activeIndex].title}
+                          width={800}
+                          height={600}
+                          className="w-full h-auto object-cover rounded-lg"
+                        />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Project Indicators */}
@@ -488,7 +536,7 @@ export default function ProjectsSection() {
             {projects.map((_, index) => (
               <motion.button
                 key={index}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => jumpToProject(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === activeIndex ? "bg-primary w-6" : "bg-gray-600 hover:bg-gray-400"
                 }`}
@@ -541,11 +589,15 @@ export default function ProjectsSection() {
               <motion.div
                 key={idx}
                 className="glass p-5 rounded-xl hover:bg-card/30 transition-all cursor-pointer project-card"
-                variants={cardVariants}
+                variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
-                onClick={() => setActiveIndex(projects.findIndex((p) => p.title === project.title))}
+                onClick={() => jumpToProject(projects.findIndex((p) => p.title === project.title))}
+                layoutId={`project-container-${project.title}`}
               >
-                <div className="h-40 mb-4 overflow-hidden rounded-lg">
+                <motion.div
+                  className="h-40 mb-4 overflow-hidden rounded-lg"
+                  layoutId={`project-image-${project.title}`}
+                >
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -553,7 +605,7 @@ export default function ProjectsSection() {
                     height={300}
                     className="w-full h-full object-cover"
                   />
-                </div>
+                </motion.div>
                 <h4 className="text-lg font-bold mb-2">{project.title}</h4>
                 <p className="text-sm text-gray-400 line-clamp-2 mb-3">
                   {typeof project.description === "object" ? project.description[language] : project.description}
