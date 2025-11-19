@@ -4,22 +4,22 @@
 
 :root {
   --primary: 46 204 113; /* Green */
-  --secondary: 52 152 219; /* Blue */
-  --accent: 241 196 15; /* Yellow */
-  --background: 10 10 15; /* Dark background */
+  --secondary: 39 174 96; /* Darker Green */
+  --accent: 200 250 200; /* Light Green / Whiteish */
+  --background: 5 5 10; /* Deep dark background */
   --foreground: 240 240 250; /* Light text */
-  --card: 20 20 30; /* Slightly lighter than background */
-  --card-foreground: 240 240 250; /* Same as foreground */
-  --glass-bg: rgba(30, 30, 40, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --neomorphic-shadow-1: rgba(0, 0, 0, 0.5);
-  --neomorphic-shadow-2: rgba(60, 60, 80, 0.2);
+  --card: 15 20 15; /* Dark green-tinted card */
+  --card-foreground: 240 240 250;
+  --glass-bg: rgba(20, 30, 25, 0.6);
+  --glass-border: rgba(46, 204, 113, 0.1);
+  --neomorphic-shadow-1: rgba(0, 0, 0, 0.8);
+  --neomorphic-shadow-2: rgba(20, 40, 30, 0.1);
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground overflow-x-hidden;
-    background: radial-gradient(circle at 50% 50%, rgb(20, 20, 30), rgb(10, 10, 15));
+    background: radial-gradient(circle at 50% 50%, rgb(10, 20, 15), rgb(5, 5, 10));
   }
 }
 
@@ -37,7 +37,7 @@
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--secondary)));
+  background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--accent)));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -48,7 +48,7 @@
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 20px rgba(46, 204, 113, 0.15);
 }
 
 .parallax {
@@ -385,16 +385,16 @@
 
 /* Neon glow effects */
 .neon-glow {
-  box-shadow: 0 0 20px rgba(0, 255, 100, 0.3), 0 0 40px rgba(0, 255, 100, 0.1);
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.3), 0 0 40px rgba(46, 204, 113, 0.1);
 }
 
 .neon-glow:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 100, 0.5), 0 0 60px rgba(0, 255, 100, 0.2);
+  box-shadow: 0 0 30px rgba(46, 204, 113, 0.5), 0 0 60px rgba(46, 204, 113, 0.2);
 }
 
 /* Enhanced text gradient */
 .text-gradient-enhanced {
-  background: linear-gradient(135deg, #00ff64, #00e1f4, #fc52ff);
+  background: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)), rgb(var(--secondary)));
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
