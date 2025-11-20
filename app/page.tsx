@@ -16,7 +16,8 @@ import SectionIndicators from "@/components/section-indicators"
 let hasInitialLoadCompleted = false
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(hasInitialLoadCompleted)
+  // Initialize to true immediately so content is always rendered behind the loader
+  const [isLoaded, setIsLoaded] = useState(true)
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -30,22 +31,13 @@ export default function Home() {
       console.log("Avatar image loaded")
     }
 
-    // Ensure all components are loaded before showing content
-    let timer: ReturnType<typeof setTimeout> | null = null
+    // We don't need the timer for isLoaded anymore as we want it immediate
+    // but we keep the variable for compatibility if needed later
+    hasInitialLoadCompleted = true
 
-    if (!hasInitialLoadCompleted) {
-      timer = setTimeout(() => {
-        hasInitialLoadCompleted = true
-        setIsLoaded(true)
-      }, 3000) // Wait for loading screen to complete on the first visit
-    } else {
-      setIsLoaded(true)
-    }
 
     return () => {
-      if (timer) {
-        clearTimeout(timer)
-      }
+      // No cleanup needed
     }
   }, [])
 
